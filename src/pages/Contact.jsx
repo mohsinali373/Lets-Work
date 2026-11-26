@@ -1,0 +1,85 @@
+import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
+import { CONTACT, TOUR_MSG, waLink } from '../data/site.js';
+import { FAQS } from '../data/faqs.js';
+import { Page } from '../components/layout/Page.jsx';
+import { SplitWords } from '../components/ui/SplitWords.jsx';
+import { Intro } from '../components/ui/PageIntro.jsx';
+import { Eyebrow } from '../components/ui/Eyebrow.jsx';
+import { Reveal } from '../components/ui/Reveal.jsx';
+import { WhatsAppIcon } from '../components/ui/Icons.jsx';
+import { ContactForm } from '../components/contact/ContactForm.jsx';
+import { FaqSection } from '../components/sections/FaqSection.jsx';
+
+const CHANNELS = [
+  { icon: Phone, label: 'Call', value: CONTACT.phoneDisplay, href: CONTACT.tel, tone: 'bg-ink text-cream' },
+  { icon: WhatsAppIcon, label: 'WhatsApp', value: 'Chat with the front desk', href: waLink(TOUR_MSG), tone: 'bg-sun text-ink' },
+  { icon: Mail, label: 'Email', value: CONTACT.email, href: `mailto:${CONTACT.email}`, tone: 'glass' },
+  { icon: MapPin, label: 'Visit', value: CONTACT.address, href: CONTACT.mapLink, tone: 'glass' },
+];
+
+export function Contact() {
+  return (
+    <Page title="Contact Us" description="Contact Let's Work coworking space in Multan — call or WhatsApp 0326-6802515, email info@letswork.pk, or visit us at Nandla Chowk, Shuhada Road.">
+      <section className="relative overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-20 size-[520px] rounded-full bg-sun/30 blur-[120px]" />
+        <div className="wrap relative grid gap-10 pb-16 pt-32 md:pb-24 md:pt-40 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Intro delay={0.4}>
+              <Eyebrow dot>We reply fast</Eyebrow>
+            </Intro>
+            <SplitWords as="h1" onMount delay={0.5} text="Let's talk *work.*" className="t-display mt-6" />
+            <Intro as="p" delay={0.9} className="t-lead mt-6 max-w-md">
+              Contact us for fast, reliable service. Ask about a space, book a free tour, or just come by for chai.
+            </Intro>
+
+            <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              {CHANNELS.map(({ icon: Icon, label, value, href, tone }, i) => {
+                const external = href.startsWith('http');
+                return (
+                  <Intro as="li" key={label} delay={1 + i * 0.08}>
+                    <a
+                      href={href}
+                      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      className={`group flex h-full flex-col rounded-[24px] p-5 transition-transform duration-500 hover:-translate-y-1 ${tone}`}
+                    >
+                      <span className="flex items-center justify-between">
+                        <Icon size={22} aria-hidden="true" />
+                        <ArrowUpRight size={18} className="opacity-40 transition-all duration-500 group-hover:rotate-45 group-hover:opacity-100" aria-hidden="true" />
+                      </span>
+                      <span className="label mt-8 opacity-60">{label}</span>
+                      <span className="mt-1 font-semibold leading-snug">{value}</span>
+                    </a>
+                  </Intro>
+                );
+              })}
+            </ul>
+          </div>
+          <Intro delay={0.8} className="lg:col-span-7">
+            <ContactForm />
+          </Intro>
+        </div>
+      </section>
+
+      <section className="wrap pb-4">
+        <Reveal className="relative overflow-hidden rounded-[34px]">
+          <iframe
+            title="Map showing Let's Work at Nandla Chowk, Shuhada Road, Multan"
+            src={CONTACT.mapEmbed}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="h-[440px] w-full grayscale-[0.6] md:h-[520px]"
+          />
+          <div className="glass absolute bottom-4 left-4 max-w-xs rounded-[22px] p-5 md:bottom-6 md:left-6">
+            <p className="label text-graphite">Let's Work coworking space</p>
+            <p className="mt-1 text-lg font-semibold leading-snug">{CONTACT.address}</p>
+            <a href={CONTACT.mapLink} target="_blank" rel="noopener noreferrer" className="ulink mt-3 inline-block text-sm font-semibold">
+              Get directions →
+            </a>
+          </div>
+        </Reveal>
+      </section>
+
+      <FaqSection items={[FAQS.tour, FAQS.trial, FAQS.where, FAQS.terms]} title="Before you *message us.*" />
+    </Page>
+  );
+}

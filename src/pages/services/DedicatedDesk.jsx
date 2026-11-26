@@ -1,0 +1,148 @@
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { CONTACT, IMG, waLink } from '../../data/site.js';
+import { FAQS } from '../../data/faqs.js';
+import { Page } from '../../components/layout/Page.jsx';
+import { Button } from '../../components/ui/Button.jsx';
+import { SplitWords } from '../../components/ui/SplitWords.jsx';
+import { Intro } from '../../components/ui/PageIntro.jsx';
+import { Eyebrow } from '../../components/ui/Eyebrow.jsx';
+import { Reveal } from '../../components/ui/Reveal.jsx';
+import { Bridge } from '../../components/ui/Bridge.jsx';
+import { CheckList } from '../../components/service/CheckList.jsx';
+import { FlexTerms } from '../../components/sections/FlexTerms.jsx';
+import { FaqSection } from '../../components/sections/FaqSection.jsx';
+import { RelatedSpaces } from '../../components/sections/RelatedSpaces.jsx';
+import { CtaBand } from '../../components/sections/CtaBand.jsx';
+import { EASE_OUT } from '../../lib/motion.js';
+import { ScrollTilt } from '../../components/ui/ScrollTilt.jsx';
+
+const MSG = "Hi Let's Work! I'd like to reserve a dedicated desk. What's available?";
+
+const YOURS = ['Your own desk, every day', 'An ergonomic chair set the way you like it', 'A private locker for your things', 'A spot people can find you at'];
+const SHARED = ['Meeting rooms when you need them', 'High-speed internet', 'Printing and refreshments', 'Networking events and the community', 'Free parking'];
+
+const BENEFITS = [
+  { title: 'Professional and private workspace', text: 'Fully furnished — desk, chair and high-speed internet, ready when you are.' },
+  { title: 'Daily access to your personal desk', text: 'Same seat every morning. No hunting for a free spot.' },
+  { title: 'Secure storage', text: 'Leave your laptop and files locked away overnight.' },
+  { title: 'Meeting room access', text: 'Step into a proper room for calls and client meetings.' },
+  { title: 'Networking', text: 'Work alongside entrepreneurs, freelancers and businesses of all sizes.' },
+];
+
+function SideCard({ title, items, dark, delay }) {
+  return (
+    <Reveal delay={delay} className={`rounded-[30px] p-7 md:p-9 ${dark ? 'bg-ink text-cream' : 'bg-sun text-ink'}`}>
+      <p className="label opacity-60">{dark ? 'Only yours' : 'Shared with the community'}</p>
+      <h3 className="t-h3 mt-3">{title}</h3>
+      <ul className="mt-6 space-y-3">
+        {items.map((it) => (
+          <li key={it} className={`flex items-center gap-3 border-b pb-3 last:border-0 ${dark ? 'border-white/10' : 'border-ink/12'}`}>
+            <span className={`size-2 shrink-0 rounded-full ${dark ? 'bg-sun' : 'bg-ink'}`} aria-hidden="true" />
+            {it}
+          </li>
+        ))}
+      </ul>
+    </Reveal>
+  );
+}
+
+export function DedicatedDesk() {
+  const stripRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: stripRef, offset: ['start end', 'end start'] });
+  const stripY = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
+
+  return (
+    <Page
+      title="Dedicated Desk Coworking Space in Multan"
+      description="Claim your own desk at Let's Work Multan — personal desk, secure storage, high-speed internet and meeting room access. Book by the hour, day or week."
+    >
+      <section className="wrap pb-10 pt-32 md:pt-40">
+        <Intro delay={0.4}>
+          <Eyebrow num="02">Dedicated Desk</Eyebrow>
+        </Intro>
+        <h1 className="t-display mt-6" aria-label="Your desk. Every day.">
+          <Intro as="span" delay={0.5} className="inline">
+            Your desk.{' '}
+          </Intro>
+          <motion.span
+            aria-hidden="true"
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: '1.7em', opacity: 1 }}
+            transition={{ duration: 1.1, ease: EASE_OUT, delay: 0.8 }}
+            className="relative mx-1 inline-block h-[0.78em] overflow-hidden rounded-full align-[-0.06em]"
+          >
+            <img src={IMG.hotDesks} alt="" className="absolute inset-0 size-full object-cover" />
+          </motion.span>{' '}
+          <Intro as="span" delay={0.65} className="inline">
+            <span className="accent">Every</span> day.
+          </Intro>
+        </h1>
+        <div className="mt-8 grid gap-8 md:grid-cols-12 md:items-end">
+          <Intro as="p" delay={0.9} className="t-lead md:col-span-6">
+            Claim your spot in the community. A personal desk you come back to every morning — built for productivity,
+            creativity and the odd good conversation with the person next to you.
+          </Intro>
+          <Intro delay={1} className="flex flex-wrap gap-3 md:col-span-5 md:col-start-8 md:justify-end">
+            <Button href={waLink(MSG)}>Reserve a desk</Button>
+            <Button href={CONTACT.tel} variant="ghost" icon={null}>
+              {CONTACT.phoneDisplay}
+            </Button>
+          </Intro>
+        </div>
+      </section>
+
+      <div ref={stripRef} className="wrap">
+        <div className="relative h-[44vh] min-h-[300px] overflow-hidden rounded-[34px] md:h-[62vh]">
+          <motion.img style={{ y: stripY, scale: 1.25 }} src={IMG.floorLong} alt="Rows of desks on the Let's Work floor" loading="lazy" className="size-full object-cover" />
+          <span className="glass absolute bottom-5 left-5 rounded-full px-4 py-2 text-sm font-medium">Fully furnished · ready on day one</span>
+        </div>
+      </div>
+
+      <section className="wrap sec">
+        <div className="grid gap-6 md:grid-cols-12 md:items-end">
+          <SplitWords text="What's yours. *What's shared.*" className="t-h2 md:col-span-7" />
+          <Reveal as="p" className="text-graphite md:col-span-4 md:col-start-9">
+            A dedicated desk gives you the privacy of your own spot with everything the coworking floor offers.
+          </Reveal>
+        </div>
+        <ScrollTilt from={18}>
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          <SideCard title="Yours, every day" items={YOURS} dark />
+          <SideCard title="Ours, to share" items={SHARED} delay={0.1} />
+        </div>
+        </ScrollTilt>
+        <Bridge className="mt-16">And you're never locked in.</Bridge>
+      </section>
+
+      <section className="wrap pb-16 md:pb-24">
+        <FlexTerms />
+      </section>
+
+      <section className="bg-paper">
+        <div className="wrap sec grid gap-10 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-6">
+            <Eyebrow>Benefits of a dedicated desk in Multan</Eyebrow>
+            <SplitWords text="The best dedicated desk *in Multan.*" className="t-h2 mt-4" />
+            <div className="mt-8">
+              <CheckList items={BENEFITS} />
+            </div>
+          </div>
+          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[32px] lg:col-span-5 lg:col-start-8">
+            <img
+              src={IMG.desksTall2}
+              alt="Dedicated desks on the Let's Work floor"
+              loading="lazy"
+              className="absolute inset-0 size-full object-cover"
+            />
+            <span className="glass absolute left-4 top-4 rounded-full px-3 py-1.5 text-xs font-medium">Our actual floor</span>
+          </Reveal>
+        </div>
+      </section>
+
+      <FaqSection items={[FAQS.terms, FAQS.amenities, FAQS.customize, FAQS.tour]} />
+      <RelatedSpaces currentId="dedicated" />
+      <CtaBand title="Claim *your* desk before someone else does." message={MSG} />
+    </Page>
+  );
+}

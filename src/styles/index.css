@@ -1,0 +1,335 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f3eee3;
+  --color-cream-deep: #e8dfcc;
+  --color-paper: #faf7f0;
+  --color-ink: #111111;
+  --color-ink-soft: #1c1b19;
+  --color-graphite: #57534b;
+  --color-sun: #f5b82e;
+  --color-sun-soft: #fbe2a1;
+  --color-sun-deep: #c98d07;
+
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- base ---------- */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* film grain — gives the cream some paper texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-sun);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+img {
+  user-select: none;
+}
+
+/* Component classes live in a layer so Tailwind utilities (hidden, py-*, etc.) can override them. */
+@layer components {
+/* ---------- layout ---------- */
+.wrap {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+.sec {
+  padding-block: clamp(4rem, 3rem + 4vw, 6.5rem);
+}
+.sec-tight {
+  padding-block: clamp(3rem, 2.4rem + 3vw, 4.75rem);
+}
+
+/* ---------- type ---------- */
+/* Heading scale kept deliberately moderate — big enough for hierarchy, never shouting. */
+.t-display {
+  font-size: clamp(2.4rem, 1.5rem + 3.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  overflow-wrap: break-word;
+}
+.t-h1 {
+  font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.9rem);
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+  font-weight: 600;
+  overflow-wrap: break-word;
+}
+.t-h2 {
+  font-size: clamp(1.8rem, 1.35rem + 1.6vw, 2.85rem);
+  line-height: 1.08;
+  letter-spacing: -0.028em;
+  font-weight: 600;
+  overflow-wrap: break-word;
+}
+.t-h3 {
+  font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.85rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+.t-lead {
+  font-size: clamp(1.08rem, 1rem + 0.35vw, 1.3rem);
+  line-height: 1.55;
+  color: var(--color-graphite);
+}
+.accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  padding-right: 0.06em;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------- glass ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.38);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 18px 40px -18px rgba(17, 17, 17, 0.25);
+}
+.glass-dark {
+  background: rgba(17, 17, 17, 0.8);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 20px 50px -20px rgba(0, 0, 0, 0.55);
+}
+.glass-sun {
+  background: rgba(245, 184, 46, 0.22);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(245, 184, 46, 0.45);
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  border-radius: 999px;
+  padding: 0.5rem 0.55rem 0.5rem 1.35rem;
+  font-weight: 600;
+  font-size: 0.98rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.35s var(--ease-expo),
+    color 0.35s var(--ease-expo),
+    box-shadow 0.35s var(--ease-expo);
+  will-change: transform;
+}
+.btn-noicon {
+  padding: 0.85rem 1.4rem;
+}
+.btn-sun {
+  background: var(--color-sun);
+  color: var(--color-ink);
+  box-shadow: 0 10px 24px -12px rgba(201, 141, 7, 0.7);
+}
+.btn-sun:hover {
+  background: #ffc643;
+}
+.btn-ink {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+.btn-ink:hover {
+  background: #262522;
+}
+.btn-ghost {
+  background: transparent;
+  color: inherit;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+.btn-ghost:hover {
+  background: rgba(17, 17, 17, 0.06);
+}
+.btn-glass {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+.btn-ico {
+  display: grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 999px;
+  flex: none;
+  transition: transform 0.5s var(--ease-expo);
+}
+.btn-sun .btn-ico {
+  background: var(--color-ink);
+  color: var(--color-sun);
+}
+.btn-ink .btn-ico {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+.btn-ghost .btn-ico {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+.btn-glass .btn-ico {
+  background: #fff;
+  color: var(--color-ink);
+}
+.btn:hover .btn-ico {
+  transform: rotate(45deg);
+}
+
+.roll {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.roll > span {
+  display: block;
+  transition: transform 0.5s var(--ease-expo);
+}
+.roll > span + span {
+  position: absolute;
+  inset: 0;
+  transform: translateY(105%);
+}
+.btn:hover .roll > span:first-child,
+.roll-host:hover .roll > span:first-child {
+  transform: translateY(-105%);
+}
+.btn:hover .roll > span + span,
+.roll-host:hover .roll > span + span {
+  transform: translateY(0);
+}
+
+/* underline link */
+.ulink {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat;
+  transition: background-size 0.45s var(--ease-expo);
+}
+.ulink:hover {
+  background-size: 100% 1.5px;
+}
+
+/* marquee */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-speed, 32s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 16s linear infinite;
+}
+
+@keyframes ping-soft {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+.ping-soft {
+  animation: ping-soft 2s var(--ease-expo) infinite;
+}
+
+.no-bar {
+  scrollbar-width: none;
+}
+.no-bar::-webkit-scrollbar {
+  display: none;
+}
+} /* end @layer components */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}
