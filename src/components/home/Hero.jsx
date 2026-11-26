@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { CalendarClock, Car, Clock, Coffee, Phone } from 'lucide-react';
-import { CONTACT, TOUR_MSG, waLink } from '../../data/site.js';
+import { CalendarClock, Car, Clock, Coffee } from 'lucide-react';
+import { TOUR_MSG, waLink } from '../../data/site.js';
 import { Button } from '../ui/Button.jsx';
 import { Marquee } from '../ui/Marquee.jsx';
 import { PhotoDeck3D } from './PhotoDeck3D.jsx';
@@ -92,9 +92,6 @@ export function Hero() {
 
             <motion.div {...fadeUp(0.85)} className="mt-8 flex flex-wrap gap-3">
               <Button href={waLink(TOUR_MSG)}>Claim your free tour</Button>
-              <Button href={CONTACT.tel} variant="glass" icon={Phone}>
-                {CONTACT.phoneDisplay}
-              </Button>
             </motion.div>
 
             <motion.ul {...fadeUp(0.95)} className="mt-8 grid max-w-lg grid-cols-2 gap-2">

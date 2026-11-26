@@ -43,7 +43,7 @@ To re-shoot or replace it, see [docs/video-prompt.md](docs/video-prompt.md).
 
 ## Before going live
 
-- **Photos:** all space photos are real Let's Work photos (`public/img/space/`). The one remaining stock image is `IMG.openOffice` in `src/data/site.js`, kept by request.
+- **Photos:** every photo is a real Let's Work photo (`public/img/space/`), and the home film is our own walk-in video.
 - **Social links:** add profile URLs to `SOCIAL` in `src/data/site.js`; they appear in the footer automatically.
 - **Hosting:** this is a single-page app. Configure the host to serve `index.html` for every route (Netlify `_redirects`: `/* /index.html 200`; Vercel does this by default for Vite).
 - **Contact form:** there is no backend — it opens WhatsApp (or email) with the visitor's message pre-written.

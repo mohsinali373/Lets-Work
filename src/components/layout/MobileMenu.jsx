@@ -1,20 +1,27 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { X, Phone } from 'lucide-react';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'motion/react';
+import { ChevronDown, Phone, X } from 'lucide-react';
 import { CONTACT, IMG, TOUR_MSG, waLink } from '../../data/site.js';
 import { SERVICES } from '../../data/services.js';
 import { EASE_IN_OUT, EASE_OUT } from '../../lib/motion.js';
 import { WhatsAppIcon } from '../ui/Icons.jsx';
 
-const MAIN = [
+const LINKS = [
   { label: "Let's Work", to: '/' },
   { label: 'About', to: '/about-us' },
-  { label: 'Our Spaces', to: '/spaces' },
+  { label: 'Our Spaces', spaces: true },
   { label: 'Contact Us', to: '/contact-us' },
 ];
 
-/** Full-screen menu for phones and tablets, opened with a circular wipe. */
+const row = 'flex w-full items-center justify-between border-b border-white/10 py-4 text-[1.6rem] font-semibold tracking-tight';
+
+/** Full-screen phone menu: four rows, "Our Spaces" expands in place (no duplicate list). */
 export function MobileMenu({ onClose }) {
+  const { pathname } = useLocation();
+  const onSpacePage = SERVICES.some((s) => s.path === pathname) || pathname === '/spaces';
+  const [isSpacesOpen, setIsSpacesOpen] = useState(onSpacePage);
+
   return (
     <motion.div
       role="dialog"
@@ -24,61 +31,85 @@ export function MobileMenu({ onClose }) {
       initial={{ clipPath: 'circle(0% at 92% 6%)' }}
       animate={{ clipPath: 'circle(150% at 92% 6%)' }}
       exit={{ clipPath: 'circle(0% at 92% 6%)' }}
-      transition={{ duration: 0.7, ease: EASE_IN_OUT }}
+      transition={{ duration: 0.6, ease: EASE_IN_OUT }}
       data-lenis-prevent
     >
-      <div className="flex items-center justify-between px-6 pt-6">
+      <div className="flex items-center justify-between px-5 pt-5">
         <img src={IMG.logo} alt="Let's Work" width="2740" height="490" className="h-7 w-auto" />
-        <button
-          type="button"
-          onClick={onClose}
-          autoFocus
-          aria-label="Close menu"
-          className="grid size-11 cursor-pointer place-items-center rounded-full bg-white/10"
-        >
+        <button type="button" onClick={onClose} autoFocus aria-label="Close menu" className="grid size-11 cursor-pointer place-items-center rounded-full bg-white/10">
           <X size={20} aria-hidden="true" />
         </button>
       </div>
 
-      <nav aria-label="Mobile" className="flex-1 px-6 pt-10">
-        <ul>
-          {MAIN.map((item, i) => (
-            <motion.li
-              key={item.to}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.2 + i * 0.06 }}
-            >
-              <Link to={item.to} onClick={onClose} className="t-h2 block py-1.5 transition-colors hover:text-sun">
-                {item.label}
-              </Link>
+      <nav aria-label="Mobile" className="px-5 pt-8">
+        <ul className="border-t border-white/10">
+          {LINKS.map((item, i) => (
+            <motion.li key={item.label} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: EASE_OUT, delay: 0.15 + i * 0.05 }}>
+              {item.spaces ? (
+                <>
+                  <button
+                    type="button"
+                    aria-expanded={isSpacesOpen}
+                    onClick={() => setIsSpacesOpen((o) => !o)}
+                    className={`${row} cursor-pointer text-left ${onSpacePage ? 'text-sun' : ''}`}
+                  >
+                    {item.label}
+                    <ChevronDown size={22} className={`transition-transform duration-300 ${isSpacesOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isSpacesOpen && (
+                      <motion.ul
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: EASE_OUT }}
+                        className="overflow-hidden border-b border-white/10"
+                      >
+                        {[...SERVICES, { id: 'all', name: 'Compare all spaces', path: '/spaces', thumb: null }].map((s) => (
+                          <li key={s.id}>
+                            <Link
+                              to={s.path}
+                              onClick={onClose}
+                              className={`flex items-center gap-3 py-2.5 text-base ${pathname === s.path ? 'text-sun' : 'text-cream/75'}`}
+                            >
+                              {s.thumb ? (
+                                <img src={s.thumb} alt="" className="size-9 rounded-lg object-cover" />
+                              ) : (
+                                <span className="grid size-9 place-items-center rounded-lg bg-white/8 text-sun">→</span>
+                              )}
+                              {s.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </>
+              ) : (
+                <Link to={item.to} onClick={onClose} className={`${row} ${pathname === item.to ? 'text-sun' : ''}`}>
+                  {item.label}
+                </Link>
+              )}
             </motion.li>
-          ))}
-        </ul>
-        <p className="label mt-10 text-cream/40">Spaces</p>
-        <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
-          {SERVICES.map((s) => (
-            <li key={s.id}>
-              <Link to={s.path} onClick={onClose} className="text-cream/75 hover:text-sun">
-                {s.name}
-              </Link>
-            </li>
           ))}
         </ul>
       </nav>
 
-      <div className="grid grid-cols-2 gap-3 p-6">
-        <a href={CONTACT.tel} className="flex items-center justify-center gap-2 rounded-full bg-white/10 py-3.5 font-medium">
-          <Phone size={17} aria-hidden="true" /> Call
-        </a>
-        <a
-          href={waLink(TOUR_MSG)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 rounded-full bg-sun py-3.5 font-semibold text-ink"
-        >
-          <WhatsAppIcon size={18} /> WhatsApp
-        </a>
+      <div className="mt-auto px-5 pb-6 pt-8">
+        <p className="mb-3 text-sm text-cream/50">{CONTACT.address}</p>
+        <div className="grid grid-cols-2 gap-3">
+          <a href={CONTACT.tel} className="flex items-center justify-center gap-2 rounded-full bg-white/10 py-3.5 font-medium">
+            <Phone size={17} aria-hidden="true" /> Call
+          </a>
+          <a
+            href={waLink(TOUR_MSG)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 rounded-full bg-sun py-3.5 font-semibold text-ink"
+          >
+            <WhatsAppIcon size={18} /> WhatsApp
+          </a>
+        </div>
       </div>
     </motion.div>
   );

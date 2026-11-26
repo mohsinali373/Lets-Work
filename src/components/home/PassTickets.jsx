@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowUpRight, Check } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { waLink } from '../../data/site.js';
+import { Button } from '../ui/Button.jsx';
 import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { SplitWords } from '../ui/SplitWords.jsx';
 import { Reveal } from '../ui/Reveal.jsx';
@@ -58,7 +59,7 @@ function Ticket({ pass, index, progress, fan }) {
     <motion.li
       style={fan ? { x, rotate, y, zIndex: pass.featured ? 5 : 4 - Math.abs(Math.round(offset)) } : undefined}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className={`relative flex flex-col rounded-[26px] ${dark ? 'bg-ink-soft text-cream ring-1 ring-white/10' : 'bg-sun text-ink'}`}
+      className={`relative flex w-[78%] shrink-0 snap-center flex-col rounded-[26px] sm:w-auto ${dark ? 'bg-ink-soft text-cream ring-1 ring-white/10' : 'bg-sun text-ink'}`}
     >
       {/* top stub */}
       <div className="p-6 pb-5">
@@ -90,19 +91,6 @@ function Ticket({ pass, index, progress, fan }) {
             </li>
           ))}
         </ul>
-        <a
-          href={waLink(`Hi Let's Work! What's today's price for a ${pass.name.toLowerCase()}?`)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`group mt-6 flex items-center justify-between rounded-full py-2.5 pl-5 pr-2.5 text-sm font-semibold transition-colors ${
-            dark ? 'bg-white/8 hover:bg-white/15' : 'bg-ink text-cream hover:bg-ink-soft'
-          }`}
-        >
-          Get today's price
-          <span className="grid size-8 place-items-center rounded-full bg-sun text-ink transition-transform duration-500 group-hover:rotate-45">
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </span>
-        </a>
       </div>
     </motion.li>
   );
@@ -129,11 +117,20 @@ export function PassTickets() {
           </Reveal>
         </div>
 
-        <ul ref={ref} className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* phones: swipe row; tablet: 2 columns; desktop: 4 columns that deal out on scroll */}
+        <ul
+          ref={ref}
+          className="no-bar -mx-5 mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:mt-12 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
+        >
           {PASSES.map((pass, i) => (
             <Ticket key={pass.name} pass={pass} index={i} progress={scrollYProgress} fan={fan} />
           ))}
         </ul>
+
+        <Reveal className="mt-10 flex flex-col items-start gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-cream/60">Rates change with the space and the length of stay — we reply with today's price.</p>
+          <Button href={waLink("Hi Let's Work! Could you share today's prices for your passes?")}>Get today's prices</Button>
+        </Reveal>
       </div>
     </section>
   );

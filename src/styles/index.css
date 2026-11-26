@@ -80,10 +80,10 @@ img {
   padding-inline: clamp(1.25rem, 4vw, 2.5rem);
 }
 .sec {
-  padding-block: clamp(4rem, 3rem + 4vw, 6.5rem);
+  padding-block: clamp(3.25rem, 2.5rem + 3vw, 5.25rem);
 }
 .sec-tight {
-  padding-block: clamp(3rem, 2.4rem + 3vw, 4.75rem);
+  padding-block: clamp(2.75rem, 2.2rem + 2.4vw, 4rem);
 }
 
 /* ---------- type ---------- */

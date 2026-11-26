@@ -30,7 +30,6 @@ const space = (name) => `/img/space/${name}.jpg`;
 export const IMG = {
   logo: '/img/logo.png',
   building: space('building'), // outside, signage on Shuhada Road
-  exteriorWide: space('exterior-wide'),
   boardroom: space('boardroom'), // yellow feature wall, long table
   boardroomU: space('boardroom-u'),
   boardroomSide: space('boardroom-side'),
@@ -45,8 +44,6 @@ export const IMG = {
   desksTall: space('desks-tall'), // portrait
   desksTall2: space('desks-tall-2'), // portrait, logo wall
   lounge: space('lounge'), // blue sofa, green wall, plant
-  // Atmosphere shot kept for the "door's open" scroll reveal on the home page (client's choice).
-  openOffice: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=72',
 };
 
 /** Every real photo, for galleries. */
