@@ -12,10 +12,12 @@ const VIDEO = {
   poster: '/video/walkin-poster.jpg',
 };
 
+/** Laptops and desktops always get full 1080p; tablets 720p; phones the light file. */
 function pickSource() {
-  const px = window.innerWidth * Math.min(window.devicePixelRatio || 1, 2);
-  if (px >= 1700) return VIDEO.hd;
-  if (px >= 900) return VIDEO.md;
+  const w = window.innerWidth;
+  const dpr = window.devicePixelRatio || 1;
+  if (w >= 1024 || w * dpr >= 1600) return VIDEO.hd;
+  if (w >= 640) return VIDEO.md;
   return VIDEO.sm;
 }
 
@@ -47,7 +49,8 @@ export function WindowReveal() {
   const inset = useTransform(p, [0, SCRUB_START], [8, 0]);
   const radius = useTransform(p, [0, SCRUB_START], [40, 0]);
   const clipPath = useMotionTemplate`inset(${inset}% ${inset}% ${inset}% ${inset}% round ${radius}px)`;
-  const zoom = useTransform(p, [0, SCRUB_START, 1], [1.12, 1.03, 1]);
+  // no scaling once the film is playing: upscaling a 1080p frame is what made it look soft
+  const zoom = useTransform(p, [0, SCRUB_START], [1.06, 1]);
   const peekOpacity = useTransform(p, [0, 0.1], [1, 0]);
   const scrimOpacity = useTransform(p, [SCRUB_START * 0.6, SCRUB_START], [0, 1]);
 
@@ -109,6 +112,7 @@ export function WindowReveal() {
             <img
               src={VIDEO.poster}
               alt=""
+              decoding="async"
               className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${isReady ? 'opacity-0' : 'opacity-100'}`}
             />
             {src && (
@@ -126,8 +130,10 @@ export function WindowReveal() {
             )}
           </motion.div>
           {/* soft left-side fade so the captions read without a box */}
-          <motion.div style={{ opacity: scrimOpacity }} className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/35 to-transparent md:via-ink/20" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/60 to-transparent" />
+          <motion.div
+            style={{ opacity: scrimOpacity }}
+            className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent md:bg-gradient-to-r md:from-ink/65 md:via-ink/10 md:via-35% md:to-transparent md:to-55%"
+          />
         </motion.div>
 
         <motion.p style={{ opacity: peekOpacity }} className="label absolute inset-x-0 top-[16%] text-center text-cream">
