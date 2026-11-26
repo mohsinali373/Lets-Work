@@ -10,6 +10,7 @@ import { WhatsAppIcon } from '../ui/Icons.jsx';
 const LINKS = [
   { label: "Let's Work", to: '/' },
   { label: 'About', to: '/about-us' },
+  { label: 'Privacy Policy', to: '/privacy-policy' },
   { label: 'Our Spaces', spaces: true },
   { label: 'Contact Us', to: '/contact-us' },
 ];

@@ -1,25 +1,106 @@
-import { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { useEffect, useId, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { ArrowUpRight, Check, ChevronDown } from 'lucide-react';
 import { waLink } from '../../data/site.js';
+import { EASE_OUT } from '../../lib/motion.js';
 
 const SPACES = ['Hot desk', 'Dedicated desk', 'Private office', 'Meeting room', 'Instant office'];
 const WHEN = ['A few hours', 'A day', 'A week', 'A month+'];
 const TEAM = ['Just me', '2–5 people', '6+ people'];
 
+/** Custom dropdown in the site's style (opens upward so the hero never clips it). */
 function Choice({ label, options, value, onChange }) {
+  const id = useId();
+  const ref = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState(() => options.indexOf(value));
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const close = (e) => {
+      if (!ref.current?.contains(e.target)) setIsOpen(false);
+    };
+    document.addEventListener('pointerdown', close);
+    return () => document.removeEventListener('pointerdown', close);
+  }, [isOpen]);
+
+  function open() {
+    setActive(options.indexOf(value));
+    setIsOpen(true);
+  }
+  function choose(i) {
+    onChange(options[i]);
+    setIsOpen(false);
+  }
+  function handleKey(e) {
+    if (e.key === 'Escape') setIsOpen(false);
+    else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (!isOpen) open();
+      else setActive((a) => Math.min(options.length - 1, a + 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActive((a) => Math.max(0, a - 1));
+    } else if ((e.key === 'Enter' || e.key === ' ') && isOpen) {
+      e.preventDefault();
+      choose(active);
+    }
+  }
+
   return (
-    <label className="flex min-w-0 flex-1 flex-col gap-1 rounded-2xl bg-white/6 px-4 py-2.5 transition-colors focus-within:bg-white/12 hover:bg-white/10">
-      <span className="label text-cream/50">{label}</span>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full cursor-pointer appearance-none bg-transparent font-semibold text-cream outline-none [&>option]:text-ink"
+    <div ref={ref} className="relative min-w-0 flex-1">
+      <button
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        aria-controls={`${id}-list`}
+        onClick={() => (isOpen ? setIsOpen(false) : open())}
+        onKeyDown={handleKey}
+        className={`flex w-full cursor-pointer items-center justify-between gap-3 rounded-2xl px-4 py-2.5 text-left transition-colors ${
+          isOpen ? 'bg-white/14' : 'bg-white/6 hover:bg-white/10'
+        }`}
       >
-        {options.map((o) => (
-          <option key={o}>{o}</option>
-        ))}
-      </select>
-    </label>
+        <span className="min-w-0">
+          <span className="label block text-cream/50">{label}</span>
+          <span className="block truncate font-semibold text-cream">{value}</span>
+        </span>
+        <ChevronDown size={18} className={`shrink-0 text-sun transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.ul
+            id={`${id}-list`}
+            role="listbox"
+            aria-label={label}
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: EASE_OUT }}
+            className="absolute bottom-full left-0 right-0 z-30 mb-2 origin-bottom rounded-2xl border border-white/10 bg-ink-soft p-1.5 shadow-[0_24px_50px_-20px_rgba(0,0,0,0.8)]"
+          >
+            {options.map((o, i) => {
+              const isSelected = o === value;
+              return (
+                <li
+                  key={o}
+                  role="option"
+                  aria-selected={isSelected}
+                  onPointerEnter={() => setActive(i)}
+                  onClick={() => choose(i)}
+                  className={`flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm transition-colors ${
+                    i === active ? 'bg-white/10' : ''
+                  } ${isSelected ? 'font-semibold text-sun' : 'text-cream/85'}`}
+                >
+                  {o}
+                  {isSelected && <Check size={15} aria-hidden="true" />}
+                </li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 

@@ -23,11 +23,12 @@ export function CtaBand({
             {text}
           </Reveal>
         </div>
-        <Reveal className="flex flex-col gap-3 sm:flex-row md:col-span-5 md:justify-end" delay={0.15}>
+        <Reveal className="flex flex-wrap gap-3 md:col-span-5 md:justify-end" delay={0.15}>
           <Button href={waLink(message)} variant="ink">
             Book on WhatsApp
           </Button>
-          <Button href={CONTACT.tel} variant="ghost" icon={Phone}>
+          {/* on phones the floating call button already covers this */}
+          <Button href={CONTACT.tel} variant="ghost" icon={Phone} className="hidden sm:inline-flex">
             {CONTACT.phoneDisplay}
           </Button>
         </Reveal>

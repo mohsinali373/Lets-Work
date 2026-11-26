@@ -1,10 +1,8 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Phone } from 'lucide-react';
-import { CONTACT, IMG, SOCIAL, TOUR_MSG, waLink } from '../../data/site.js';
+import { CONTACT, IMG, SOCIAL } from '../../data/site.js';
 import { SERVICES } from '../../data/services.js';
-import { Button } from '../ui/Button.jsx';
 
 const COMPANY = [
   { label: 'All spaces', to: '/spaces' },
@@ -28,15 +26,10 @@ export function Footer() {
         <div className="grid gap-12 border-b border-white/10 pb-14 md:grid-cols-12">
           <div className="md:col-span-5">
             <img src={IMG.logo} alt="Let's Work" width="2740" height="490" className="h-8 w-auto" loading="lazy" />
-            <h2 className="mt-8 max-w-md text-3xl font-semibold leading-[1.05] tracking-tight md:text-[2.6rem]">
+            <h2 className="mt-6 max-w-md text-2xl font-semibold leading-[1.1] tracking-tight md:text-3xl">
               That's a lot of scrolling for someone who <span className="accent text-sun">could be working</span> here.
             </h2>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href={waLink(TOUR_MSG)}>Book a free tour</Button>
-              <Button href={CONTACT.tel} variant="glass" icon={Phone}>
-                Call us
-              </Button>
-            </div>
+            <p className="mt-4 max-w-sm text-cream/55">Dynamic spaces for dynamic people — Multan's no.1 coworking space.</p>
           </div>
 
           <div className="md:col-span-2 md:col-start-7">
@@ -104,7 +97,8 @@ export function Footer() {
         let's<span className="text-sun/80">work</span>
       </motion.p>
 
-      <div className="wrap flex flex-col gap-2 border-t border-white/10 py-6 text-sm text-cream/45 md:flex-row md:items-center md:justify-between">
+      {/* extra bottom room on phones so the floating call/WhatsApp buttons never cover this line */}
+      <div className="wrap flex flex-col gap-2 border-t border-white/10 pb-24 pt-6 text-sm text-cream/45 md:flex-row md:items-center md:justify-between md:pb-6">
         <p>© {new Date().getFullYear()} Let's Work Coworking Space, Multan. All rights reserved.</p>
         <p>
           Developed by{' '}

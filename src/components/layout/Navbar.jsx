@@ -79,6 +79,11 @@ export function Navbar() {
                 About
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/privacy-policy" className={linkClass}>
+                Privacy Policy
+              </NavLink>
+            </li>
             <li className="relative" onMouseEnter={() => setIsMegaOpen(true)} onMouseLeave={() => setIsMegaOpen(false)}>
               <button
                 type="button"
