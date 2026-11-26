@@ -38,12 +38,12 @@ URLs match the old WordPress site (`/coworking-space`, `/meeting-room`, `/about-
 
 ## Scroll video
 
-The home page "walk-in" section scrubs `public/video/arrive.mp4` with the scroll. It currently uses a free
-Mixkit stock clip (#787). To replace it with your own shot, see [docs/video-prompt.md](docs/video-prompt.md).
+The home page "walk-in" section scrubs `public/video/walkin-*.mp4` (our own walk-in film, deflickered and encoded at 1080p / 720p / 480p) with the scroll.
+To re-shoot or replace it, see [docs/video-prompt.md](docs/video-prompt.md).
 
 ## Before going live
 
-- **Photos:** many ambience shots are Unsplash placeholders (see `IMG` in `src/data/site.js`). Swap them for real photos of the space — real photos convert far better.
+- **Photos:** all space photos are real Let's Work photos (`public/img/space/`). The one remaining stock image is `IMG.openOffice` in `src/data/site.js`, kept by request.
 - **Social links:** add profile URLs to `SOCIAL` in `src/data/site.js`; they appear in the footer automatically.
 - **Hosting:** this is a single-page app. Configure the host to serve `index.html` for every route (Netlify `_redirects`: `/* /index.html 200`; Vercel does this by default for Vite).
 - **Contact form:** there is no backend — it opens WhatsApp (or email) with the visitor's message pre-written.

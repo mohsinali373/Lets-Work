@@ -4,26 +4,36 @@ import { waLink } from '../../data/site.js';
 import { Button } from '../ui/Button.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
 
-const VIDEO = { large: '/video/arrive.mp4', small: '/video/arrive-sm.mp4', poster: '/video/arrive-poster.jpg' };
+/** Our own walk-in film, encoded at three sizes with a keyframe every 3 frames for clean scrubbing. */
+const VIDEO = {
+  hd: '/video/walkin-1080.mp4',
+  md: '/video/walkin-720.mp4',
+  sm: '/video/walkin-480.mp4',
+  poster: '/video/walkin-poster.jpg',
+};
 
-/**
- * Captions keyed to the clip's timeline as a fraction (0..1), so any replacement video
- * lines up without code changes. Just drop new files at the VIDEO paths above.
- */
+function pickSource() {
+  const px = window.innerWidth * Math.min(window.devicePixelRatio || 1, 2);
+  if (px >= 1700) return VIDEO.hd;
+  if (px >= 900) return VIDEO.md;
+  return VIDEO.sm;
+}
+
+/** Captions timed to the film as a fraction of its length (0..1). */
 const BEATS = [
-  { at: 0, time: '08:55', title: 'She walks in.', text: 'No lease signed. One WhatsApp message and a free tour.' },
-  { at: 0.3, time: '08:57', title: 'Past the glass offices…', text: 'Quiet rooms for calls, meeting rooms by the hour.' },
-  { at: 0.57, time: '08:59', title: 'Finds her desk.', text: 'Fast Wi-Fi, an ergonomic chair, a plug by her knee.' },
-  { at: 0.78, time: '09:00', title: 'Laptop open. Work begins.', text: 'That is the whole onboarding. Yours can start tomorrow.' },
+  { at: 0, time: '08:55', title: 'She walks in.', text: 'Past the blue sofas, coffee already in hand.' },
+  { at: 0.17, time: '08:56', title: 'Through the hot desks.', text: 'Green dividers, fast Wi-Fi, people already at work.' },
+  { at: 0.5, time: '08:58', title: 'Into her private office.', text: 'A glass door, a yellow wall — and quiet.' },
+  { at: 0.72, time: '09:00', title: 'Coffee down. Laptop open.', text: "That's the whole onboarding. Yours can start tomorrow." },
 ];
 
-const SCRUB_START = 0.14; // scroll progress where the video starts moving (after the window opens)
+const SCRUB_START = 0.14; // scroll progress where the film starts moving (after the window opens)
 const SCRUB_END = 0.96;
+const EASE_TO_TARGET = 0.22; // how far the playhead moves toward the scroll target each frame
 
 /**
- * Scroll-scrubbed video: one continuous real shot that plays forward and backward
- * exactly with the scrollbar — no cuts, the camera simply follows her to her desk.
- * The file is encoded with a keyframe every few frames so seeking stays smooth.
+ * Scroll-scrubbed film of a real morning at Let's Work: it plays forward and backward with the
+ * scrollbar, one continuous shot, while captions change on the left — plain text, no box.
  */
 export function WindowReveal() {
   const sectionRef = useRef(null);
@@ -37,35 +47,36 @@ export function WindowReveal() {
   const inset = useTransform(p, [0, SCRUB_START], [8, 0]);
   const radius = useTransform(p, [0, SCRUB_START], [40, 0]);
   const clipPath = useMotionTemplate`inset(${inset}% ${inset}% ${inset}% ${inset}% round ${radius}px)`;
-  const zoom = useTransform(p, [0, SCRUB_START, 1], [1.18, 1.06, 1]);
+  const zoom = useTransform(p, [0, SCRUB_START, 1], [1.12, 1.03, 1]);
   const peekOpacity = useTransform(p, [0, 0.1], [1, 0]);
+  const scrimOpacity = useTransform(p, [SCRUB_START * 0.6, SCRUB_START], [0, 1]);
 
-  // Pick a file for the screen size, only once the section is close.
+  // Choose a file for this screen once the section is close.
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return undefined;
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
-        setSrc(window.innerWidth < 768 ? VIDEO.small : VIDEO.large);
+        setSrc(pickSource());
         io.disconnect();
       },
-      { rootMargin: '800px 0px' },
+      { rootMargin: '900px 0px' },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  // Ease the video's time toward the scroll target every frame (smooth, never ahead of a pending seek).
+  // Ease the playhead toward the scroll target every frame; never queue a seek on top of a seek.
   useEffect(() => {
     let frame = 0;
     function tick() {
       frame = requestAnimationFrame(tick);
       const v = videoRef.current;
       if (!v || !v.duration || v.seeking) return;
-      const target = targetRef.current * v.duration;
+      const target = targetRef.current * (v.duration - 0.05);
       const diff = target - v.currentTime;
-      if (Math.abs(diff) > 0.02) v.currentTime = v.currentTime + diff * 0.35;
+      if (Math.abs(diff) > 1 / 48) v.currentTime = v.currentTime + diff * EASE_TO_TARGET;
     }
     tick();
     return () => cancelAnimationFrame(frame);
@@ -91,11 +102,15 @@ export function WindowReveal() {
   const isLast = beat === BEATS.length - 1;
 
   return (
-    <section ref={sectionRef} className="relative h-[420vh]" aria-label="A morning at Let's Work, played as you scroll">
+    <section ref={sectionRef} className="relative h-[420vh] bg-ink" aria-label="A morning at Let's Work, played as you scroll">
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div style={{ clipPath }} className="absolute inset-0 bg-ink">
           <motion.div style={{ scale: zoom }} className="absolute inset-0">
-            <img src={VIDEO.poster} alt="" className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${isReady ? 'opacity-0' : 'opacity-100'}`} />
+            <img
+              src={VIDEO.poster}
+              alt=""
+              className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${isReady ? 'opacity-0' : 'opacity-100'}`}
+            />
             {src && (
               <video
                 ref={videoRef}
@@ -103,43 +118,69 @@ export function WindowReveal() {
                 muted
                 playsInline
                 preload="auto"
+                disablePictureInPicture
                 onLoadedData={handleLoaded}
-                aria-label="A woman walks through a modern office, sits at a desk and opens her laptop"
+                aria-label="A member walks through Let's Work past the lounge and hot desks into a private office, sits down and opens her laptop"
                 className="absolute inset-0 size-full object-cover"
               />
             )}
           </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/25" />
+          {/* soft left-side fade so the captions read without a box */}
+          <motion.div style={{ opacity: scrimOpacity }} className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/35 to-transparent md:via-ink/20" />
+          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/60 to-transparent" />
         </motion.div>
 
         <motion.p style={{ opacity: peekOpacity }} className="label absolute inset-x-0 top-[16%] text-center text-cream">
           Keep scrolling — the door's open
         </motion.p>
 
-        <div className="wrap pointer-events-none absolute inset-x-0 bottom-0 pb-6 md:pb-10">
-          <AnimatePresence mode="wait">
+        {/* captions: plain text on the left */}
+        <div className="wrap pointer-events-none absolute inset-0 flex items-end pb-16 md:items-center md:pb-0">
+          <div className="max-w-md text-cream [text-shadow:0_2px_18px_rgba(0,0,0,0.45)]">
+            <AnimatePresence mode="wait">
+              {caption && (
+                <motion.div key={caption.time} initial="in" animate="show" exit="out">
+                  <motion.p
+                    variants={{ in: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 }, out: { opacity: 0, y: -14 } }}
+                    transition={{ duration: 0.45, ease: EASE_OUT }}
+                    className="font-mono text-lg font-medium text-sun md:text-xl"
+                  >
+                    {caption.time}
+                  </motion.p>
+                  <motion.h3
+                    variants={{ in: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 }, out: { opacity: 0, y: -14 } }}
+                    transition={{ duration: 0.55, ease: EASE_OUT, delay: 0.05 }}
+                    className="t-h2 mt-2"
+                  >
+                    {caption.title}
+                  </motion.h3>
+                  <motion.p
+                    variants={{ in: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 }, out: { opacity: 0, y: -10 } }}
+                    transition={{ duration: 0.5, ease: EASE_OUT, delay: 0.12 }}
+                    className="mt-3 text-lg text-cream/85"
+                  >
+                    {caption.text}
+                  </motion.p>
+                  {isLast && (
+                    <motion.div
+                      variants={{ in: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 }, out: { opacity: 0 } }}
+                      transition={{ duration: 0.5, ease: EASE_OUT, delay: 0.2 }}
+                      className="pointer-events-auto mt-6"
+                    >
+                      <Button href={waLink("Hi Let's Work! I'd like to reserve a desk.")}>Reserve your desk</Button>
+                    </motion.div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
             {caption && (
-              <motion.div
-                key={caption.time}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.45, ease: EASE_OUT }}
-                className="glass-dark pointer-events-auto max-w-sm rounded-[24px] p-5 text-cream"
-              >
-                <p className="font-mono text-2xl font-medium text-sun">{caption.time}</p>
-                <p className="mt-1 text-lg font-semibold tracking-tight">{caption.title}</p>
-                <p className="mt-1 text-sm text-cream/65">{caption.text}</p>
-                {isLast && (
-                  <div className="mt-4">
-                    <Button href={waLink("Hi Let's Work! I'd like to reserve a desk.")} className="!py-1.5 !text-sm">
-                      Reserve your desk
-                    </Button>
-                  </div>
-                )}
-              </motion.div>
+              <ol className="mt-6 flex gap-1.5" aria-hidden="true">
+                {BEATS.map((b, i) => (
+                  <li key={b.time} className={`h-1 rounded-full transition-all duration-500 ${i === beat ? 'w-8 bg-sun' : i < beat ? 'w-3 bg-sun/60' : 'w-3 bg-white/30'}`} />
+                ))}
+              </ol>
             )}
-          </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
