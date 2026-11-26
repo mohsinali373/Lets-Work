@@ -1,6 +1,6 @@
 /* Small flat illustrations for the scroll companion — one per page, all in the brand palette. */
-const INK = '#1d1d1d';
-const SUN = '#f5b82e';
+const INK = 'var(--color-ink)';
+const SUN = 'var(--color-sun)';
 const CREAM = '#fbfaf6';
 const SAUCER = (
   <>

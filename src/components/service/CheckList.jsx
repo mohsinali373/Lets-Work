@@ -10,7 +10,7 @@ export function CheckList({ items, dark = false }) {
     <ul className="space-y-1">
       {items.map((it, i) => (
         <Reveal as="li" key={it.title} delay={i * 0.06} className={`flex gap-4 border-b py-4 ${dark ? 'border-white/10' : 'border-ink/10'}`}>
-          <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-sun text-ink">
+          <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-sun text-on-sun">
             <Check size={15} strokeWidth={2.6} aria-hidden="true" />
           </span>
           <span>

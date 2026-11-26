@@ -14,7 +14,7 @@ export function CtaBand({
   message = TOUR_MSG,
 }) {
   return (
-    <section className="relative overflow-hidden bg-sun text-ink" aria-label="Book a free tour">
+    <section className="relative overflow-hidden bg-sun text-on-sun" aria-label="Book a free tour">
       <div className="wrap grid gap-8 py-14 md:grid-cols-12 md:items-center md:py-20">
         <div className="md:col-span-7">
           <p className="label text-ink/60">Free tour · no commitment</p>

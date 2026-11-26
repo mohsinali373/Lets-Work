@@ -59,7 +59,7 @@ function Ticket({ pass, index, progress, fan }) {
     <motion.li
       style={fan ? { x, rotate, y, zIndex: pass.featured ? 5 : 4 - Math.abs(Math.round(offset)) } : undefined}
       whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className={`relative flex w-[78%] shrink-0 snap-center flex-col rounded-[26px] sm:w-auto ${dark ? 'bg-ink-soft text-cream ring-1 ring-white/10' : 'bg-sun text-ink'}`}
+      className={`relative flex w-[78%] shrink-0 snap-center flex-col rounded-[26px] sm:w-auto ${dark ? 'bg-ink-soft text-cream ring-1 ring-white/10' : 'bg-sun text-on-sun'}`}
     >
       {/* top stub */}
       <div className="p-6 pb-5">
@@ -84,7 +84,7 @@ function Ticket({ pass, index, progress, fan }) {
         <ul className="space-y-2.5 text-sm">
           {pass.perks.map((perk) => (
             <li key={perk} className="flex items-center gap-2.5">
-              <span className={`grid size-5 shrink-0 place-items-center rounded-full ${dark ? 'bg-sun text-ink' : 'bg-ink text-sun'}`}>
+              <span className={`grid size-5 shrink-0 place-items-center rounded-full ${dark ? 'bg-sun text-on-sun' : 'bg-ink text-sun'}`}>
                 <Check size={12} strokeWidth={3} aria-hidden="true" />
               </span>
               {perk}

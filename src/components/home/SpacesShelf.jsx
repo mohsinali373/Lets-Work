@@ -11,7 +11,7 @@ import { ScrollTilt } from '../ui/ScrollTilt.jsx';
 const TONES = {
   paper: 'bg-paper text-ink',
   ink: 'bg-ink text-cream',
-  sun: 'bg-sun text-ink',
+  sun: 'bg-sun text-on-sun',
   deep: 'bg-cream-deep text-ink',
   glass: 'glass text-ink',
 };
@@ -52,7 +52,7 @@ export function SpacesShelf() {
                   <span className="label opacity-60">({s.num})</span>
                   <span
                     className={`grid size-10 shrink-0 place-items-center rounded-full transition-all duration-500 ${
-                      isActive ? 'rotate-45 bg-sun text-ink' : 'bg-current/10'
+                      isActive ? 'rotate-45 bg-sun text-on-sun' : 'bg-current/10'
                     } ${s.tone === 'sun' && isActive ? '!bg-ink !text-sun' : ''}`}
                   >
                     <ArrowUpRight size={18} aria-hidden="true" />

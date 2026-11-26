@@ -12,7 +12,7 @@ import { FaqSection } from '../components/sections/FaqSection.jsx';
 
 const CHANNELS = [
   { icon: Phone, label: 'Call', value: CONTACT.phoneDisplay, href: CONTACT.tel, tone: 'bg-ink text-cream' },
-  { icon: WhatsAppIcon, label: 'WhatsApp', value: 'Chat with the front desk', href: waLink(TOUR_MSG), tone: 'bg-sun text-ink' },
+  { icon: WhatsAppIcon, label: 'WhatsApp', value: 'Chat with the front desk', href: waLink(TOUR_MSG), tone: 'bg-sun text-on-sun' },
   { icon: Mail, label: 'Email', value: CONTACT.email, href: `mailto:${CONTACT.email}`, tone: 'glass' },
   { icon: MapPin, label: 'Visit', value: CONTACT.address, href: CONTACT.mapLink, tone: 'glass' },
 ];

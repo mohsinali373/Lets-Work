@@ -22,7 +22,7 @@ export function Steps({ steps, dark = false }) {
       <ol className="relative grid gap-8 md:grid-cols-3 md:gap-10">
         {steps.map((s, i) => (
           <Reveal as="li" key={s.title} delay={i * 0.12}>
-            <span className={`grid size-12 place-items-center rounded-full font-mono text-sm font-medium ${dark ? 'bg-sun text-ink' : 'bg-ink text-sun'}`}>
+            <span className={`grid size-12 place-items-center rounded-full font-mono text-sm font-medium ${dark ? 'bg-sun text-on-sun' : 'bg-ink text-sun'}`}>
               0{i + 1}
             </span>
             <h3 className="mt-6 text-2xl font-semibold tracking-tight">{s.title}</h3>

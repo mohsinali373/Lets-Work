@@ -78,7 +78,7 @@ export function AmenitiesBento() {
             </div>
           </div>
 
-          <Small icon={Car} title="Free parking" text="Park right here. No circling the chowk." className="flex flex-col bg-sun text-ink" />
+          <Small icon={Car} title="Free parking" text="Park right here. No circling the chowk." className="flex flex-col bg-sun text-on-sun" />
           <Small icon={Lock} title="Private lockers" text="Leave the laptop. Walk home light." className="glass flex flex-col" />
 
           <div className={`${card} flex min-h-[205px] bg-cream-deep p-0 sm:col-span-2`}>
@@ -100,7 +100,7 @@ export function AmenitiesBento() {
             <span className="label text-sun">All of it, every plan</span>
             <span className="flex items-end justify-between gap-4">
               <span className="max-w-xs text-2xl font-semibold leading-tight tracking-tight">See which space fits how you work</span>
-              <span className="grid size-12 shrink-0 place-items-center rounded-full bg-sun text-ink transition-transform duration-500 group-hover:rotate-45">
+              <span className="grid size-12 shrink-0 place-items-center rounded-full bg-sun text-on-sun transition-transform duration-500 group-hover:rotate-45">
                 <ArrowUpRight size={20} aria-hidden="true" />
               </span>
             </span>

@@ -95,7 +95,7 @@ export function MeetingRoom() {
         <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {USES.map(({ icon: Icon, title, text }, i) => (
             <Reveal as="li" key={title} delay={(i % 3) * 0.07} className="group rounded-[26px] bg-paper p-7 transition-colors duration-500 hover:bg-ink hover:text-cream">
-              <span className="grid size-12 place-items-center rounded-full bg-sun text-ink transition-transform duration-500 group-hover:-rotate-12">
+              <span className="grid size-12 place-items-center rounded-full bg-sun text-on-sun transition-transform duration-500 group-hover:-rotate-12">
                 <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
               </span>
               <h3 className="mt-8 text-xl font-semibold tracking-tight">{title}</h3>

@@ -27,7 +27,7 @@ export function AmenityBand({
               as="li"
               key={name}
               delay={(i % 3) * 0.06}
-              className="group relative -mb-px -mr-px border-b border-r border-white/10 p-6 transition-colors duration-500 hover:bg-sun hover:text-ink md:p-8"
+              className="group relative -mb-px -mr-px border-b border-r border-white/10 p-6 transition-colors duration-500 hover:bg-sun hover:text-on-sun md:p-8"
             >
               <div className="flex items-start justify-between">
                 <Icon size={26} strokeWidth={1.6} aria-hidden="true" className="text-sun transition-colors duration-500 group-hover:text-ink" />

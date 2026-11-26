@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { ChevronDown, Phone, X } from 'lucide-react';
-import { CONTACT, IMG, TOUR_MSG, waLink } from '../../data/site.js';
+import { BrandLogo } from './PaletteSwitcher.jsx';
+import { CONTACT, TOUR_MSG, waLink } from '../../data/site.js';
 import { SERVICES } from '../../data/services.js';
 import { EASE_IN_OUT, EASE_OUT } from '../../lib/motion.js';
 import { WhatsAppIcon } from '../ui/Icons.jsx';
@@ -36,7 +37,7 @@ export function MobileMenu({ onClose }) {
       data-lenis-prevent
     >
       <div className="flex items-center justify-between px-5 pt-5">
-        <img src={IMG.logo} alt="Let's Work" width="2740" height="490" className="h-7 w-auto" />
+        <BrandLogo alt="Let's Work" width="2740" height="490" className="h-7 w-auto" />
         <button type="button" onClick={onClose} autoFocus aria-label="Close menu" className="grid size-11 cursor-pointer place-items-center rounded-full bg-white/10">
           <X size={20} aria-hidden="true" />
         </button>
@@ -106,7 +107,7 @@ export function MobileMenu({ onClose }) {
             href={waLink(TOUR_MSG)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-full bg-sun py-3.5 font-semibold text-ink"
+            className="flex items-center justify-center gap-2 rounded-full bg-sun py-3.5 font-semibold text-on-sun"
           >
             <WhatsAppIcon size={18} /> WhatsApp
           </a>

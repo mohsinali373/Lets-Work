@@ -32,7 +32,7 @@ const BENEFITS = [
 
 function SideCard({ title, items, dark, delay }) {
   return (
-    <Reveal delay={delay} className={`rounded-[30px] p-7 md:p-9 ${dark ? 'bg-ink text-cream' : 'bg-sun text-ink'}`}>
+    <Reveal delay={delay} className={`rounded-[30px] p-7 md:p-9 ${dark ? 'bg-ink text-cream' : 'bg-sun text-on-sun'}`}>
       <p className="label opacity-60">{dark ? 'Only yours' : 'Shared with the community'}</p>
       <h3 className="t-h3 mt-3">{title}</h3>
       <ul className="mt-6 space-y-3">

@@ -125,7 +125,7 @@ export function QuickQuote() {
       <Choice label="Team" options={TEAM} value={team} onChange={setTeam} />
       <button
         type="submit"
-        className="roll-host group flex shrink-0 cursor-pointer items-center justify-center gap-3 rounded-2xl bg-sun px-6 py-4 font-semibold text-ink transition-colors hover:bg-[#ffc643]"
+        className="roll-host group flex shrink-0 cursor-pointer items-center justify-center gap-3 rounded-2xl bg-sun px-6 py-4 font-semibold text-on-sun transition-colors hover:bg-[color-mix(in_srgb,var(--color-sun)_85%,white)]"
       >
         <span className="roll">
           <span>Check availability</span>

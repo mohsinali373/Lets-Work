@@ -1,7 +1,8 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { CONTACT, IMG, SOCIAL } from '../../data/site.js';
+import { BrandLogo } from './PaletteSwitcher.jsx';
+import { CONTACT, SOCIAL } from '../../data/site.js';
 import { SERVICES } from '../../data/services.js';
 
 const COMPANY = [
@@ -25,7 +26,7 @@ export function Footer() {
       <div className="wrap pt-16 md:pt-24">
         <div className="grid gap-12 border-b border-white/10 pb-14 md:grid-cols-12">
           <div className="md:col-span-5">
-            <img src={IMG.logo} alt="Let's Work" width="2740" height="490" className="h-8 w-auto" loading="lazy" />
+            <BrandLogo alt="Let's Work" width="2740" height="490" className="h-8 w-auto" loading="lazy" />
             <h2 className="mt-6 max-w-md text-2xl font-semibold leading-[1.1] tracking-tight md:text-3xl">
               That's a lot of scrolling for someone who <span className="accent text-sun">could be working</span> here.
             </h2>

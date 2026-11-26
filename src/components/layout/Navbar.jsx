@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
 import { ChevronDown, Menu, Phone } from 'lucide-react';
-import { CONTACT, IMG, TOUR_MSG, waLink } from '../../data/site.js';
+import { BrandLogo } from './PaletteSwitcher.jsx';
+import { CONTACT, TOUR_MSG, waLink } from '../../data/site.js';
 import { Button } from '../ui/Button.jsx';
 import { useLenis } from '../../lib/SmoothScroll.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
@@ -65,7 +66,7 @@ export function Navbar() {
           className="glass-dark mx-auto flex max-w-[1180px] items-center justify-between gap-4 rounded-full py-2 pl-5 pr-2 text-cream"
         >
           <Link to="/" aria-label="Let's Work — home" className="shrink-0">
-            <img src={IMG.logo} alt="Let's Work coworking space" width="2740" height="490" className="h-7 w-auto md:h-[30px]" />
+            <BrandLogo alt="Let's Work coworking space" width="2740" height="490" className="h-7 w-auto md:h-[30px]" />
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">

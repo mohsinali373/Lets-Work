@@ -65,7 +65,7 @@ export function FloatingWhatsApp() {
           <span className="grid max-w-0 overflow-hidden whitespace-nowrap text-sm font-medium transition-all duration-500 group-hover:max-w-[180px] group-hover:px-3">
             Ask us anything
           </span>
-          <span className="relative grid size-12 place-items-center rounded-full bg-sun text-ink">
+          <span className="relative grid size-12 place-items-center rounded-full bg-sun text-on-sun">
             <span className="ping-soft absolute inset-0 rounded-full bg-sun" />
             <WhatsAppIcon size={22} className="relative" />
           </span>

@@ -30,7 +30,7 @@ export function Faq({ items, dark = false }) {
                 <span className="text-lg font-medium tracking-tight md:text-xl">{item.q}</span>
                 <span
                   className={`grid size-9 shrink-0 place-items-center rounded-full transition-all duration-500 ${
-                    isOpen ? 'rotate-45 bg-sun text-ink' : dark ? 'bg-white/10 group-hover:bg-white/20' : 'bg-ink/6 group-hover:bg-ink/12'
+                    isOpen ? 'rotate-45 bg-sun text-on-sun' : dark ? 'bg-white/10 group-hover:bg-white/20' : 'bg-ink/6 group-hover:bg-ink/12'
                   }`}
                 >
                   <Plus size={18} aria-hidden="true" />

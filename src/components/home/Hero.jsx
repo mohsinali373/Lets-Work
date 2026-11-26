@@ -97,7 +97,7 @@ export function Hero() {
             <motion.ul {...fadeUp(0.95)} className="mt-8 grid max-w-lg grid-cols-2 gap-2">
               {HOOKS.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-center gap-2.5 rounded-2xl border border-white/8 bg-white/4 px-3 py-2.5 text-sm">
-                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-sun text-ink">
+                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-sun text-on-sun">
                     <Icon size={14} strokeWidth={2.3} aria-hidden="true" />
                   </span>
                   {text}

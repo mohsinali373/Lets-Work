@@ -39,7 +39,7 @@ const WHY = [
     title: 'People worth sitting next to.',
     text: 'Networking, skill-sharing sessions and collaborative projects with freelancers, founders and teams.',
     image: IMG.floorPeople,
-    tone: 'bg-sun text-ink',
+    tone: 'bg-sun text-on-sun',
   },
 ];
 
