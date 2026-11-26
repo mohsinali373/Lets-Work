@@ -23,7 +23,7 @@ export function Footer() {
   const wordX = useTransform(scrollYProgress, [0, 1], ['-8%', '0%']);
 
   return (
-    <footer ref={ref} className="relative overflow-hidden bg-ink text-cream">
+    <footer ref={ref} className="relative z-[1] overflow-hidden bg-ink text-cream">
       <div className="wrap pt-16 md:pt-24">
         <div className="grid gap-12 border-b border-white/10 pb-14 md:grid-cols-12">
           <div className="md:col-span-5">

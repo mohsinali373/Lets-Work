@@ -69,6 +69,16 @@ export function Navbar() {
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
+            <li>
+              <NavLink to="/" end className={linkClass}>
+                Let's Work
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/about-us" className={linkClass}>
+                About
+              </NavLink>
+            </li>
             <li className="relative" onMouseEnter={() => setIsMegaOpen(true)} onMouseLeave={() => setIsMegaOpen(false)}>
               <button
                 type="button"
@@ -79,19 +89,14 @@ export function Navbar() {
                   spacesActive ? 'text-sun' : 'text-cream/85 hover:text-cream'
                 }`}
               >
-                Spaces
+                Our Spaces
                 <ChevronDown size={15} className={`transition-transform duration-300 ${isMegaOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
               </button>
               <AnimatePresence>{isMegaOpen && <MegaMenu onNavigate={() => setIsMegaOpen(false)} />}</AnimatePresence>
             </li>
             <li>
-              <NavLink to="/about-us" className={linkClass}>
-                About
-              </NavLink>
-            </li>
-            <li>
               <NavLink to="/contact-us" className={linkClass}>
-                Contact
+                Contact Us
               </NavLink>
             </li>
           </ul>

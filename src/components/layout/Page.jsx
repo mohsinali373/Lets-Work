@@ -40,7 +40,7 @@ export function Page({ title, description, children }) {
       <motion.main
         ref={mainRef}
         id="main"
-        className="relative"
+        className="relative z-[1]"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0, transition: { duration: 1, ease: EASE_OUT, delay: 0.3 } }}
         exit={{ opacity: 1 }}

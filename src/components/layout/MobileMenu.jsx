@@ -7,10 +7,10 @@ import { EASE_IN_OUT, EASE_OUT } from '../../lib/motion.js';
 import { WhatsAppIcon } from '../ui/Icons.jsx';
 
 const MAIN = [
-  { label: 'Home', to: '/' },
-  { label: 'All spaces', to: '/spaces' },
+  { label: "Let's Work", to: '/' },
   { label: 'About', to: '/about-us' },
-  { label: 'Contact', to: '/contact-us' },
+  { label: 'Our Spaces', to: '/spaces' },
+  { label: 'Contact Us', to: '/contact-us' },
 ];
 
 /** Full-screen menu for phones and tablets, opened with a circular wipe. */
