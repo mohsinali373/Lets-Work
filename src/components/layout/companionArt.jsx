@@ -118,13 +118,3 @@ export const Plane = () => (
     <path d="M2 110c14-4 24-2 34 6" stroke={SUN} strokeWidth="5" fill="none" strokeLinecap="round" strokeDasharray="2 8" />
   </svg>
 );
-
-/** Privacy — a shield with a lock. */
-export const Shield = () => (
-  <svg viewBox="0 0 120 150">
-    <path d="M60 8l44 16v40c0 34-20 58-44 72-24-14-44-38-44-72V24z" fill={INK} />
-    <rect x="40" y="66" width="40" height="32" rx="6" fill={SUN} />
-    <path d="M48 66V56a12 12 0 0 1 24 0v10" stroke={SUN} strokeWidth="7" fill="none" />
-    <circle cx="60" cy="80" r="5" fill={INK} />
-  </svg>
-);

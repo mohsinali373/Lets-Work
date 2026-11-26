@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { Chai, Key, Lamp, Laptop, Mark, Pin, Plane, Shield, Stopwatch, Talk } from './companionArt.jsx';
+import { Chai, Key, Lamp, Laptop, Mark, Pin, Plane, Stopwatch, Talk } from './companionArt.jsx';
 
 const SIZE = 96; // px on desktop
 const FOLLOW = 0.09; // how quickly it catches up (0..1 per frame)
@@ -17,7 +17,7 @@ const ART_BY_PATH = {
   '/instant-office-space': Stopwatch,
   '/about-us': Mark,
   '/contact-us': Plane,
-  '/privacy-policy': Shield,
+  '/privacy-policy': null, // plain reading page — no companion
 };
 
 /** Top-level sections of the current page. */
@@ -47,7 +47,7 @@ const smooth = (t) => t * t * (3 - 2 * t);
  */
 export function ScrollCompanion() {
   const { pathname } = useLocation();
-  const Art = ART_BY_PATH[pathname] ?? Chai;
+  const Art = pathname in ART_BY_PATH ? ART_BY_PATH[pathname] : Chai;
   const ref = useRef(null);
 
   useEffect(() => {
@@ -120,6 +120,7 @@ export function ScrollCompanion() {
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       <div ref={ref} className="absolute left-0 top-0 will-change-transform" style={{ width: `clamp(60px, 7vw, ${SIZE}px)` }}>
         <AnimatePresence mode="wait" initial={false}>
+          {Art && (
           <motion.div
             key={pathname}
             initial={{ scale: 0.4, opacity: 0, rotate: -20 }}
@@ -130,6 +131,7 @@ export function ScrollCompanion() {
           >
             <Art />
           </motion.div>
+          )}
         </AnimatePresence>
       </div>
     </div>
