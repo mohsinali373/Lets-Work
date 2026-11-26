@@ -6,12 +6,15 @@ import { EASE_OUT } from '../../lib/motion.js';
 
 const VIDEO = { large: '/video/arrive.mp4', small: '/video/arrive-sm.mp4', poster: '/video/arrive-poster.jpg' };
 
-/** Captions keyed to the video's own timeline (seconds). */
+/**
+ * Captions keyed to the clip's timeline as a fraction (0..1), so any replacement video
+ * lines up without code changes. Just drop new files at the VIDEO paths above.
+ */
 const BEATS = [
   { at: 0, time: '08:55', title: 'She walks in.', text: 'No lease signed. One WhatsApp message and a free tour.' },
-  { at: 4.5, time: '08:57', title: 'Past the glass offices…', text: 'Quiet rooms for calls, meeting rooms by the hour.' },
-  { at: 8.5, time: '08:59', title: 'Finds her desk.', text: 'Fast Wi-Fi, an ergonomic chair, a plug by her knee.' },
-  { at: 11.5, time: '09:00', title: 'Laptop open. Work begins.', text: 'That is the whole onboarding. Yours can start tomorrow.' },
+  { at: 0.3, time: '08:57', title: 'Past the glass offices…', text: 'Quiet rooms for calls, meeting rooms by the hour.' },
+  { at: 0.57, time: '08:59', title: 'Finds her desk.', text: 'Fast Wi-Fi, an ergonomic chair, a plug by her knee.' },
+  { at: 0.78, time: '09:00', title: 'Laptop open. Work begins.', text: 'That is the whole onboarding. Yours can start tomorrow.' },
 ];
 
 const SCRUB_START = 0.14; // scroll progress where the video starts moving (after the window opens)
@@ -71,8 +74,7 @@ export function WindowReveal() {
   useMotionValueEvent(p, 'change', (v) => {
     const t = Math.min(1, Math.max(0, (v - SCRUB_START) / (SCRUB_END - SCRUB_START)));
     targetRef.current = t;
-    const seconds = t * (videoRef.current?.duration || 15);
-    setBeat(v < SCRUB_START * 0.7 ? -1 : BEATS.reduce((acc, b, i) => (seconds >= b.at ? i : acc), 0));
+    setBeat(v < SCRUB_START * 0.7 ? -1 : BEATS.reduce((acc, b, i) => (t >= b.at ? i : acc), 0));
   });
 
   function handleLoaded() {
