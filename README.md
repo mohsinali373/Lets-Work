@@ -36,6 +36,11 @@ npm run preview  # serve the production build locally
 
 URLs match the old WordPress site (`/coworking-space`, `/meeting-room`, `/about-us`, …) so search rankings carry over.
 
+## Scroll video
+
+The home page "walk-in" section scrubs `public/video/arrive.mp4` with the scroll. It currently uses a free
+Mixkit stock clip (#787). To replace it with your own shot, see [docs/video-prompt.md](docs/video-prompt.md).
+
 ## Before going live
 
 - **Photos:** many ambience shots are Unsplash placeholders (see `IMG` in `src/data/site.js`). Swap them for real photos of the space — real photos convert far better.
