@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { EASE_IN_OUT, EASE_OUT } from '../../lib/motion.js';
+import { useSectionReveal } from '../../lib/useSectionReveal.js';
 
 const SITE = "Let's Work Multan";
 
@@ -9,6 +10,8 @@ const SITE = "Let's Work Multan";
  * @param {{ title?: string, description?: string, children: React.ReactNode }} props
  */
 export function Page({ title, description, children }) {
+  const mainRef = useRef(null);
+  useSectionReveal(mainRef);
   useEffect(() => {
     document.title = title ? `${title} | ${SITE}` : "Let's Work — Coworking Space in Multan";
     if (description) document.querySelector('meta[name="description"]')?.setAttribute('content', description);
@@ -35,7 +38,9 @@ export function Page({ title, description, children }) {
         exit={{ scaleY: 1, transition: { duration: 0.55, ease: EASE_IN_OUT } }}
       />
       <motion.main
+        ref={mainRef}
         id="main"
+        className="relative"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0, transition: { duration: 1, ease: EASE_OUT, delay: 0.3 } }}
         exit={{ opacity: 1 }}

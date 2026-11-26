@@ -4,7 +4,7 @@ import { AnimatePresence } from 'motion/react';
 import { SmoothScroll, useLenis } from './lib/SmoothScroll.jsx';
 import { Navbar } from './components/layout/Navbar.jsx';
 import { Footer } from './components/layout/Footer.jsx';
-import { FloatingWhatsApp, ScrollProgress } from './components/layout/Chrome.jsx';
+import { FloatingWhatsApp, ScrollProgress, ScrollRing } from './components/layout/Chrome.jsx';
 import { Home } from './pages/Home.jsx';
 
 // Every page except Home is split into its own chunk.
@@ -96,6 +96,7 @@ export function App() {
       <AnimatedRoutes />
       <Footer />
       <FloatingWhatsApp />
+      <ScrollRing />
     </SmoothScroll>
   );
 }
