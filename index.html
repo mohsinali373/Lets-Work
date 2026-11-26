@@ -8,7 +8,16 @@
       name="description"
       content="Let's Work is Multan's coworking space at Nandla Chowk, Shuhada Road. Hot desks, dedicated desks, private offices, meeting rooms and instant offices — book by the hour, day or week."
     />
-    <meta name="theme-color" content="#111111" />
+    <meta name="theme-color" content="#082236" />
+    <script>
+      // Apply the visitor's chosen site theme before first paint (see src/lib/palette.js).
+      (function () {
+        try {
+          var id = new URLSearchParams(location.search).get('palette') || localStorage.getItem('lw-theme');
+          if (id === 'logo-clean') document.documentElement.dataset.theme = id;
+        } catch (e) {}
+      })();
+    </script>
     <meta property="og:title" content="Let's Work — Coworking Space in Multan" />
     <meta property="og:description" content="Dynamic spaces for dynamic people. Book a free tour today." />
     <meta property="og:type" content="website" />

@@ -1,22 +1,38 @@
 @import "tailwindcss";
 
 @theme {
+  /* Default site theme: "Deep Ocean" (dark blue + yellow). */
   --color-cream: #f3eee3;
   --color-cream-deep: #e8dfcc;
   --color-paper: #faf7f0;
-  --color-ink: #111111;
-  --color-ink-soft: #1c1b19;
-  --color-graphite: #57534b;
+  --color-ink: #082236;
+  --color-ink-soft: #10324c;
+  --color-graphite: #465d6c;
   --color-sun: #f5b82e;
   --color-sun-soft: #fbe2a1;
   --color-sun-deep: #c98d07;
-  --color-on-sun: #111111;
+  --color-on-sun: #082236;
 
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Second site theme: "Logo Clean" (logo blue + red on cool white).
+   Visitors switch with the "Colours" tab; see src/lib/palette.js. */
+:root[data-theme="logo-clean"] {
+  --color-cream: #f1f3f8;
+  --color-cream-deep: #dfe4ee;
+  --color-paper: #fafbfd;
+  --color-ink: #0f1d5a;
+  --color-ink-soft: #172a78;
+  --color-graphite: #4c5577;
+  --color-sun: #da2c2c;
+  --color-sun-soft: #f8d1d1;
+  --color-sun-deep: #b01f22;
+  --color-on-sun: #ffffff;
 }
 
 /* ---------- base ---------- */

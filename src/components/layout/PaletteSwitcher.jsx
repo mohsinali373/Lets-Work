@@ -5,9 +5,8 @@ import { EASE_OUT } from '../../lib/motion.js';
 import { PALETTES, setPalette, usePalette } from '../../lib/palette.js';
 
 /**
- * TEMPORARY review tool: a small right-edge tab that slides out a compact panel to switch
- * between the two candidate palettes. Remove this file, src/lib/palette.js and its line in
- * App.jsx once one is chosen.
+ * The "Colours" tab on the right edge: slides out a compact panel where visitors pick one of
+ * the site's two themes (Deep Ocean or Logo Clean). Themes are defined in src/lib/palette.js.
  */
 export function PaletteSwitcher() {
   const active = usePalette();
