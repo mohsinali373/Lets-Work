@@ -86,7 +86,7 @@ export function SpacesShelf() {
       </ul>
       </ScrollTilt>
 
-      <Bridge className="mt-14">Not sure which one fits? Here's how a day here actually goes.</Bridge>
+      <Bridge className="mt-14">Found your space? Now pick how long you need it.</Bridge>
     </section>
   );
 }
