@@ -5,7 +5,7 @@ import { SmoothScroll, useLenis } from './lib/SmoothScroll.jsx';
 import { Navbar } from './components/layout/Navbar.jsx';
 import { Footer } from './components/layout/Footer.jsx';
 import { FloatingWhatsApp, ScrollProgress } from './components/layout/Chrome.jsx';
-import { CoworkFloaters } from './components/layout/CoworkFloaters.jsx';
+import { ChaiCompanion } from './components/layout/ChaiCompanion.jsx';
 import { Home } from './pages/Home.jsx';
 
 // Every page except Home is split into its own chunk.
@@ -93,7 +93,7 @@ export function App() {
         Skip to content
       </a>
       <ScrollProgress />
-      <CoworkFloaters />
+      <ChaiCompanion />
       <Navbar />
       <AnimatedRoutes />
       <Footer />
