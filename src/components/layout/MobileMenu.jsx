@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { createElement, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { ChevronDown, Phone, X } from 'lucide-react';
+import { Armchair, ChevronDown, DoorClosed, LayoutGrid, Phone, Presentation, Users, X, Zap } from 'lucide-react';
 import { BrandLogo } from './PaletteSwitcher.jsx';
 import { CONTACT, TOUR_MSG, waLink } from '../../data/site.js';
 import { SERVICES } from '../../data/services.js';
 import { EASE_IN_OUT, EASE_OUT } from '../../lib/motion.js';
 import { WhatsAppIcon } from '../ui/Icons.jsx';
+
+/** Outline icon per space in the phone menu (photos were too small to read there). */
+const SPACE_ICONS = { coworking: Users, dedicated: Armchair, private: DoorClosed, meeting: Presentation, instant: Zap, all: LayoutGrid };
 
 const LINKS = [
   { label: "Let's Work", to: '/' },
@@ -67,18 +70,16 @@ export function MobileMenu({ onClose }) {
                         transition={{ duration: 0.35, ease: EASE_OUT }}
                         className="overflow-hidden border-b border-white/10"
                       >
-                        {[...SERVICES, { id: 'all', name: 'Compare all spaces', path: '/spaces', thumb: null }].map((s) => (
+                        {[...SERVICES, { id: 'all', name: 'Compare all spaces', path: '/spaces' }].map((s) => (
                           <li key={s.id}>
                             <Link
                               to={s.path}
                               onClick={onClose}
                               className={`flex items-center gap-3 py-2.5 text-base ${pathname === s.path ? 'text-sun' : 'text-cream/75'}`}
                             >
-                              {s.thumb ? (
-                                <img src={s.thumb} alt={s.name} title={s.name} className="size-9 rounded-lg object-cover" />
-                              ) : (
-                                <span className="grid size-9 place-items-center rounded-lg bg-white/8 text-sun">→</span>
-                              )}
+                              <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-white/15 text-sun">
+                                {createElement(SPACE_ICONS[s.id], { size: 18, strokeWidth: 1.75, 'aria-hidden': true })}
+                              </span>
                               {s.name}
                             </Link>
                           </li>
