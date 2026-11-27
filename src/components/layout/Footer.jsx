@@ -13,7 +13,7 @@ const COMPANY = [
 ];
 
 function FooterHeading({ children }) {
-  return <p className="label mb-4 text-cream/40">{children}</p>;
+  return <p className="label mb-4 text-cream/65">{children}</p>;
 }
 
 export function Footer() {
@@ -99,7 +99,7 @@ export function Footer() {
       </motion.p>
 
       {/* extra bottom room on phones so the floating call/WhatsApp buttons never cover this line */}
-      <div className="wrap flex flex-col gap-2 border-t border-white/10 pb-24 pt-6 text-sm text-cream/45 md:flex-row md:items-center md:justify-between md:pb-6">
+      <div className="wrap flex flex-col gap-2 border-t border-white/10 pb-24 pt-6 text-sm text-cream/65 md:flex-row md:items-center md:justify-between md:pb-6">
         <p>© {new Date().getFullYear()} Let's Work Coworking Space, Multan. All rights reserved.</p>
         <p>
           Developed by{' '}

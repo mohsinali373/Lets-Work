@@ -11,7 +11,7 @@ export function Eyebrow({ num, children, className = '', dot = false }) {
           <span className="relative size-2 rounded-full bg-sun" />
         </span>
       )}
-      {num && <span className="opacity-50">({num})</span>}
+      {num && <span className="opacity-70">({num})</span>}
       <span>{children}</span>
     </p>
   );

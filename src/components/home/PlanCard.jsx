@@ -142,15 +142,13 @@ export function PlanCard({ plan, kind, index }) {
     // Chrome hit-tests the tilted card ~20px off from where it paints, so "Book this plan" stopped taking clicks
     <motion.li ref={cardRef} variants={cardVariants} data-plan-card className="relative pt-4 [perspective:1100px]">
       {isFeatured && (
-        <motion.span
-          className="absolute left-1/2 top-0 z-10 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider shadow-[0_10px_24px_-8px_rgba(0,0,0,0.6)]"
+        <span
+          className="badge-bob absolute left-1/2 top-0 z-10 flex items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider shadow-[0_10px_24px_-8px_rgba(0,0,0,0.6)]"
           style={{ background: `linear-gradient(140deg, ${tier.a}, ${tier.b})`, color: tier.on }}
-          animate={reduce ? undefined : { y: [0, -4, 0] }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
         >
           <Sparkles size={13} aria-hidden="true" />
           {plan.badge}
-        </motion.span>
+        </span>
       )}
 
       <motion.div

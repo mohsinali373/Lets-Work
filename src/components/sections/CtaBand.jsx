@@ -23,7 +23,7 @@ export function CtaBand({
       <section data-no-reveal className="relative overflow-hidden bg-sun text-on-sun" aria-label="Book a free tour">
         <div className="wrap grid gap-8 py-14 md:grid-cols-12 md:items-center md:py-20">
           <div className="md:col-span-7">
-            <p className="label text-ink/60">Free tour · no commitment</p>
+            <p className="label text-ink/80">Free tour · no commitment</p>
             <SplitWords text={title} className="t-h2 mt-4 max-w-xl" />
             <Reveal as="p" className="mt-4 max-w-md text-lg text-ink/70" delay={0.1}>
               {text}

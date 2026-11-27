@@ -362,7 +362,44 @@ img {
 }
 .plan-ring {
   background: conic-gradient(from var(--ring-angle), var(--ring-a), var(--ring-b) 20%, transparent 40%, transparent 60%, var(--ring-b) 80%, var(--ring-a));
-  animation: ring-spin 6s linear infinite;
+  /* a conic-gradient angle repaints every frame, so it only spins while the card is hovered */
+  animation: ring-spin 6s linear infinite paused;
+}
+.plan-ring:hover {
+  animation-play-state: running;
+}
+
+/* below-the-fold blocks: skip their layout and paint until they are near the screen */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+/* small looping accents on transform/opacity only, so they run off the main thread */
+@keyframes wifi-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.wifi-pulse {
+  animation: wifi-pulse 1.6s ease-in-out infinite;
+}
+@keyframes badge-bob {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -4px);
+  }
+}
+.badge-bob {
+  transform: translate(-50%, 0);
+  animation: badge-bob 2.6s ease-in-out infinite;
 }
 @keyframes ring-spin {
   to {

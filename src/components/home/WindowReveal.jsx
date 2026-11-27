@@ -65,7 +65,7 @@ export function WindowReveal() {
         setSrc(pickSource());
         io.disconnect();
       },
-      { rootMargin: '900px 0px' },
+      { rootMargin: '200px 0px' },
     );
     io.observe(el);
     return () => io.disconnect();

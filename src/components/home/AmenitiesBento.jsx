@@ -13,13 +13,7 @@ function WifiBars() {
   return (
     <span className="flex items-end gap-1" aria-hidden="true">
       {[0, 1, 2, 3].map((i) => (
-        <motion.span
-          key={i}
-          className="w-1.5 rounded-full bg-sun"
-          style={{ height: 8 + i * 6 }}
-          animate={{ opacity: [0.35, 1, 0.35] }}
-          transition={{ duration: 1.6, repeat: Infinity, delay: i * 0.18 }}
-        />
+        <span key={i} className="wifi-pulse w-1.5 rounded-full bg-sun" style={{ height: 8 + i * 6, animationDelay: `${i * 0.18}s` }} />
       ))}
     </span>
   );

@@ -172,9 +172,10 @@ export function Hero() {
               </Line>
             </h1>
 
-            <motion.p {...fadeUp(0.6)} className="mt-7 max-w-md text-lg leading-relaxed text-cream/75">
+            {/* the largest text in the first screen: no fade, so it paints immediately (LCP) */}
+            <p className="mt-7 max-w-md text-lg leading-relaxed text-cream/75">
               Hot desks, private offices and meeting rooms — furnished, connected and ready the day you walk in.
-            </motion.p>
+            </p>
 
             <motion.div {...fadeUp(0.72)} className="mt-9 flex flex-wrap items-center gap-3">
               <Button href={waLink(TOUR_MSG)}>Book a free tour</Button>

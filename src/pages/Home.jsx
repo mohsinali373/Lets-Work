@@ -21,13 +21,28 @@ export function Home() {
         <Bridge>Enough talk — let us show you around.</Bridge>
       </div>
       <WindowReveal />
-      <SpacesShelf />
-      <PricingPlans />
-      <Compare />
-      <PolaroidWall />
-      <AmenitiesBento />
-      <StoryStats />
-      <FaqSection items={PAGE_FAQS.home} className="pt-0 md:pt-0" />
+      {/* below the fold: the browser skips layout and paint for these until they near the screen */}
+      <div className="cv-auto">
+        <SpacesShelf />
+      </div>
+      <div className="cv-auto">
+        <PricingPlans />
+      </div>
+      <div className="cv-auto">
+        <Compare />
+      </div>
+      <div className="cv-auto">
+        <PolaroidWall />
+      </div>
+      <div className="cv-auto">
+        <AmenitiesBento />
+      </div>
+      <div className="cv-auto">
+        <StoryStats />
+      </div>
+      <div className="cv-auto">
+        <FaqSection items={PAGE_FAQS.home} className="pt-0 md:pt-0" />
+      </div>
       <CtaBand />
     </Page>
   );

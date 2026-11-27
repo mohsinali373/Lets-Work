@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { Coffee, Crosshair, Lock, ShieldCheck, TrendingUp, User, Users } from 'lucide-react';
 import { CONTACT, waLink } from '../../data/site.js';
 import { SOLO_NOTES, SOLO_PLANS, TEAM_NOTES, TEAM_PLANS } from '../../data/plans.js';
@@ -72,16 +72,12 @@ function PlanTabs({ activeId, onChange }) {
   );
 }
 
-/** Slow drifting glow behind the cards, tinted with the theme accent. */
+/** Soft glow behind the cards, tinted with the theme accent. Static: animating 30rem blurs repainted every frame. */
 function Atmosphere() {
-  const reduce = useReducedMotion();
-  const drift = (dx, dy, duration) =>
-    reduce ? undefined : { animate: { x: [0, dx, 0], y: [0, dy, 0] }, transition: { duration, repeat: Infinity, ease: 'easeInOut' } };
-
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <motion.span {...drift(80, 40, 18)} className="absolute -left-40 top-1/3 size-[34rem] rounded-full bg-sun/10 blur-[110px]" />
-      <motion.span {...drift(-70, -50, 22)} className="absolute -right-40 bottom-0 size-[30rem] rounded-full bg-white/[0.06] blur-[110px]" />
+      <span className="absolute -left-40 top-1/3 size-[34rem] rounded-full bg-sun/10 blur-[110px]" />
+      <span className="absolute -right-40 bottom-0 size-[30rem] rounded-full bg-white/[0.06] blur-[110px]" />
       <span className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.07)_1px,transparent_0)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
     </div>
   );
