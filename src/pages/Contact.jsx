@@ -59,23 +59,24 @@ export function Contact() {
         </div>
       </section>
 
-      <section className="wrap pb-4">
-        <Reveal className="relative overflow-hidden rounded-[34px]">
-          <iframe
-            title="Map showing Let's Work at Nandla Chowk, Shuhada Road, Multan"
-            src={CONTACT.mapEmbed}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="h-[440px] w-full grayscale-[0.6] md:h-[520px]"
-          />
-          <div className="glass absolute bottom-4 left-4 max-w-xs rounded-[22px] p-5 md:bottom-6 md:left-6">
+      {/* full-bleed map: edge to edge, with the address card kept on the page's content grid */}
+      <section className="relative" aria-label="Map">
+        <iframe
+          title="Map showing Let's Work at Nandla Chowk, Shuhada Road, Multan"
+          src={CONTACT.mapEmbed}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="block h-[440px] w-full grayscale-[0.6] md:h-[560px]"
+        />
+        <div className="wrap pointer-events-none absolute inset-x-0 bottom-4 md:bottom-8">
+          <Reveal className="glass pointer-events-auto max-w-xs rounded-[22px] p-5">
             <p className="label text-graphite">Let's Work coworking space</p>
             <p className="mt-1 text-lg font-semibold leading-snug">{CONTACT.address}</p>
             <a href={CONTACT.mapLink} target="_blank" rel="noopener noreferrer" className="ulink mt-3 inline-block text-sm font-semibold">
               Get directions →
             </a>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </section>
 
     </Page>
