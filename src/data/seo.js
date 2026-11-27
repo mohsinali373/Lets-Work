@@ -102,7 +102,6 @@ export const PAGES = {
     title: 'Contact Us',
     type: 'ContactPage',
     description: `Contact ${BRAND} coworking space in Multan — call or WhatsApp ${CONTACT.phoneDisplay}, email ${CONTACT.email}, or visit us at Nandla Chowk, Shuhada Road.`,
-    faqs: PAGE_FAQS.contact,
     priority: '0.7',
   },
   privacy: {

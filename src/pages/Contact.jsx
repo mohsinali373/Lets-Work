@@ -1,7 +1,6 @@
 import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
 import { PAGES } from '../data/seo.js';
 import { CONTACT, TOUR_MSG, waLink } from '../data/site.js';
-import { PAGE_FAQS } from '../data/faqs.js';
 import { Page } from '../components/layout/Page.jsx';
 import { SplitWords } from '../components/ui/SplitWords.jsx';
 import { Intro } from '../components/ui/PageIntro.jsx';
@@ -9,7 +8,6 @@ import { Eyebrow } from '../components/ui/Eyebrow.jsx';
 import { Reveal } from '../components/ui/Reveal.jsx';
 import { WhatsAppIcon } from '../components/ui/Icons.jsx';
 import { ContactForm } from '../components/contact/ContactForm.jsx';
-import { FaqSection } from '../components/sections/FaqSection.jsx';
 
 const CHANNELS = [
   { icon: Phone, label: 'Call', value: CONTACT.phoneDisplay, href: CONTACT.tel, tone: 'bg-ink text-cream' },
@@ -80,7 +78,6 @@ export function Contact() {
         </Reveal>
       </section>
 
-      <FaqSection items={PAGE_FAQS.contact} title="Before you *message us.*" />
     </Page>
   );
 }

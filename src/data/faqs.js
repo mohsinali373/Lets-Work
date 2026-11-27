@@ -69,5 +69,4 @@ export const PAGE_FAQS = {
   private: pick('privateSize', 'customize', 'terms', 'meetingAccess', 'tour'),
   meeting: pick('meetingAccess', 'meetings', 'terms', 'where'),
   instant: pick('instantSpeed', 'terms', 'amenities', 'where'),
-  contact: pick('tour', 'trial', 'where', 'terms'),
 };
