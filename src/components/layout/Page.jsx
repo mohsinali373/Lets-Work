@@ -43,9 +43,9 @@ function useJsonLd(seo) {
 
 /**
  * Title, description, canonical, Open Graph and robots for the current page.
- * @param {{ title: string, description?: string, url?: string, noindex: boolean }} head
+ * @param {{ title: string, description?: string, keywords?: string, url?: string, noindex: boolean }} head
  */
-function useHead({ title, description, url, noindex }) {
+function useHead({ title, description, keywords, url, noindex }) {
   useEffect(() => {
     document.title = title;
     setHeadTag('meta', 'name', 'robots', 'content', noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large');
@@ -59,6 +59,8 @@ function useHead({ title, description, url, noindex }) {
       ['meta', 'name', 'twitter:description'],
     ];
     described.forEach(([tag, key, name]) => (description ? setHeadTag(tag, key, name, 'content', description) : removeHeadTag(tag, key, name)));
+    if (keywords) setHeadTag('meta', 'name', 'keywords', 'content', keywords);
+    else removeHeadTag('meta', 'name', 'keywords');
     if (url) {
       setHeadTag('link', 'rel', 'canonical', 'href', url);
       setHeadTag('meta', 'property', 'og:url', 'content', url);
@@ -66,7 +68,7 @@ function useHead({ title, description, url, noindex }) {
       removeHeadTag('link', 'rel', 'canonical');
       removeHeadTag('meta', 'property', 'og:url');
     }
-  }, [title, description, url, noindex]);
+  }, [title, description, keywords, url, noindex]);
 }
 
 /**
@@ -80,6 +82,7 @@ export function Page({ seo, title, children }) {
   useHead({
     title: seo ? pageTitle(seo) : `${title} | Let's Work Multan`,
     description: seo?.description,
+    keywords: seo?.keywords,
     url: seo ? `${SITE_URL}${seo.path}` : undefined,
     noindex: !seo,
   });

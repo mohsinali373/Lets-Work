@@ -1,0 +1,12 @@
+# Apache / cPanel hosting
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "index, follow, max-image-preview:large"
+</IfModule>
+
+# Single-page app: serve the built page for each route, index.html for anything else
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>

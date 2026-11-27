@@ -21,11 +21,13 @@ export const BUSINESS_DESCRIPTION = `${BRAND} is a coworking space at Nandla Cho
 
 /**
  * One entry per route. `title` gets " | Let's Work Multan" appended unless `fullTitle` is set.
+ * `keywords` fills <meta name="keywords"> (Google ignores it; some SEO tools and other engines read it).
  * `service` adds a Service node; `plans` lists the monthly offers that service is sold under.
  */
 export const PAGES = {
   home: {
     path: '/',
+    keywords: "coworking space Multan, shared office Multan, hot desk Multan, private office Multan, office space Multan, Let's Work",
     name: 'Home',
     fullTitle: `Coworking Space in Multan from ${desk}/month | ${BRAND}`,
     description: `A friendly coworking space in Multan at Nandla Chowk. Hot desks, your own desk or a private office — monthly plans from ${desk}.`,
@@ -34,6 +36,7 @@ export const PAGES = {
   },
   spaces: {
     path: '/spaces',
+    keywords: "office space Multan, coworking Multan, dedicated desk Multan, private office Multan, meeting room Multan, instant office Multan",
     name: 'All Workspaces',
     title: 'Office Space & Coworking in Multan',
     description: 'Coworking, dedicated desks, private offices, meeting rooms and instant offices in Multan — compare them all in one place.',
@@ -41,6 +44,7 @@ export const PAGES = {
   },
   coworking: {
     path: '/coworking-space',
+    keywords: "coworking space Multan, hot desk Multan, shared workspace Multan, freelancer office Multan",
     name: 'Coworking Space',
     title: 'Best Coworking Space in Multan',
     description: `Work alongside Multan’s freelancers and founders. Shared desks from ${desk} a month, with fast 5G internet, AC and free parking.`,
@@ -51,6 +55,7 @@ export const PAGES = {
   },
   dedicated: {
     path: '/dedicated-desk-coworking-space',
+    keywords: "dedicated desk Multan, fixed desk coworking Multan, desk on rent Multan",
     name: 'Dedicated Desk',
     title: 'Dedicated Desk Coworking Space in Multan',
     description: `A desk in Multan that’s yours every day, from ${gold} a month. Leave your things, plug in and get to work. Free tour anytime.`,
@@ -61,6 +66,7 @@ export const PAGES = {
   },
   private: {
     path: '/private-office-space',
+    keywords: "private office Multan, office for rent Multan, team office Multan, serviced office Multan",
     name: 'Private Office',
     title: 'Private Office Space in Multan',
     description: `A lockable office for your team of 6–8 in Multan, from ${team} a month. Furnished, with fast internet, a kitchen and free parking.`,
@@ -71,6 +77,7 @@ export const PAGES = {
   },
   meeting: {
     path: '/meeting-room',
+    keywords: "meeting room Multan, conference room Multan, boardroom Multan, training room Multan",
     name: 'Meeting Room',
     title: 'Meeting Room in Multan',
     description: 'A proper meeting room in Multan for pitches, interviews and training — a screen, good chairs and quiet, for our members.',
@@ -80,6 +87,7 @@ export const PAGES = {
   },
   instant: {
     path: '/instant-office-space',
+    keywords: "instant office Multan, ready office Multan, furnished office Multan, office on rent Multan",
     name: 'Instant Office',
     title: 'Instant Office Space in Multan',
     description: `Need an office in Multan today? Furnished desks and private offices, often ready the same day, on monthly plans from ${desk}.`,
@@ -90,6 +98,7 @@ export const PAGES = {
   },
   about: {
     path: '/about-us',
+    keywords: "about Let's Work, coworking Multan, Nandla Chowk Multan",
     name: 'About Us',
     title: 'About Us',
     type: 'AboutPage',
@@ -98,6 +107,7 @@ export const PAGES = {
   },
   contact: {
     path: '/contact-us',
+    keywords: "contact Let's Work, coworking Multan contact, Shuhada Road Multan",
     name: 'Contact Us',
     title: 'Contact Us',
     type: 'ContactPage',
@@ -106,6 +116,7 @@ export const PAGES = {
   },
   privacy: {
     path: '/privacy-policy',
+    keywords: "Let's Work privacy policy",
     name: 'Privacy Policy',
     title: 'Privacy Policy',
     description: `How ${BRAND} coworking space in Multan collects and uses your information.`,

@@ -1,0 +1,6 @@
+# Netlify / Cloudflare Pages: response headers
+/*
+  X-Robots-Tag: index, follow, max-image-preview:large
+
+/404.html
+  X-Robots-Tag: noindex, follow

@@ -9,6 +9,8 @@ import { PAGES, SITE_URL, llmsTxt, pageGraph, pageTitle, siteGraph, sitemapXml, 
 import { IMG } from '../src/data/site.js';
 
 const MARKER = '<!--seo-->';
+/** Same rule as the robots meta tag, sent as an HTTP header (see also public/_headers, public/.htaccess, vercel.json). */
+export const X_ROBOTS_TAG = 'index, follow, max-image-preview:large';
 const BLOCK = /<!--seo:start-->[\s\S]*?<!--seo:end-->/;
 const OG_IMAGE = `${SITE_URL}${IMG.building}`;
 
@@ -24,6 +26,7 @@ function headFor(page) {
     `<meta name="description" content="${description}" />`,
     '<meta name="robots" content="index, follow, max-image-preview:large" />',
     '<meta name="author" content="SeoMasters" />',
+    `<meta name="keywords" content="${escapeAttr(page.keywords ?? '')}" />`,
     `<link rel="canonical" href="${url}" />`,
     '<meta property="og:type" content="website" />',
     `<meta property="og:site_name" content="Let&#39;s Work" />`,
@@ -59,8 +62,15 @@ export function seoPlugin() {
     transformIndexHtml(html) {
       return html.replace(MARKER, headFor(PAGES.home));
     },
+    configurePreviewServer(server) {
+      server.middlewares.use((_req, res, next) => {
+        res.setHeader('X-Robots-Tag', X_ROBOTS_TAG);
+        next();
+      });
+    },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
+        res.setHeader('X-Robots-Tag', X_ROBOTS_TAG);
         const name = req.url?.slice(1);
         if (!CONTENT_TYPES[name]) return next();
         res.setHeader('Content-Type', `${CONTENT_TYPES[name]}; charset=utf-8`);
