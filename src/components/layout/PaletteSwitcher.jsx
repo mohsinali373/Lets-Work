@@ -86,5 +86,5 @@ function PaletteOption({ palette: p, isActive, onSelect }) {
 /** The site logo in the active palette's version (yellow or red). Takes the same props as <img>. */
 export function BrandLogo(props) {
   const { logo } = usePalette();
-  return <img src={logo} {...props} />;
+  return <img src={logo} title={props.alt || undefined} {...props} />;
 }

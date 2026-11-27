@@ -1,13 +1,12 @@
 import { Page } from '../components/layout/Page.jsx';
 import { SplitWords } from '../components/ui/SplitWords.jsx';
-import { Intro } from '../components/ui/PageIntro.jsx';
 import { Eyebrow } from '../components/ui/Eyebrow.jsx';
 import { Bridge } from '../components/ui/Bridge.jsx';
-import { HoverList } from '../components/spaces/HoverList.jsx';
 import { SpaceFinder } from '../components/spaces/SpaceFinder.jsx';
 import { Steps } from '../components/sections/Steps.jsx';
 import { FlexTerms } from '../components/sections/FlexTerms.jsx';
 import { CtaBand } from '../components/sections/CtaBand.jsx';
+import { SpacesBanner } from '../components/banners/SpacesBanner.jsx';
 
 const STEPS = [
   { title: 'Message us', text: "WhatsApp or call 0326-6802515. Tell us roughly what you need — that's it." },
@@ -18,24 +17,20 @@ const STEPS = [
 export function Spaces() {
   return (
     <Page title="All Workspaces" description="Compare Let's Work spaces in Multan: coworking, dedicated desks, private offices, meeting rooms and instant offices.">
-      <section className="wrap grid gap-10 pb-12 pt-32 md:pt-40 lg:grid-cols-12 lg:items-end">
-        <div className="lg:col-span-7">
-          <Intro delay={0.4}>
-            <Eyebrow>All spaces</Eyebrow>
-          </Intro>
-          <SplitWords as="h1" onMount delay={0.5} text="Five rooms. *One* address." className="t-display mt-5" />
-          <Intro as="p" delay={0.9} className="t-lead mt-6 max-w-lg">
-            Every space comes with the same fast internet, the same chai and the same people. What changes is how much
-            room — and privacy — you get.
-          </Intro>
-        </div>
-        <Intro delay={1} className="lg:col-span-5">
-          <SpaceFinder />
-        </Intro>
-      </section>
+      <SpacesBanner />
 
-      <section className="wrap pb-16 md:pb-24" aria-label="Spaces list">
-        <HoverList />
+      {/* not sure which one? a quick finder instead of a second list of the same five spaces */}
+      <section className="wrap pb-16 md:pb-24" aria-labelledby="finder-title">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-5">
+            <Eyebrow num="01">Not sure yet?</Eyebrow>
+            <SplitWords id="finder-title" text="Let us *point you* to the right one." className="t-h2 mt-4" />
+            <p className="mt-5 max-w-sm text-graphite">Answer a couple of quick questions and we'll suggest the space that fits how you work.</p>
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <SpaceFinder />
+          </div>
+        </div>
       </section>
 
       <section className="bg-ink text-cream">
@@ -43,7 +38,7 @@ export function Spaces() {
           <div className="lg:col-span-5">
             <SplitWords text="Pay for the time *you actually use.*" className="t-h2" />
             <p className="mt-5 max-w-sm text-cream/60">
-              Book any space by the hour, day or week. No lease, no deposit drama, no hidden fees.
+              Book any space by the hour, day or week. No long lease and no hidden fees.
             </p>
           </div>
           <FlexTerms dark className="lg:col-span-7" />

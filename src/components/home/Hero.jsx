@@ -37,7 +37,7 @@ function Shot({ src, alt, className, frameMotion, focus = 'center', children }) 
     <motion.figure className={`group absolute overflow-hidden ${className}`} {...frameMotion}>
       <img
         src={src}
-        alt={alt}
+        alt={alt} title={alt}
         loading="eager"
         style={{ objectPosition: focus }}
         className="size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-expo)] group-hover:scale-[1.06]"

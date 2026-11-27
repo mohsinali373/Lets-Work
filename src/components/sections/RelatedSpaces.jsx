@@ -26,7 +26,7 @@ export function RelatedSpaces({ currentId, title = 'Not quite it? Try one of the
               <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] bg-cream-deep">
                 <img
                   src={s.thumb}
-                  alt={`${s.name} at Let's Work`}
+                  alt={`${s.name} at Let's Work`} title={`${s.name} at Let's Work`}
                   loading="lazy"
                   className="size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-expo)] group-hover:scale-110"
                 />

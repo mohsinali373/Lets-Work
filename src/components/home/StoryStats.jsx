@@ -43,7 +43,7 @@ export function StoryStats() {
           <motion.img
             style={{ y: imgY, scale: 1.2 }}
             src={IMG.privateOffice}
-            alt="The Let's Work front office with its yellow feature wall"
+            alt="The Let's Work front office with its yellow feature wall" title="The Let's Work front office with its yellow feature wall"
             loading="lazy"
             className="size-full object-cover"
           />

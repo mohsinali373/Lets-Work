@@ -76,7 +76,7 @@ export function DurationSwitcher() {
           <motion.img
             key={active.unit}
             src={active.img}
-            alt=""
+            alt={`Booking by the ${active.unit.toLowerCase()} at Let's Work`} title={`Booking by the ${active.unit.toLowerCase()} at Let's Work`}
             className="absolute inset-0 size-full object-cover"
             initial={{ opacity: 0, scale: 1.08 }}
             animate={{ opacity: 1, scale: 1 }}

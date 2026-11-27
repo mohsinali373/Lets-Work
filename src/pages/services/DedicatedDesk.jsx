@@ -1,11 +1,9 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { CONTACT, IMG, waLink } from '../../data/site.js';
+import { IMG } from '../../data/site.js';
 import { FAQS } from '../../data/faqs.js';
 import { Page } from '../../components/layout/Page.jsx';
-import { Button } from '../../components/ui/Button.jsx';
 import { SplitWords } from '../../components/ui/SplitWords.jsx';
-import { Intro } from '../../components/ui/PageIntro.jsx';
 import { Eyebrow } from '../../components/ui/Eyebrow.jsx';
 import { Reveal } from '../../components/ui/Reveal.jsx';
 import { Bridge } from '../../components/ui/Bridge.jsx';
@@ -14,10 +12,10 @@ import { FlexTerms } from '../../components/sections/FlexTerms.jsx';
 import { FaqSection } from '../../components/sections/FaqSection.jsx';
 import { RelatedSpaces } from '../../components/sections/RelatedSpaces.jsx';
 import { CtaBand } from '../../components/sections/CtaBand.jsx';
-import { EASE_OUT } from '../../lib/motion.js';
 import { ScrollTilt } from '../../components/ui/ScrollTilt.jsx';
 import { ServicePlans } from '../../components/sections/ServicePlans.jsx';
 import { SOLO_PLANS } from '../../data/plans.js';
+import { DedicatedDeskBanner } from '../../components/banners/DedicatedDeskBanner.jsx';
 
 const MSG = "Hi Let's Work! I'd like to reserve a dedicated desk. What's available?";
 
@@ -59,44 +57,11 @@ export function DedicatedDesk() {
       title="Dedicated Desk Coworking Space in Multan"
       description="Claim your own desk at Let's Work Multan — personal desk, secure storage, high-speed internet and meeting room access. Book by the hour, day or week."
     >
-      <section className="wrap pb-10 pt-32 md:pt-40">
-        <Intro delay={0.4}>
-          <Eyebrow num="02">Dedicated Desk</Eyebrow>
-        </Intro>
-        <h1 className="t-display mt-6" aria-label="Your desk. Every day.">
-          <Intro as="span" delay={0.5} className="inline">
-            Your desk.{' '}
-          </Intro>
-          <motion.span
-            aria-hidden="true"
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: '1.7em', opacity: 1 }}
-            transition={{ duration: 1.1, ease: EASE_OUT, delay: 0.8 }}
-            className="relative mx-1 inline-block h-[0.78em] overflow-hidden rounded-full align-[-0.06em]"
-          >
-            <img src={IMG.hotDesks} alt="" className="absolute inset-0 size-full object-cover" />
-          </motion.span>{' '}
-          <Intro as="span" delay={0.65} className="inline">
-            <span className="accent">Every</span> day.
-          </Intro>
-        </h1>
-        <div className="mt-8 grid gap-8 md:grid-cols-12 md:items-end">
-          <Intro as="p" delay={0.9} className="t-lead md:col-span-6">
-            Claim your spot in the community. A personal desk you come back to every morning — built for productivity,
-            creativity and the odd good conversation with the person next to you.
-          </Intro>
-          <Intro delay={1} className="flex flex-wrap gap-3 md:col-span-5 md:col-start-8 md:justify-end">
-            <Button href={waLink(MSG)}>Reserve a desk</Button>
-            <Button href={CONTACT.tel} variant="ghost" icon={null} className="hidden sm:inline-flex">
-              {CONTACT.phoneDisplay}
-            </Button>
-          </Intro>
-        </div>
-      </section>
+      <DedicatedDeskBanner message={MSG} />
 
       <div ref={stripRef} className="wrap">
         <div className="relative h-[44vh] min-h-[300px] overflow-hidden rounded-[34px] md:h-[62vh]">
-          <motion.img style={{ y: stripY, scale: 1.25 }} src={IMG.floorLong} alt="Rows of desks on the Let's Work floor" loading="lazy" className="size-full object-cover" />
+          <motion.img style={{ y: stripY, scale: 1.25 }} src={IMG.floorLong} alt="Rows of desks on the Let's Work floor" title="Rows of desks on the Let's Work floor" loading="lazy" className="size-full object-cover" />
           <span className="glass absolute bottom-5 left-5 rounded-full px-4 py-2 text-sm font-medium">Fully furnished · ready on day one</span>
         </div>
       </div>
@@ -133,7 +98,7 @@ export function DedicatedDesk() {
           <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[32px] lg:col-span-5 lg:col-start-8">
             <img
               src={IMG.desksTall2}
-              alt="Dedicated desks on the Let's Work floor"
+              alt="Dedicated desks on the Let's Work floor" title="Dedicated desks on the Let's Work floor"
               loading="lazy"
               className="absolute inset-0 size-full object-cover"
             />

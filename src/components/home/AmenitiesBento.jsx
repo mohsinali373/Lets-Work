@@ -50,7 +50,7 @@ export function AmenitiesBento() {
         <ScrollTilt className="mt-12" from={22}>
         <div className="grid gap-3 sm:grid-cols-2 lg:auto-rows-[205px] lg:grid-cols-4">
           <div className={`${card} min-h-[340px] p-0 sm:col-span-2 lg:row-span-2`}>
-            <img src={IMG.hotDesks} alt="Hot desks with green dividers at Let's Work" loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-[1.4s] group-hover:scale-105" />
+            <img src={IMG.hotDesks} alt="Hot desks with green dividers at Let's Work" title="Hot desks with green dividers at Let's Work" loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-[1.4s] group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
             <div className="glass-dark absolute inset-x-4 bottom-4 rounded-[20px] p-5 text-cream">
               <div className="flex items-center justify-between">
@@ -66,7 +66,7 @@ export function AmenitiesBento() {
           <div className={`${card} min-h-[340px] p-0 lg:row-span-2`}>
             <img
               src={IMG.desksTall}
-              alt="Window-side dedicated desks on the Let's Work floor"
+              alt="Window-side dedicated desks on the Let's Work floor" title="Window-side dedicated desks on the Let's Work floor"
               loading="lazy"
               className="absolute inset-0 size-full object-cover transition-transform duration-[1.4s] group-hover:scale-105"
             />
@@ -88,7 +88,7 @@ export function AmenitiesBento() {
               <p className="text-sm text-graphite">Pitches, interviews, workshops.</p>
             </div>
             <div className="relative w-[46%] overflow-hidden">
-              <img src={IMG.meetingRoom} alt="Let's Work meeting room" loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-[1.4s] group-hover:scale-110" />
+              <img src={IMG.meetingRoom} alt="Let's Work meeting room" title="Let's Work meeting room" loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-[1.4s] group-hover:scale-110" />
             </div>
           </div>
 

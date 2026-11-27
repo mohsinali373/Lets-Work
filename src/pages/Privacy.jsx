@@ -1,7 +1,9 @@
+import { ShieldCheck } from 'lucide-react';
 import { CONTACT } from '../data/site.js';
 import { Page } from '../components/layout/Page.jsx';
 import { SplitWords } from '../components/ui/SplitWords.jsx';
 import { Eyebrow } from '../components/ui/Eyebrow.jsx';
+import { Intro } from '../components/ui/PageIntro.jsx';
 
 const SECTIONS = [
   {
@@ -33,20 +35,39 @@ const SECTIONS = [
 export function Privacy() {
   return (
     <Page title="Privacy Policy" description="How Let's Work coworking space in Multan collects and uses your information.">
-      <section className="wrap grid gap-10 pb-20 pt-32 md:pt-40 lg:grid-cols-12">
-        <div className="lg:col-span-4">
-          <div className="lg:sticky lg:top-28">
-            <Eyebrow>Last updated · November 2026</Eyebrow>
-            <SplitWords as="h1" onMount delay={0.4} text="Privacy, *plainly.*" className="t-h1 mt-5" />
-            <p className="mt-5 text-graphite">The short version: we use your details to reply to you, and that's it.</p>
-          </div>
+      {/* banner: a quiet dark band with the short version and a jump list */}
+      <section className="bg-ink text-cream">
+        <div className="wrap pb-14 pt-32 md:pb-16 md:pt-40">
+          <Intro delay={0.3} className="flex items-center gap-3">
+            <span className="grid size-10 place-items-center rounded-full bg-sun text-on-sun">
+              <ShieldCheck size={18} aria-hidden="true" />
+            </span>
+            <Eyebrow className="text-cream/60">Last updated · November 2026</Eyebrow>
+          </Intro>
+          <SplitWords as="h1" onMount delay={0.45} text="Privacy, *plainly.*" className="t-display mt-6 [&_.accent]:text-sun" />
+          <Intro as="p" delay={0.75} className="mt-5 max-w-md text-lg text-cream/70">
+            The short version: we use your details to reply to you, and that's it.
+          </Intro>
+          <Intro as="ul" delay={0.9} className="mt-10 flex flex-wrap gap-2">
+            {SECTIONS.map((s, i) => (
+              <li key={s.h}>
+                <a href={`#privacy-${i + 1}`} className="block rounded-full border border-white/15 px-4 py-2 text-sm text-cream/80 transition-colors hover:border-sun hover:text-sun">
+                  <span className="mr-1.5 font-mono text-xs text-sun">0{i + 1}</span>
+                  {s.h}
+                </a>
+              </li>
+            ))}
+          </Intro>
         </div>
-        <div className="lg:col-span-7 lg:col-start-6">
+      </section>
+
+      <section className="wrap pb-20 pt-6">
+        <div className="mx-auto max-w-3xl">
           {SECTIONS.map((s, i) => (
-            <article key={s.h} className="border-t border-ink/12 py-8">
+            <article key={s.h} id={`privacy-${i + 1}`} className="scroll-mt-28 border-b border-ink/12 py-9">
               <p className="label text-graphite">0{i + 1}</p>
               <h2 className="t-h3 mt-3">{s.h}</h2>
-              <p className="mt-3 max-w-2xl text-lg leading-relaxed text-graphite">{s.p}</p>
+              <p className="mt-3 text-lg leading-relaxed text-graphite">{s.p}</p>
             </article>
           ))}
         </div>

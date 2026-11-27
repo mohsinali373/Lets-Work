@@ -1,19 +1,19 @@
-import { IMG, waLink } from '../../data/site.js';
+import { IMG } from '../../data/site.js';
 import { FAQS } from '../../data/faqs.js';
 import { Page } from '../../components/layout/Page.jsx';
 import { SplitWords } from '../../components/ui/SplitWords.jsx';
-import { Intro } from '../../components/ui/PageIntro.jsx';
 import { Eyebrow } from '../../components/ui/Eyebrow.jsx';
 import { Reveal } from '../../components/ui/Reveal.jsx';
 import { Bridge } from '../../components/ui/Bridge.jsx';
-import { DurationSwitcher } from '../../components/service/DurationSwitcher.jsx';
 import { ScrollText } from '../../components/service/ScrollText.jsx';
 import { CheckList } from '../../components/service/CheckList.jsx';
+import { DurationSwitcher } from '../../components/service/DurationSwitcher.jsx';
 import { Steps } from '../../components/sections/Steps.jsx';
 import { AmenityBand } from '../../components/sections/AmenityBand.jsx';
 import { FaqSection } from '../../components/sections/FaqSection.jsx';
 import { RelatedSpaces } from '../../components/sections/RelatedSpaces.jsx';
 import { CtaBand } from '../../components/sections/CtaBand.jsx';
+import { InstantOfficeBanner } from '../../components/banners/InstantOfficeBanner.jsx';
 
 const MSG = "Hi Let's Work! I need an instant office. Is one available today?";
 
@@ -36,22 +36,19 @@ export function InstantOffice() {
       title="Instant Shared Office Space in Multan"
       description="Instant shared office space in Multan — fully equipped and furnished, no lease, no paperwork. Book by the hour, day or week at Let's Work."
     >
-      <section className="wrap pb-16 pt-32 md:pb-24 md:pt-40">
+      <InstantOfficeBanner message={MSG} />
+
+      <section className="wrap sec" aria-labelledby="duration-title">
         <div className="mb-10 grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-8">
-            <Intro delay={0.4}>
-              <Eyebrow num="05" dot>Instant Office — available on short notice</Eyebrow>
-            </Intro>
-            <SplitWords as="h1" onMount delay={0.5} text="Need an office *by this afternoon?*" className="t-display mt-6" />
+          <div className="lg:col-span-7">
+            <Eyebrow num="01">How long?</Eyebrow>
+            <SplitWords id="duration-title" text="An hour, a day *or a week.*" className="t-h2 mt-4" />
           </div>
-          <Intro as="p" delay={0.9} className="t-lead lg:col-span-4">
-            Welcome to the shared office that ends the hassle of leases and paperwork. Built for freelancers, startups and
-            growing businesses who need a real office — now.
-          </Intro>
+          <p className="text-graphite lg:col-span-4 lg:col-start-9">Pick how long you need it and see what that looks like.</p>
         </div>
-        <Intro delay={1}>
+        <Reveal>
           <DurationSwitcher />
-        </Intro>
+        </Reveal>
       </section>
 
       <section className="bg-cream-deep">
@@ -66,7 +63,7 @@ export function InstantOffice() {
 
       <section className="wrap sec grid gap-10 lg:grid-cols-12 lg:items-center">
         <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[32px] lg:col-span-5">
-          <img src={IMG.teamRoom} alt="A ready-to-use shared office at Let's Work" loading="lazy" className="absolute inset-0 size-full object-cover" />
+          <img src={IMG.teamRoom} alt="A ready-to-use shared office at Let's Work" title="A ready-to-use shared office at Let's Work" loading="lazy" className="absolute inset-0 size-full object-cover" />
           <span className="glass absolute bottom-4 left-4 rounded-full px-4 py-2 text-sm font-medium">Furnished &amp; ready</span>
         </Reveal>
         <div className="lg:col-span-6 lg:col-start-7">

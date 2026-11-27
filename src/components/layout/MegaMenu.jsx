@@ -55,7 +55,7 @@ export function MegaMenu({ onNavigate }) {
             <motion.img
               key={active.id}
               src={active.thumb}
-              alt=""
+              alt={`${active.name} at Let's Work`} title={`${active.name} at Let's Work`}
               className="absolute inset-0 size-full object-cover"
               initial={{ opacity: 0, scale: 1.08 }}
               animate={{ opacity: 1, scale: 1 }}

@@ -4,7 +4,6 @@ import { MapPin } from 'lucide-react';
 import { CONTACT, IMG } from '../data/site.js';
 import { Page } from '../components/layout/Page.jsx';
 import { SplitWords } from '../components/ui/SplitWords.jsx';
-import { Intro } from '../components/ui/PageIntro.jsx';
 import { Eyebrow } from '../components/ui/Eyebrow.jsx';
 import { Reveal } from '../components/ui/Reveal.jsx';
 import { Counter } from '../components/ui/Counter.jsx';
@@ -12,6 +11,7 @@ import { Marquee } from '../components/ui/Marquee.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { CtaBand } from '../components/sections/CtaBand.jsx';
 import { ScrollTilt } from '../components/ui/ScrollTilt.jsx';
+import { AboutBanner } from '../components/banners/AboutBanner.jsx';
 
 const VALUES = [
   { title: 'Flexibility', text: 'Memberships that bend around small teams, freelancers and business owners — not the other way round.' },
@@ -36,15 +36,15 @@ function Collage() {
   return (
     <div ref={ref} className="wrap grid grid-cols-12 gap-3 md:gap-4">
       <motion.figure style={{ y: slow }} className="col-span-7 overflow-hidden rounded-[30px] md:col-span-6">
-        <img src={IMG.building} alt="The Let's Work building on Shuhada Road, Multan" fetchPriority="high" className="aspect-[4/3] size-full object-cover" />
+        <img src={IMG.floorLong} alt="Long work tables leading to the round yellow feature wall inside Let's Work" title="Long work tables leading to the round yellow feature wall inside Let's Work" fetchPriority="high" className="aspect-[4/3] size-full object-cover" />
       </motion.figure>
       <motion.figure style={{ y: fast }} className="col-span-5 mt-16 overflow-hidden rounded-[30px] md:col-span-3 md:mt-24">
-        <img src={IMG.desksTall} alt="Window-side desks at Let's Work" loading="lazy" className="aspect-[3/4] size-full object-cover" />
+        <img src={IMG.desksTall} alt="Window-side desks at Let's Work" title="Window-side desks at Let's Work" loading="lazy" className="aspect-[3/4] size-full object-cover" />
       </motion.figure>
       <motion.figure style={{ y: slow }} className="relative col-span-12 hidden overflow-hidden rounded-[30px] md:col-span-3 md:block">
         <img
           src={IMG.lounge}
-          alt="The Let's Work lounge with blue sofas"
+          alt="The Let's Work lounge with blue sofas" title="The Let's Work lounge with blue sofas"
           loading="lazy"
           className="aspect-[3/4] size-full object-cover"
         />
@@ -59,23 +59,7 @@ export function About() {
       title="About Us"
       description="Let's Work is a coworking space at Nandla Chowk, Multan — over 10 years of experience building flexible, professional workspaces for freelancers, startups and teams."
     >
-      <section className="wrap grid gap-8 pb-14 pt-32 md:pb-20 md:pt-40 lg:grid-cols-12 lg:items-end">
-        <div className="lg:col-span-9">
-          <Intro delay={0.4}>
-            <Eyebrow>About Let's Work</Eyebrow>
-          </Intro>
-          <SplitWords
-            as="h1"
-            onMount
-            delay={0.5}
-            text="Ten years of making Multan a *better place* to work."
-            className="t-display mt-6"
-          />
-        </div>
-        <Intro as="p" delay={1} className="text-graphite lg:col-span-3">
-          Dynamic spaces for dynamic people. That line has been on our wall since day one.
-        </Intro>
-      </section>
+      <AboutBanner />
 
       <Collage />
 

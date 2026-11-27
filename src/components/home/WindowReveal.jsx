@@ -111,7 +111,7 @@ export function WindowReveal() {
           <motion.div style={{ scale: zoom }} className="absolute inset-0">
             <img
               src={VIDEO.poster}
-              alt=""
+              alt="Walking into the Let's Work coworking space" title="Walking into the Let's Work coworking space"
               decoding="async"
               className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${isReady ? 'opacity-0' : 'opacity-100'}`}
             />

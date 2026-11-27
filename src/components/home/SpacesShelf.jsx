@@ -64,7 +64,7 @@ export function SpacesShelf() {
                     isActive ? 'opacity-100' : 'scale-95 opacity-0'
                   }`}
                 >
-                  <img src={s.image} alt="" loading="lazy" className="size-full object-cover" />
+                  <img src={s.image} alt={`${s.name} at Let's Work`} title={`${s.name} at Let's Work`} loading="lazy" className="size-full object-cover" />
                 </div>
 
                 <div className="mt-auto pt-8">

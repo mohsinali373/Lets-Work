@@ -75,7 +75,7 @@ export function MobileMenu({ onClose }) {
                               className={`flex items-center gap-3 py-2.5 text-base ${pathname === s.path ? 'text-sun' : 'text-cream/75'}`}
                             >
                               {s.thumb ? (
-                                <img src={s.thumb} alt="" className="size-9 rounded-lg object-cover" />
+                                <img src={s.thumb} alt={s.name} title={s.name} className="size-9 rounded-lg object-cover" />
                               ) : (
                                 <span className="grid size-9 place-items-center rounded-lg bg-white/8 text-sun">→</span>
                               )}
