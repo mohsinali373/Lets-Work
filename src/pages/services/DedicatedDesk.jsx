@@ -17,6 +17,7 @@ import { ScrollTilt } from '../../components/ui/ScrollTilt.jsx';
 import { ServicePlans } from '../../components/sections/ServicePlans.jsx';
 import { SOLO_PLANS } from '../../data/plans.js';
 import { DedicatedDeskBanner } from '../../components/banners/DedicatedDeskBanner.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 const MSG = "Hi Let's Work! I'd like to reserve a dedicated desk. What's available?";
 
@@ -59,7 +60,7 @@ export function DedicatedDesk() {
 
       <div ref={stripRef} className="wrap">
         <div className="relative h-[44vh] min-h-[300px] overflow-hidden rounded-[34px] md:h-[62vh]">
-          <motion.img style={{ y: stripY, scale: 1.25 }} src={IMG.floorLong} alt="Rows of desks on the Let's Work floor" title="Rows of desks on the Let's Work floor" loading="lazy" className="size-full object-cover" />
+          <motion.img style={{ y: stripY, scale: 1.25 }} {...sized(IMG.floorLong)} alt="Rows of desks on the Let's Work floor" title="Rows of desks on the Let's Work floor" loading="lazy" className="size-full object-cover" />
           <span className="glass absolute bottom-5 left-5 rounded-full px-4 py-2 text-sm font-medium">Fully furnished · ready on day one</span>
         </div>
       </div>
@@ -95,7 +96,7 @@ export function DedicatedDesk() {
           </div>
           <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[32px] lg:col-span-5 lg:col-start-8">
             <img
-              src={IMG.desksTall2}
+              {...sized(IMG.desksTall2)}
               alt="Dedicated desks on the Let's Work floor" title="Dedicated desks on the Let's Work floor"
               loading="lazy"
               className="absolute inset-0 size-full object-cover"

@@ -5,6 +5,7 @@ import { Button } from '../ui/Button.jsx';
 import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { Intro } from '../ui/PageIntro.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 /** What comes with a dedicated desk — shown as callouts pointing at the photo. */
 const CALLOUTS = [
@@ -70,7 +71,7 @@ export function DedicatedDeskBanner({ message }) {
             animate={{ opacity: 1, y: 0, rotate: 0 }}
             transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.4 }}
           >
-            <img src={IMG.desksTall2} alt="A row of dedicated desks in front of the Let's Work logo wall" title="A row of dedicated desks in front of the Let's Work logo wall" fetchPriority="high" className="size-full object-cover" />
+            <img {...sized(IMG.desksTall2)} alt="A row of dedicated desks in front of the Let's Work logo wall" title="A row of dedicated desks in front of the Let's Work logo wall" fetchPriority="high" className="size-full object-cover" />
           </motion.div>
 
           {/* the reserved tag, hung from a pin */}

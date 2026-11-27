@@ -4,6 +4,7 @@ import { IMG, waLink } from '../../data/site.js';
 import { SOLO_PLANS, TEAM_PLANS, formatPrice } from '../../data/plans.js';
 import { Button } from '../ui/Button.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 const fromPrice = (plans) => formatPrice(Math.min(...plans.map((p) => p.price)));
 const BIG_TEAM_PLANS = TEAM_PLANS.filter((p) => p.id !== 'startup');
@@ -80,7 +81,7 @@ export function TeamSizeSwitcher() {
         <AnimatePresence initial={false}>
           <motion.img
             key={active.unit}
-            src={active.img}
+            {...sized(active.img)}
             alt={`Instant office for ${active.unit.toLowerCase()} at Let's Work Multan`} title={`Instant office for ${active.unit.toLowerCase()} at Let's Work Multan`}
             className="absolute inset-0 size-full object-cover"
             initial={{ opacity: 0, scale: 1.08 }}

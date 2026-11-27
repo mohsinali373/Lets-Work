@@ -7,6 +7,7 @@ import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { Reveal } from '../ui/Reveal.jsx';
 import { Bridge } from '../ui/Bridge.jsx';
 import { ScrollTilt } from '../ui/ScrollTilt.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 const TONES = {
   paper: 'bg-paper text-ink',
@@ -64,7 +65,7 @@ export function SpacesShelf() {
                     isActive ? 'opacity-100' : 'scale-95 opacity-0'
                   }`}
                 >
-                  <img src={s.image} alt={`${s.name} at Let's Work`} title={`${s.name} at Let's Work`} loading="lazy" className="size-full object-cover" />
+                  <img {...sized(s.image)} alt={`${s.name} at Let's Work`} title={`${s.name} at Let's Work`} loading="lazy" className="size-full object-cover" />
                 </div>
 
                 <div className="mt-auto pt-8">

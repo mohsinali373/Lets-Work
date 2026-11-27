@@ -39,14 +39,14 @@ URLs match the old WordPress site (`/coworking-space`, `/meeting-room`, `/about-
 ## Scroll video
 
 The home page "walk-in" section scrubs `public/video/walkin-*.mp4` (our own walk-in film, deflickered and encoded at 1080p / 720p / 480p) with the scroll.
-To re-shoot or replace it, see [docs/video-prompt.md](docs/video-prompt.md).
+To replace it, export new 480p, 720p and 1080p MP4s plus a WebP poster into `public/video/`.
 
 ## Colour themes
 
 The site has two themes that visitors switch with the **Colours** tab on the right edge:
 
-- **Deep Ocean** (default): dark blue + yellow, yellow logo (`public/img/logo.png`)
-- **Logo Clean**: logo blue + red on cool white, red logo (`public/img/logo-red.png`)
+- **Deep Ocean** (default): dark blue + yellow, yellow logo (`public/img/logo.webp`)
+- **Logo Clean**: logo blue + red on cool white, red logo (`public/img/logo-red.webp`)
 
 Colours live in `src/styles/index.css` (default `@theme`, plus `:root[data-theme="logo-clean"]`). The list of themes and their logos is in `src/lib/palette.js`. The choice is remembered, and `?palette=ocean` or `?palette=logo-clean` opens a theme directly. Always use the colour tokens (`ink`, `sun`, `on-sun`, `cream`…) rather than hex values, so both themes keep working.
 

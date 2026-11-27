@@ -10,8 +10,8 @@ import { useSyncExternalStore } from 'react';
  * `ink` / `sun` here are only used to draw the swatch dots in the switcher.
  */
 export const PALETTES = [
-  { id: 'ocean', name: 'Deep Ocean', logo: '/img/logo.png', ink: '#082236', sun: '#f5b82e' },
-  { id: 'logo-clean', name: 'Logo Clean', logo: '/img/logo-red.png', ink: '#0f1d5a', sun: '#da2c2c' },
+  { id: 'ocean', name: 'Deep Ocean', logo: '/img/logo.webp', ink: '#082236', sun: '#f5b82e' },
+  { id: 'logo-clean', name: 'Logo Clean', logo: '/img/logo-red.webp', ink: '#0f1d5a', sun: '#da2c2c' },
 ];
 
 const STORAGE_KEY = 'lw-theme'; // keep in sync with the script in index.html

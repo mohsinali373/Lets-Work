@@ -3,13 +3,14 @@ import { AnimatePresence, motion, useMotionTemplate, useMotionValueEvent, useScr
 import { waLink } from '../../data/site.js';
 import { Button } from '../ui/Button.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 /** Our own walk-in film, encoded at three sizes with a keyframe every 3 frames for clean scrubbing. */
 const VIDEO = {
   hd: '/video/walkin-1080.mp4',
   md: '/video/walkin-720.mp4',
   sm: '/video/walkin-480.mp4',
-  poster: '/video/walkin-poster.jpg',
+  poster: '/video/walkin-poster.webp',
 };
 
 /** Laptops and desktops always get full 1080p; tablets 720p; phones the light file. */
@@ -110,7 +111,7 @@ export function WindowReveal() {
         <motion.div style={{ clipPath }} className="absolute inset-0 bg-ink">
           <motion.div style={{ scale: zoom }} className="absolute inset-0">
             <img
-              src={VIDEO.poster}
+              {...sized(VIDEO.poster)}
               alt="Walking into the Let's Work coworking space" title="Walking into the Let's Work coworking space"
               decoding="async"
               className={`absolute inset-0 size-full object-cover transition-opacity duration-500 ${isReady ? 'opacity-0' : 'opacity-100'}`}

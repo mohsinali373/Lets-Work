@@ -6,6 +6,7 @@ import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { Intro } from '../ui/PageIntro.jsx';
 import { SplitWords } from '../ui/SplitWords.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 /** Grid placement per card: the first space is the large feature tile, the other four sit around it. */
 const TILE = [
@@ -48,7 +49,7 @@ export function SpacesBanner() {
             >
               <Link to={s.path} className="group absolute inset-0 flex flex-col justify-between p-4 text-cream sm:p-5">
                 <img
-                  src={s.image}
+                  {...sized(s.image)}
                   alt={`${s.name} at Let's Work Multan`}
                   title={`${s.name} at Let's Work Multan`}
                   className="absolute inset-0 size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-expo)] group-hover:scale-105"

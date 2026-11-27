@@ -15,6 +15,7 @@ import { FaqSection } from '../../components/sections/FaqSection.jsx';
 import { RelatedSpaces } from '../../components/sections/RelatedSpaces.jsx';
 import { CtaBand } from '../../components/sections/CtaBand.jsx';
 import { InstantOfficeBanner } from '../../components/banners/InstantOfficeBanner.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 const MSG = "Hi Let's Work! I need an instant office. Is one available today?";
 
@@ -61,7 +62,7 @@ export function InstantOffice() {
 
       <section className="wrap sec grid gap-10 lg:grid-cols-12 lg:items-center">
         <Reveal className="relative aspect-[4/5] overflow-hidden rounded-[32px] lg:col-span-5">
-          <img src={IMG.teamRoom} alt="A ready-to-use shared office at Let's Work" title="A ready-to-use shared office at Let's Work" loading="lazy" className="absolute inset-0 size-full object-cover" />
+          <img {...sized(IMG.teamRoom)} alt="A ready-to-use shared office at Let's Work" title="A ready-to-use shared office at Let's Work" loading="lazy" className="absolute inset-0 size-full object-cover" />
           <span className="glass absolute bottom-4 left-4 rounded-full px-4 py-2 text-sm font-medium">Furnished &amp; ready</span>
         </Reveal>
         <div className="lg:col-span-6 lg:col-start-7">

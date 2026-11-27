@@ -10,8 +10,17 @@ export const CONTACT = {
   mapLink: 'https://www.google.com/maps/search/?api=1&query=Nandla+Chowk+Shuhada+Road+Multan',
 };
 
-/** Add real profile URLs here ({ label, href }) and they appear in the footer automatically. */
+/**
+ * Add real profile URLs here ({ label, href }). They appear in the footer and as `sameAs` in the
+ * LocalBusiness schema, which tells Google these profiles belong to Let's Work.
+ */
 export const SOCIAL = [];
+
+/**
+ * Opening hours for the LocalBusiness schema. Fill in when confirmed, e.g.
+ * { dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:00', closes: '21:00' }
+ */
+export const HOURS = null;
 
 /**
  * Builds a WhatsApp deep link with a pre-written message.
@@ -25,14 +34,13 @@ export function waLink(text) {
 export const TOUR_MSG = "Hi Let's Work! I'd like to book a free tour of the coworking space.";
 
 /** Real photos of the Let's Work space (from the old letswork.pk media library), in /public/img/space. */
-const space = (name) => `/img/space/${name}.jpg`;
+const space = (name) => `/img/space/${name}.webp`;
 
 export const IMG = {
-  logo: '/img/logo.png',
+  logo: '/img/logo.webp',
   building: space('building'), // outside, signage on Shuhada Road
   boardroom: space('boardroom'), // yellow feature wall, long table
   boardroomU: space('boardroom-wide'), // U-shaped table, brightened crop
-  boardroomSide: space('boardroom-side'),
   meetingRoom: space('meeting-room'),
   teamRoom: space('team-room-bright'), // smaller room, green desks + TV
   privateOffice: space('private-office'), // manager desk, yellow wall
@@ -46,21 +54,6 @@ export const IMG = {
   lounge: space('lounge-bright'), // blue sofa, green wall, plant
 };
 
-/** Every real photo, for galleries. */
-export const GALLERY = [
-  { src: IMG.boardroom, label: 'Boardroom' },
-  { src: IMG.hotDesks, label: 'Hot desks' },
-  { src: IMG.lounge, label: 'Lounge' },
-  { src: IMG.privateOffice, label: 'Private office' },
-  { src: IMG.floorCircles, label: 'The floor' },
-  { src: IMG.teamRoom, label: 'Team room' },
-  { src: IMG.desksTall, label: 'Window desks' },
-  { src: IMG.reception, label: 'Reception' },
-  { src: IMG.boardroomU, label: 'Training setup' },
-  { src: IMG.floorLong, label: 'Long tables' },
-  { src: IMG.desksTall2, label: 'Dedicated desks' },
-  { src: IMG.building, label: 'Shuhada Road' },
-];
 
 export const NAV = [
   { label: 'Spaces', to: '/spaces', mega: true },

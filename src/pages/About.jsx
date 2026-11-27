@@ -13,6 +13,7 @@ import { Button } from '../components/ui/Button.jsx';
 import { CtaBand } from '../components/sections/CtaBand.jsx';
 import { ScrollTilt } from '../components/ui/ScrollTilt.jsx';
 import { AboutBanner } from '../components/banners/AboutBanner.jsx';
+import { sized } from '../data/imageSizes.js';
 
 const VALUES = [
   { title: 'Flexibility', text: 'Memberships that bend around small teams, freelancers and business owners — not the other way round.' },
@@ -37,14 +38,14 @@ function Collage() {
   return (
     <div ref={ref} className="wrap grid grid-cols-12 gap-3 md:gap-4">
       <motion.figure style={{ y: slow }} className="col-span-7 overflow-hidden rounded-[30px] md:col-span-6">
-        <img src={IMG.floorLong} alt="Long work tables leading to the round yellow feature wall inside Let's Work" title="Long work tables leading to the round yellow feature wall inside Let's Work" fetchPriority="high" className="aspect-[4/3] size-full object-cover" />
+        <img {...sized(IMG.floorLong)} alt="Long work tables leading to the round yellow feature wall inside Let's Work" title="Long work tables leading to the round yellow feature wall inside Let's Work" fetchPriority="high" className="aspect-[4/3] size-full object-cover" />
       </motion.figure>
       <motion.figure style={{ y: fast }} className="col-span-5 mt-16 overflow-hidden rounded-[30px] md:col-span-3 md:mt-24">
-        <img src={IMG.desksTall} alt="Window-side desks at Let's Work" title="Window-side desks at Let's Work" loading="lazy" className="aspect-[3/4] size-full object-cover" />
+        <img {...sized(IMG.desksTall)} alt="Window-side desks at Let's Work" title="Window-side desks at Let's Work" loading="lazy" className="aspect-[3/4] size-full object-cover" />
       </motion.figure>
       <motion.figure style={{ y: slow }} className="relative col-span-12 hidden overflow-hidden rounded-[30px] md:col-span-3 md:block">
         <img
-          src={IMG.lounge}
+          {...sized(IMG.lounge)}
           alt="The Let's Work lounge with blue sofas" title="The Let's Work lounge with blue sofas"
           loading="lazy"
           className="aspect-[3/4] size-full object-cover"

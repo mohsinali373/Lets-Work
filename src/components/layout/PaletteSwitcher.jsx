@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Check, Palette } from 'lucide-react';
 import { EASE_OUT } from '../../lib/motion.js';
 import { PALETTES, setPalette, usePalette } from '../../lib/palette.js';
+import { sized } from '../../data/imageSizes.js';
 
 /**
  * The "Colours" tab on the right edge: slides out a compact panel where visitors pick one of
@@ -86,5 +87,5 @@ function PaletteOption({ palette: p, isActive, onSelect }) {
 /** The site logo in the active palette's version (yellow or red). Takes the same props as <img>. */
 export function BrandLogo(props) {
   const { logo } = usePalette();
-  return <img src={logo} title={props.alt || undefined} {...props} />;
+  return <img {...sized(logo)} title={props.alt || undefined} {...props} />;
 }

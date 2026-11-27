@@ -1,4 +1,5 @@
 import { Reveal } from '../ui/Reveal.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 /**
  * Cards that pin and pile on top of each other as you scroll (pure CSS sticky).
@@ -18,7 +19,7 @@ export function StackCards({ items }) {
               <p className="mt-4 max-w-md text-lg opacity-75">{item.text}</p>
             </div>
             <div className="relative min-h-[260px] md:min-h-[440px]">
-              <img src={item.image} alt={`${item.kicker} at Let's Work`} title={`${item.kicker} at Let's Work`} loading="lazy" className="absolute inset-0 size-full object-cover" />
+              <img {...sized(item.image)} alt={`${item.kicker} at Let's Work`} title={`${item.kicker} at Let's Work`} loading="lazy" className="absolute inset-0 size-full object-cover" />
             </div>
           </Reveal>
         </li>

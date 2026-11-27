@@ -5,6 +5,7 @@ import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { Intro } from '../ui/PageIntro.jsx';
 import { SplitWords } from '../ui/SplitWords.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 /** Today's date on a desk-calendar card — the point of an instant office is "today". */
 function TodayCard() {
@@ -55,7 +56,7 @@ export function InstantOfficeBanner({ message }) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.4 }}
           >
-            <img src={IMG.teamRoom} alt="A furnished team room at Let's Work" title="A furnished team room at Let's Work" fetchPriority="high" className="size-full object-cover" />
+            <img {...sized(IMG.teamRoom)} alt="A furnished team room at Let's Work" title="A furnished team room at Let's Work" fetchPriority="high" className="size-full object-cover" />
             <p className="glass absolute bottom-4 right-4 rounded-full px-4 py-2 text-sm font-medium">No lease · No paperwork</p>
           </motion.div>
           <TodayCard />

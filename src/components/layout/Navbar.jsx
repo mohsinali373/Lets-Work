@@ -67,7 +67,7 @@ export function Navbar() {
           className="glass-dark mx-auto flex max-w-[1180px] items-center justify-between gap-4 rounded-full py-2 pl-5 pr-2 text-cream"
         >
           <Link to="/" aria-label="Let's Work — home" className="shrink-0">
-            <BrandLogo alt="Let's Work coworking space" width="2740" height="490" className="h-7 w-auto md:h-[30px]" />
+            <BrandLogo alt="Let's Work coworking space" className="h-7 w-auto md:h-[30px]" />
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">

@@ -5,6 +5,7 @@ import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { Intro } from '../ui/PageIntro.jsx';
 import { SplitWords } from '../ui/SplitWords.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 /** About: the motto as a big manifesto line, then the building on Shuhada Road opening from the centre. */
 export function AboutBanner() {
@@ -34,7 +35,7 @@ export function AboutBanner() {
         transition={{ duration: 1.5, ease: EASE_OUT, delay: 0.6 }}
       >
         <motion.img
-          src={IMG.building}
+          {...sized(IMG.building)}
           alt="The Let's Work building with its signage on Shuhada Road, Multan" title="The Let's Work building with its signage on Shuhada Road, Multan"
           fetchPriority="high"
           style={{ y }}

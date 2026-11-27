@@ -5,6 +5,7 @@ import { Button } from '../ui/Button.jsx';
 import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { Intro } from '../ui/PageIntro.jsx';
 import { SplitWords } from '../ui/SplitWords.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 const FROM = Math.min(...TEAM_PLANS.map((p) => p.price));
 const DOOR = { duration: 1.6, ease: [0.7, 0, 0.2, 1], delay: 0.9 };
@@ -49,7 +50,7 @@ export function PrivateOfficeBanner({ message }) {
         </Intro>
 
         <div className="relative mt-14 aspect-[4/3] overflow-hidden rounded-[32px] ring-1 ring-white/10 md:aspect-[21/9]">
-          <img src={IMG.privateOffice} alt="A private office at Let's Work with a desk and yellow feature wall" title="A private office at Let's Work with a desk and yellow feature wall" fetchPriority="high" className="size-full object-cover" />
+          <img {...sized(IMG.privateOffice)} alt="A private office at Let's Work with a desk and yellow feature wall" title="A private office at Let's Work with a desk and yellow feature wall" fetchPriority="high" className="size-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" aria-hidden="true" />
           <p className="glass-dark absolute bottom-4 left-4 rounded-full px-4 py-2 text-left text-sm md:bottom-6 md:left-6">
             Teams of 6–8 · from <strong className="text-sun">Rs {FROM.toLocaleString('en-US')}</strong> / month

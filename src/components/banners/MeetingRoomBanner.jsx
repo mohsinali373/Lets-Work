@@ -6,6 +6,7 @@ import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { Intro } from '../ui/PageIntro.jsx';
 import { SplitWords } from '../ui/SplitWords.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 const STEP_MS = 2400;
@@ -78,7 +79,7 @@ export function MeetingRoomBanner({ message }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, ease: EASE_OUT, delay: 0.5 }}
         >
-          <img src={IMG.boardroomU} alt="The Let's Work boardroom with a U-shaped table" title="The Let's Work boardroom with a U-shaped table" fetchPriority="high" className="size-full object-cover" />
+          <img {...sized(IMG.boardroomU)} alt="The Let's Work boardroom with a U-shaped table" title="The Let's Work boardroom with a U-shaped table" fetchPriority="high" className="size-full object-cover" />
           <HourRuler />
         </motion.div>
       </div>

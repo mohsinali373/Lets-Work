@@ -27,7 +27,7 @@ const WHY = [
     tone: 'bg-paper text-ink',
   },
   {
-    kicker: 'Premium amenities',
+    kicker: 'What’s included',
     title: 'Everything a big office has.',
     text: 'High-speed internet, ergonomic furniture, private lockers and fully equipped meeting rooms.',
     image: IMG.boardroom,
@@ -73,8 +73,8 @@ export function Coworking() {
         </div>
         <div className="lg:col-span-5 lg:col-start-8">
           <Reveal as="p" className="t-lead">
-            A vibrant community and modern amenities at budget-friendly rates — so you spend on growing the business, not
-            on rent, furniture and internet bills.
+            Good people, a proper desk and one fair monthly price — so your money goes into the business, not into
+            rent, furniture and internet bills.
           </Reveal>
           <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-ink/10 pt-6">
             <Stat to={25} suffix="K+" label="Projects completed" />

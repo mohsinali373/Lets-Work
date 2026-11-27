@@ -40,7 +40,7 @@ export function MobileMenu({ onClose }) {
       data-lenis-prevent
     >
       <div className="flex items-center justify-between px-5 pt-5">
-        <BrandLogo alt="Let's Work" width="2740" height="490" className="h-7 w-auto" />
+        <BrandLogo alt="Let's Work" className="h-7 w-auto" />
         <button type="button" onClick={onClose} autoFocus aria-label="Close menu" className="grid size-11 cursor-pointer place-items-center rounded-full bg-white/10">
           <X size={20} aria-hidden="true" />
         </button>

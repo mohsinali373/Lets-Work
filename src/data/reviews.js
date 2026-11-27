@@ -9,7 +9,7 @@
  * For each real review, copy: the reviewer's name, their profile photo URL
  * (right-click the photo on Google Maps → "Copy image address"), the star rating,
  * the date and the text. Leave `photo` empty to show a Google-style initial.
- * The current photos are illustrated avatars drawn by scripts/make-review-avatars.mjs.
+ * The current photos are illustrated (cartoon) avatars in /public/img/reviews.
  */
 
 const avatar = (slug) => `/img/reviews/${slug}.svg`;

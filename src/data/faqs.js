@@ -11,35 +11,35 @@ const teamRange = `${formatPrice(LOWEST_TEAM_PRICE)} to ${formatPrice(Math.max(.
 export const FAQS = {
   price: {
     q: 'How much does a coworking space in Multan cost at Let’s Work?',
-    a: `Solo plans cost ${solo.silver} a month (Silver, flexible shared desk), ${solo.gold} (Gold, dedicated fixed desk) and ${solo.diamond} (Diamond, premium desk). Private team offices for 6–8 people cost ${teamRange} a month. A one-month security deposit applies to all plans.`,
+    a: `For one person, it’s ${solo.silver} a month for a shared desk (Silver), ${solo.gold} for your own fixed desk (Gold) or ${solo.diamond} for our premium desk (Diamond). A private office for a team of 6–8 is ${teamRange} a month. Every plan has a one-month security deposit.`,
   },
   terms: {
     q: 'Do you rent by the hour, day or week?',
-    a: 'No. Every Let’s Work space is rented on a monthly plan — there are no hourly or daily rates. If you only need a space for a week or two, we can arrange it, but it is charged at the monthly rate. There is no long lease and no hidden fees.',
+    a: 'No — all our plans are monthly, so there are no hourly or daily rates. Only need a space for a week or two? Talk to us and we’ll sort it out, but it’s charged at the monthly price. No long lease, no hidden fees.',
   },
   hotVsDedicated: {
     q: 'What is the difference between a hot desk and a dedicated desk?',
-    a: `A hot desk (Silver, ${solo.silver} a month) is a flexible seat on the shared floor — you sit at any open desk. A dedicated desk (Gold, ${solo.gold}, or Diamond, ${solo.diamond}) is a fixed desk that is yours every day, so you can leave your things there.`,
+    a: `With a hot desk (Silver, ${solo.silver} a month) you sit wherever there’s a free seat on the shared floor. A dedicated desk (Gold at ${solo.gold} or Diamond at ${solo.diamond}) is the same desk every day — yours, so you can leave your things on it.`,
   },
   privateSize: {
     q: 'How many people fit in a private office?',
-    a: `Each private office is lockable and seats a team of 6 to 8 people. There are three levels — Startup Team, Corporate Team and Executive Team — priced from ${teamRange} a month.`,
+    a: `Each office is lockable and fits a team of 6 to 8. You can pick from three — Startup Team, Corporate Team and Executive Team — at ${teamRange} a month.`,
   },
   meetingAccess: {
     q: 'Who can use the meeting rooms?',
-    a: 'Meeting rooms are for Let’s Work members on a monthly plan. Gold members get guest room access, Diamond members get client meeting access, and every team plan includes a guest room. Message us a date and time to book a slot.',
+    a: 'Our members. Gold comes with guest room access, Diamond with client meeting access, and every team plan includes a guest room. Just message us the date and time and we’ll hold the room for you.',
   },
   instantSpeed: {
     q: 'How fast can I get an instant office?',
-    a: 'Often the same day. Message us in the morning with how many people need space; if a desk or office is free, you can start working that afternoon on a monthly plan.',
+    a: 'Usually the same day. Message us in the morning and tell us how many of you there are — if a desk or office is free, you can be working by the afternoon.',
   },
   amenities: {
     q: "What's included in a Let's Work membership?",
-    a: 'High-speed 5G internet, a desk with ergonomic furniture, private lockers, an office boy facility, free parking, air-conditioning and networking with other members. Gold, Diamond and team plans add meeting room access. Printing and refreshments are not included.',
+    a: 'Fast 5G internet, a proper desk and chair, a private locker, an office boy on hand, free parking, AC and other members to network with. Gold, Diamond and team plans also get meeting room access. Printing and refreshments aren’t included.',
   },
   meetings: {
     q: 'Can I hold team meetings here?',
-    a: 'Yes. We have private meeting rooms and collaborative areas for meetings, brainstorming sessions and presentations — from one-to-ones to full-team sessions.',
+    a: 'Yes. There are private meeting rooms and open areas for everything from a quick one-to-one to a full-team brainstorm or presentation.',
   },
   trial: {
     q: 'Is there a trial period?',
@@ -47,15 +47,15 @@ export const FAQS = {
   },
   customize: {
     q: 'Can I customise my workspace?',
-    a: 'Yes. Private offices and team areas can be set up around how you work — layout, seating and storage.',
+    a: 'Yes. We can set up a private office or team area around the way you work — the layout, the seating and the storage.',
   },
   where: {
     q: 'Where is Let’s Work in Multan?',
-    a: 'Let’s Work is at Nandla Chowk, Shuhada Road, Multan, Punjab. Free parking is available on site.',
+    a: 'We’re at Nandla Chowk on Shuhada Road, Multan — and there’s free parking right outside.',
   },
   tour: {
     q: 'Can I see the space before I book?',
-    a: 'Yes. Tours are free — send us a WhatsApp or call 0326-6802515 and pick a time that suits you.',
+    a: 'Please do — tours are free. WhatsApp or call us on 0326-6802515 and pick a time that suits you.',
   },
 };
 

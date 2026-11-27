@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { SERVICES } from '../../data/services.js';
 import { Reveal } from '../ui/Reveal.jsx';
 import { ScrollTilt } from '../ui/ScrollTilt.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 /**
  * "Other ways to work here" — the remaining four spaces as photo cards.
@@ -25,7 +26,7 @@ export function RelatedSpaces({ currentId, title = 'Not quite it? Try one of the
             <Link to={s.path} className="group block">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] bg-cream-deep">
                 <img
-                  src={s.thumb}
+                  {...sized(s.thumb)}
                   alt={`${s.name} at Let's Work`} title={`${s.name} at Let's Work`}
                   loading="lazy"
                   className="size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-expo)] group-hover:scale-110"

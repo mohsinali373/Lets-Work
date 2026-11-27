@@ -3,6 +3,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { IMG } from '../../data/site.js';
 import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { SplitWords } from '../ui/SplitWords.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 const SHOTS = [
   { src: IMG.boardroom, note: 'Boardroom, 9 a.m. standup', tilt: -4 },
@@ -28,7 +29,7 @@ function Polaroid({ shot, index, progress, reduce }) {
     >
       <span aria-hidden="true" className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-[-3deg] bg-sun/70 mix-blend-multiply" />
       <div className="aspect-[4/5] overflow-hidden bg-cream-deep">
-        <img src={shot.src} alt={shot.note} title={shot.note} loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        <img {...sized(shot.src)} alt={shot.note} title={shot.note} loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
       </div>
       <figcaption className="accent absolute inset-x-3 bottom-3 text-center text-lg text-ink/80 sm:bottom-4">{shot.note}</figcaption>
     </motion.figure>

@@ -6,6 +6,7 @@ import { Button } from '../ui/Button.jsx';
 import { Marquee } from '../ui/Marquee.jsx';
 import { RotatingBadge } from '../ui/RotatingBadge.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 const FACTS = [
   { icon: Tag, text: 'Simple monthly plans' },
@@ -36,7 +37,7 @@ function Shot({ src, alt, className, frameMotion, focus = 'center', children }) 
   return (
     <motion.figure className={`group absolute overflow-hidden ${className}`} {...frameMotion}>
       <img
-        src={src}
+        {...sized(src)}
         alt={alt} title={alt}
         loading="eager"
         style={{ objectPosition: focus }}
@@ -165,9 +166,9 @@ export function Hero() {
             </motion.p>
 
             <h1 id="hero-title" className="mt-7 text-[clamp(3rem,1.5rem+5vw,6.4rem)] font-semibold leading-[0.95] tracking-[-0.05em]">
-              <Line delay={0.2}>Space to work.</Line>
+              <Line delay={0.2}>Multan’s best</Line>
               <Line delay={0.34} className="accent text-sun">
-                Room to grow.
+                place to work.
               </Line>
             </h1>
 

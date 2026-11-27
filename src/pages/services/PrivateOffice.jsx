@@ -13,6 +13,7 @@ import { ScrollTilt } from '../../components/ui/ScrollTilt.jsx';
 import { ServicePlans } from '../../components/sections/ServicePlans.jsx';
 import { TEAM_PLANS, formatPrice } from '../../data/plans.js';
 import { PrivateOfficeBanner } from '../../components/banners/PrivateOfficeBanner.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 const MSG = "Hi Let's Work! I'm interested in a private office. Can we talk about options?";
 
@@ -59,7 +60,7 @@ export function PrivateOffice() {
             <p className="mt-4 text-cream/60">Desk, chairs, storage and high-speed internet — all set up before you arrive.</p>
           </div>
           <div className={`${panel} min-h-[320px]`}>
-            <img src={IMG.officeDesk} alt="A furnished private office desk" title="A furnished private office desk" loading="lazy" className="absolute inset-0 size-full object-cover" />
+            <img {...sized(IMG.officeDesk)} alt="A furnished private office desk" title="A furnished private office desk" loading="lazy" className="absolute inset-0 size-full object-cover" />
             <span className="glass relative m-5 self-start rounded-full px-4 py-2 text-sm font-medium">Fully furnished</span>
           </div>
           <div className={`${panel} bg-sun p-8`}>
@@ -82,7 +83,7 @@ export function PrivateOffice() {
             <p className="mt-4 text-graphite">As your team grows, your space grows with it — without moving address.</p>
           </div>
           <div className={`${panel} min-h-[320px]`}>
-            <img src={IMG.reception} alt="The Let's Work front office" title="The Let's Work front office" loading="lazy" className="absolute inset-0 size-full object-cover" />
+            <img {...sized(IMG.reception)} alt="The Let's Work front office" title="The Let's Work front office" loading="lazy" className="absolute inset-0 size-full object-cover" />
           </div>
         </HorizontalScroll>
       </section>
@@ -91,8 +92,8 @@ export function PrivateOffice() {
         <Reveal className="lg:col-span-7">
           <Eyebrow>Our commitment</Eyebrow>
           <p className="mt-5 text-[clamp(1.5rem,1.15rem+1.3vw,2.3rem)] font-medium leading-[1.12] tracking-tight">
-            We're here to empower your success — with <span className="accent">flexibility</span>, room to scale and a
-            community that has your back.
+            We want your team to do its best work here — with <span className="accent">room to grow</span>, a door that
+            closes and neighbours who have your back.
           </p>
         </Reveal>
         <Reveal className="lg:col-span-4 lg:col-start-9" delay={0.1}>

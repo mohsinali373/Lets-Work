@@ -11,6 +11,7 @@ import { RelatedSpaces } from '../../components/sections/RelatedSpaces.jsx';
 import { CtaBand } from '../../components/sections/CtaBand.jsx';
 import { ScrollTilt } from '../../components/ui/ScrollTilt.jsx';
 import { MeetingRoomBanner } from '../../components/banners/MeetingRoomBanner.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 const MSG = "Hi Let's Work! I'd like to book the meeting room on (date) at (time).";
 
@@ -66,7 +67,7 @@ export function MeetingRoom() {
         <div className="grid gap-4 md:grid-cols-2">
           {SIZES.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.1} className="group relative h-[380px] overflow-hidden rounded-[30px] md:h-[460px]">
-              <img src={s.img} alt={`${s.label} at Let's Work`} title={`${s.label} at Let's Work`} loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-[1.4s] group-hover:scale-105" />
+              <img {...sized(s.img)} alt={`${s.label} at Let's Work`} title={`${s.label} at Let's Work`} loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-[1.4s] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
               <div className="glass-dark absolute inset-x-5 bottom-5 rounded-[22px] p-5 text-cream">
                 <p className="text-2xl font-semibold tracking-tight">{s.label}</p>

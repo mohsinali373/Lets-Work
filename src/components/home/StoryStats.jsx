@@ -7,6 +7,7 @@ import { SplitWords } from '../ui/SplitWords.jsx';
 import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { Button } from '../ui/Button.jsx';
 import { Marquee } from '../ui/Marquee.jsx';
+import { sized } from '../../data/imageSizes.js';
 
 const STATS = [
   { to: 10, suffix: '+', label: 'Years of experience' },
@@ -42,7 +43,7 @@ export function StoryStats() {
         <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] lg:col-span-5">
           <motion.img
             style={{ y: imgY, scale: 1.2 }}
-            src={IMG.privateOffice}
+            {...sized(IMG.privateOffice)}
             alt="The Let's Work front office with its yellow feature wall" title="The Let's Work front office with its yellow feature wall"
             loading="lazy"
             className="size-full object-cover"

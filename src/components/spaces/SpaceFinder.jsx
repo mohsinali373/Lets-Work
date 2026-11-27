@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { getService } from '../../data/services.js';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 const NEEDS = [
   { label: 'Focus work, most days', pick: 'dedicated' },
@@ -47,7 +48,7 @@ export function SpaceFinder() {
           {match ? (
             <motion.div key={match.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.4, ease: EASE_OUT }}>
               <Link to={match.path} className="group flex items-center gap-4 rounded-[20px] bg-sun p-3 pr-4">
-                <img src={match.thumb} alt={match.name} title={match.name} className="size-16 rounded-2xl object-cover" />
+                <img {...sized(match.thumb)} alt={match.name} title={match.name} className="size-16 rounded-2xl object-cover" />
                 <span className="flex-1">
                   <span className="label block text-ink/60">Try this</span>
                   <span className="text-lg font-semibold tracking-tight">{match.name}</span>

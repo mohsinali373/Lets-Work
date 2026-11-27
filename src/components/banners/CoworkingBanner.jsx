@@ -7,6 +7,7 @@ import { Eyebrow } from '../ui/Eyebrow.jsx';
 import { Intro } from '../ui/PageIntro.jsx';
 import { SplitWords } from '../ui/SplitWords.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
+import { sized } from '../../data/imageSizes.js';
 
 const SILVER = SOLO_PLANS.find((p) => p.id === 'silver');
 
@@ -19,7 +20,7 @@ export function CoworkingBanner({ message }) {
   return (
     <section ref={ref} className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-ink text-cream">
       <motion.img
-        src={IMG.hotDesks}
+        {...sized(IMG.hotDesks)}
         alt="The Let's Work coworking floor with green-divider desks" title="The Let's Work coworking floor with green-divider desks"
         fetchPriority="high"
         style={{ scale }}

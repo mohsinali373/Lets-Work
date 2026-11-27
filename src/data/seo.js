@@ -1,4 +1,4 @@
-import { CONTACT, IMG } from './site.js';
+import { CONTACT, HOURS, IMG, SOCIAL } from './site.js';
 import { SOLO_PLANS, TEAM_PLANS, LOWEST_SOLO_PRICE, LOWEST_TEAM_PRICE, formatPrice } from './plans.js';
 import { PAGE_FAQS } from './faqs.js';
 
@@ -17,7 +17,7 @@ const desk = formatPrice(LOWEST_SOLO_PRICE);
 const team = formatPrice(LOWEST_TEAM_PRICE);
 const gold = formatPrice(SOLO_PLANS.find((p) => p.id === 'gold').price);
 
-export const BUSINESS_DESCRIPTION = `${BRAND} is a coworking space in Multan, Pakistan, at Nandla Chowk, Shuhada Road. It offers hot desks, dedicated desks, private team offices, meeting rooms and instant offices on monthly plans — desks from ${desk} and private offices from ${team} a month — with 5G internet, air-conditioning and free parking.`;
+export const BUSINESS_DESCRIPTION = `${BRAND} is a coworking space at Nandla Chowk, Shuhada Road in Multan, Pakistan. Freelancers, startups and small teams rent a hot desk, their own desk or a private office on a monthly plan — desks from ${desk} and team offices from ${team} a month, with 5G internet, AC and free parking.`;
 
 /**
  * One entry per route. `title` gets " | Let's Work Multan" appended unless `fullTitle` is set.
@@ -28,7 +28,7 @@ export const PAGES = {
     path: '/',
     name: 'Home',
     fullTitle: `Coworking Space in Multan from ${desk}/month | ${BRAND}`,
-    description: `${BRAND} is a coworking space in Multan at Nandla Chowk, Shuhada Road. Hot desks, dedicated desks and private offices on monthly plans from ${desk}.`,
+    description: `A friendly coworking space in Multan at Nandla Chowk. Hot desks, your own desk or a private office — monthly plans from ${desk}.`,
     faqs: PAGE_FAQS.home,
     priority: '1.0',
   },
@@ -36,14 +36,14 @@ export const PAGES = {
     path: '/spaces',
     name: 'All Workspaces',
     title: 'Office Space & Coworking in Multan',
-    description: `Compare every workspace at ${BRAND} Multan — coworking, dedicated desks, private offices, meeting rooms and instant offices, all on simple monthly plans.`,
+    description: 'Coworking, dedicated desks, private offices, meeting rooms and instant offices in Multan — compare them all in one place.',
     priority: '0.9',
   },
   coworking: {
     path: '/coworking-space',
     name: 'Coworking Space',
     title: 'Best Coworking Space in Multan',
-    description: `Coworking space in Multan for freelancers and startups. Shared desks from ${desk} a month with 5G internet, AC, free parking and networking events.`,
+    description: `Work alongside Multan’s freelancers and founders. Shared desks from ${desk} a month, with fast 5G internet, AC and free parking.`,
     faqs: PAGE_FAQS.coworking,
     service: 'Coworking space',
     plans: SOLO_PLANS,
@@ -53,7 +53,7 @@ export const PAGES = {
     path: '/dedicated-desk-coworking-space',
     name: 'Dedicated Desk',
     title: 'Dedicated Desk Coworking Space in Multan',
-    description: `Your own fixed desk at ${BRAND} Multan from ${gold} a month — priority 5G internet, secure storage, AC and free parking. Book a free tour.`,
+    description: `A desk in Multan that’s yours every day, from ${gold} a month. Leave your things, plug in and get to work. Free tour anytime.`,
     faqs: PAGE_FAQS.dedicated,
     service: 'Dedicated desk',
     plans: SOLO_PLANS.filter((p) => p.id !== 'silver'),
@@ -63,7 +63,7 @@ export const PAGES = {
     path: '/private-office-space',
     name: 'Private Office',
     title: 'Private Office Space in Multan',
-    description: `Private, lockable office space in Multan for teams of 6–8, from ${team} a month. Furnished, with 5G internet, a full kitchen, tea service and free parking.`,
+    description: `A lockable office for your team of 6–8 in Multan, from ${team} a month. Furnished, with fast internet, a kitchen and free parking.`,
     faqs: PAGE_FAQS.private,
     service: 'Private office space',
     plans: TEAM_PLANS,
@@ -72,8 +72,8 @@ export const PAGES = {
   meeting: {
     path: '/meeting-room',
     name: 'Meeting Room',
-    title: 'Meeting Room in Multan for Pitches & Teams',
-    description: `Premium meeting rooms at ${BRAND} Multan for client pitches, interviews and training — modern tech and comfortable seating, for members on our monthly plans.`,
+    title: 'Meeting Room in Multan',
+    description: 'A proper meeting room in Multan for pitches, interviews and training — a screen, good chairs and quiet, for our members.',
     faqs: PAGE_FAQS.meeting,
     service: 'Meeting room',
     priority: '0.8',
@@ -82,7 +82,7 @@ export const PAGES = {
     path: '/instant-office-space',
     name: 'Instant Office',
     title: 'Instant Office Space in Multan',
-    description: `Instant office space in Multan, often ready the same day. Furnished desks and private offices on monthly plans from ${desk}, with no long lease.`,
+    description: `Need an office in Multan today? Furnished desks and private offices, often ready the same day, on monthly plans from ${desk}.`,
     faqs: PAGE_FAQS.instant,
     service: 'Instant shared office',
     plans: [...SOLO_PLANS, ...TEAM_PLANS],
@@ -93,7 +93,7 @@ export const PAGES = {
     name: 'About Us',
     title: 'About Us',
     type: 'AboutPage',
-    description: `${BRAND} is a coworking space at Nandla Chowk, Multan — over 10 years of experience building flexible, professional workspaces for freelancers, startups and teams.`,
+    description: `For 10+ years we’ve given Multan’s freelancers, startups and teams a professional place to work. This is ${BRAND}.`,
     priority: '0.6',
   },
   contact: {
@@ -101,7 +101,7 @@ export const PAGES = {
     name: 'Contact Us',
     title: 'Contact Us',
     type: 'ContactPage',
-    description: `Contact ${BRAND} coworking space in Multan — call or WhatsApp ${CONTACT.phoneDisplay}, email ${CONTACT.email}, or visit us at Nandla Chowk, Shuhada Road.`,
+    description: `Call or WhatsApp ${CONTACT.phoneDisplay}, email ${CONTACT.email}, or drop by Nandla Chowk, Shuhada Road, Multan. Book a free tour.`,
     priority: '0.7',
   },
   privacy: {
@@ -177,6 +177,8 @@ export function siteGraph() {
         addressCountry: 'PK',
       },
       hasMap: CONTACT.mapLink,
+      ...(SOCIAL.length ? { sameAs: SOCIAL.map((s) => s.href) } : {}),
+      ...(HOURS ? { openingHoursSpecification: { '@type': 'OpeningHoursSpecification', ...HOURS } } : {}),
       areaServed: { '@type': 'City', name: 'Multan' },
       amenityFeature: AMENITIES.map((name) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
       knowsAbout: ['Coworking', 'Hot desks', 'Dedicated desks', 'Private offices', 'Meeting rooms', 'Instant offices'],
