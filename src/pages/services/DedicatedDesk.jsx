@@ -16,6 +16,8 @@ import { RelatedSpaces } from '../../components/sections/RelatedSpaces.jsx';
 import { CtaBand } from '../../components/sections/CtaBand.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
 import { ScrollTilt } from '../../components/ui/ScrollTilt.jsx';
+import { ServicePlans } from '../../components/sections/ServicePlans.jsx';
+import { SOLO_PLANS } from '../../data/plans.js';
 
 const MSG = "Hi Let's Work! I'd like to reserve a dedicated desk. What's available?";
 
@@ -85,7 +87,7 @@ export function DedicatedDesk() {
           </Intro>
           <Intro delay={1} className="flex flex-wrap gap-3 md:col-span-5 md:col-start-8 md:justify-end">
             <Button href={waLink(MSG)}>Reserve a desk</Button>
-            <Button href={CONTACT.tel} variant="ghost" icon={null}>
+            <Button href={CONTACT.tel} variant="ghost" icon={null} className="hidden sm:inline-flex">
               {CONTACT.phoneDisplay}
             </Button>
           </Intro>
@@ -140,6 +142,21 @@ export function DedicatedDesk() {
         </div>
       </section>
 
+      <ServicePlans
+        id="dedicated"
+        eyebrow="Monthly plans"
+        title="Your own desk, *every month.*"
+        intro="Gold gives you a dedicated fixed desk. Diamond adds a premium desk, client meeting access and VIP networking."
+        plans={SOLO_PLANS.filter((p) => p.id === 'gold' || p.id === 'diamond')}
+        kind="solo"
+        details={[
+          'A 1-month security deposit applies to all plans.',
+          'Tea/coffee & printing are available at extra charges.',
+          '5G internet comes with every plan.',
+          'Visit first — book a free tour, no commitment.',
+        ]}
+        askMessage="Hi Let's Work! I have a question about your dedicated desk plans."
+      />
       <FaqSection items={[FAQS.terms, FAQS.amenities, FAQS.customize, FAQS.tour]} />
       <RelatedSpaces currentId="dedicated" />
       <CtaBand title="Claim *your* desk before someone else does." message={MSG} />

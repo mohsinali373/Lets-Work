@@ -16,6 +16,8 @@ import { AmenityBand } from '../../components/sections/AmenityBand.jsx';
 import { FaqSection } from '../../components/sections/FaqSection.jsx';
 import { RelatedSpaces } from '../../components/sections/RelatedSpaces.jsx';
 import { CtaBand } from '../../components/sections/CtaBand.jsx';
+import { ServicePlans } from '../../components/sections/ServicePlans.jsx';
+import { SOLO_PLANS } from '../../data/plans.js';
 
 const MSG = "Hi Let's Work! I'm interested in a coworking seat. Can I book a tour?";
 
@@ -38,7 +40,7 @@ const WHY = [
     kicker: 'Dynamic community',
     title: 'People worth sitting next to.',
     text: 'Networking, skill-sharing sessions and collaborative projects with freelancers, founders and teams.',
-    image: IMG.floorPeople,
+    image: IMG.lounge,
     tone: 'bg-sun text-on-sun',
   },
 ];
@@ -91,7 +93,7 @@ export function Coworking() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Button href={waLink(MSG)}>Book a seat</Button>
-              <Button href={CONTACT.tel} variant="ghost" icon={Phone}>
+              <Button href={CONTACT.tel} variant="ghost" icon={Phone} className="hidden sm:inline-flex">
                 Call us
               </Button>
             </div>
@@ -148,7 +150,22 @@ export function Coworking() {
         </div>
       </section>
 
-      <FaqSection items={[FAQS.amenities, FAQS.terms, FAQS.trial, FAQS.where]} className="pt-0 md:pt-0" />
+      <ServicePlans
+        id="coworking"
+        eyebrow="Monthly plans"
+        title="Pick your *coworking plan.*"
+        intro="Silver is a flexible seat on the shared floor. Gold and Diamond give you a desk that's yours every day."
+        plans={SOLO_PLANS}
+        kind="solo"
+        details={[
+          'A 1-month security deposit applies to all plans.',
+          'Tea/coffee & printing are available at extra charges.',
+          '5G internet comes with every plan.',
+          'Visit first — book a free tour, no commitment.',
+        ]}
+        askMessage="Hi Let's Work! I have a question about your coworking plans."
+      />
+      <FaqSection items={[FAQS.amenities, FAQS.terms, FAQS.trial, FAQS.where]} />
       <RelatedSpaces currentId="coworking" />
       <CtaBand message={MSG} />
     </Page>

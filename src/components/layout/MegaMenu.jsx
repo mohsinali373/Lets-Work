@@ -19,7 +19,7 @@ export function MegaMenu({ onNavigate }) {
       exit={{ opacity: 0, y: 8, scale: 0.98 }}
       transition={{ duration: 0.35, ease: EASE_OUT }}
     >
-      <div className="glass-dark grid grid-cols-[1.15fr_1fr] gap-3 rounded-[28px] p-3">
+      <div className="grid grid-cols-[1.15fr_1fr] gap-3 rounded-[28px] bg-ink/[0.97] p-3 shadow-[0_30px_70px_-25px_rgba(0,0,0,0.7)] ring-1 ring-white/10 backdrop-blur-xl">
         <ul>
           {SERVICES.map((s) => (
             <li key={s.id}>

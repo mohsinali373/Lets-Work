@@ -1,132 +1,199 @@
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { CalendarClock, Car, Clock, Coffee } from 'lucide-react';
-import { TOUR_MSG, waLink } from '../../data/site.js';
+import { motion } from 'motion/react';
+import { ArrowRight, ArrowUpRight, Car, Coffee, Tag, Wifi } from 'lucide-react';
+import { IMG, TOUR_MSG, waLink } from '../../data/site.js';
+import { SOLO_PLANS } from '../../data/plans.js';
 import { Button } from '../ui/Button.jsx';
 import { Marquee } from '../ui/Marquee.jsx';
-import { PhotoDeck3D } from './PhotoDeck3D.jsx';
-import { QuickQuote } from './QuickQuote.jsx';
+import { RotatingBadge } from '../ui/RotatingBadge.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
 
-const WORDS = ['desk', 'office', 'boardroom', "team's HQ"];
-const HOOKS = [
-  { icon: Clock, text: 'Move in today' },
-  { icon: CalendarClock, text: 'Pay by hour, day or week' },
+const FACTS = [
+  { icon: Tag, text: 'Day, week or month' },
   { icon: Car, text: 'Free parking' },
+  { icon: Wifi, text: '5G internet' },
   { icon: Coffee, text: 'Chai on call' },
 ];
-const TRUST = ['10+ years experience', '25K+ projects completed', '24/7 support', 'Free tour · no commitment'];
+const LOWEST_PRICE = Math.min(...SOLO_PLANS.map((p) => p.price));
 const TICKER = ['Hot desks', 'Dedicated desks', 'Private offices', 'Meeting rooms', 'Instant offices', 'Chai on call', 'Free parking', 'No lease'];
 
 function fadeUp(delay) {
-  return { initial: { opacity: 0, y: 26 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, ease: EASE_OUT, delay } };
+  return { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, ease: EASE_OUT, delay } };
 }
 
-/** "Your next desk / office / boardroom…" — the word flips over every couple of seconds. */
-function RotatingWord() {
-  const reduce = useReducedMotion();
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    if (reduce) return undefined;
-    const id = window.setInterval(() => setI((n) => (n + 1) % WORDS.length), 2200);
-    return () => window.clearInterval(id);
-  }, [reduce]);
-
+/** One headline line that slides up out of a mask — plays once on load. */
+function Line({ children, delay, className = '' }) {
   return (
-    <span className="relative -ml-[0.12em] block h-[1.1em] overflow-hidden pl-[0.12em]" aria-hidden="true">
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
-          key={WORDS[i]}
-          className="accent absolute left-[0.12em] top-0 block whitespace-nowrap text-sun"
-          initial={{ y: '100%', rotateX: -70, opacity: 0 }}
-          animate={{ y: '0%', rotateX: 0, opacity: 1 }}
-          exit={{ y: '-100%', rotateX: 70, opacity: 0 }}
-          transition={{ duration: 0.7, ease: EASE_OUT }}
-          style={{ transformPerspective: 600, transformOrigin: '50% 50% -0.4em' }}
-        >
-          {WORDS[i]}.
-        </motion.span>
-      </AnimatePresence>
+    <span className="block overflow-hidden pb-[0.08em]">
+      <motion.span className={`block ${className}`} initial={{ y: '110%' }} animate={{ y: '0%' }} transition={{ duration: 1.1, ease: EASE_OUT, delay }}>
+        {children}
+      </motion.span>
     </span>
   );
 }
 
-export function Hero() {
-  const ref = useRef(null);
+/** A photo inside a shaped frame; the photo eases in a little on hover. */
+function Shot({ src, alt, className, frameMotion, focus = 'center', children }) {
+  return (
+    <motion.figure className={`group absolute overflow-hidden ${className}`} {...frameMotion}>
+      <img
+        src={src}
+        alt={alt}
+        loading="eager"
+        style={{ objectPosition: focus }}
+        className="size-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-expo)] group-hover:scale-[1.06]"
+      />
+      {children}
+    </motion.figure>
+  );
+}
 
+/**
+ * Editorial collage: an arch, a circle and an accent tile around a slowly turning badge.
+ * Every piece opens once on load in its own way; nothing loops except the badge text.
+ */
+function Collage() {
+  return (
+    <div className="relative mx-auto aspect-[10/11] w-full max-w-[600px]">
+      {/* faint dot patch behind the arch */}
+      <span
+        className="absolute -left-6 top-0 h-1/2 w-1/2 rounded-3xl bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.18)_1px,transparent_0)] [background-size:16px_16px]"
+        aria-hidden="true"
+      />
+
+      {/* arch — long tables running to the circle wall */}
+      <Shot
+        src={IMG.floorCircles}
+        alt="Long work tables leading to the round feature wall"
+        className="left-0 top-[7%] h-[90%] w-[50%] rounded-b-[28px] rounded-t-[999px] ring-1 ring-white/10"
+        frameMotion={{
+          initial: { clipPath: 'inset(100% 0% 0% 0%)' },
+          animate: { clipPath: 'inset(0% 0% 0% 0%)' },
+          transition: { duration: 1.3, ease: EASE_OUT, delay: 0.3 },
+        }}
+      >
+        <figcaption className="label absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-ink/70 px-3 py-1.5 text-[0.62rem] text-cream backdrop-blur">
+          The floor
+        </figcaption>
+      </Shot>
+
+      {/* circle — the lounge, with a thin outline ring offset behind it */}
+      {/* ring and photo share one square box, so the ring is always exactly centred on the photo */}
+      <div className="absolute right-[3%] top-[3%] aspect-square w-[44%]">
+        <motion.span
+          className="absolute -inset-[3%] rounded-full border border-sun/45"
+          aria-hidden="true"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.7 }}
+        />
+        <Shot
+          src={IMG.boardroom}
+          alt="The boardroom with its yellow feature wall"
+          focus="50% 35%"
+          className="inset-0 rounded-full ring-1 ring-white/10"
+          frameMotion={{
+            initial: { opacity: 0, scale: 0.7, rotate: -10 },
+            animate: { opacity: 1, scale: 1, rotate: 0 },
+            transition: { duration: 1.2, ease: EASE_OUT, delay: 0.5 },
+          }}
+        />
+      </div>
+
+      {/* accent tile — the price hook */}
+      <motion.a
+        href="#plans-title"
+        className="group absolute bottom-[3%] right-[2%] flex h-[37%] w-[44%] flex-col justify-between rounded-[28px] bg-sun p-5 text-on-sun shadow-[0_30px_60px_-24px_var(--color-sun)] sm:p-6"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: EASE_OUT, delay: 0.75 }}
+      >
+        <span className="label opacity-70">Monthly plans</span>
+        <span>
+          <span className="block text-xs font-medium opacity-70">from</span>
+          <span className="block text-[clamp(1.5rem,0.9rem+2.2vw,2.6rem)] font-semibold leading-none tracking-tight">Rs {LOWEST_PRICE.toLocaleString('en-US')}</span>
+          <span className="mt-1 block text-xs font-medium opacity-70">per month</span>
+        </span>
+        <span className="flex items-center gap-1.5 text-sm font-semibold">
+          See plans
+          <ArrowRight size={15} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
+        </span>
+      </motion.a>
+
+      {/* turning badge where the pieces meet */}
+      <motion.a
+        href={waLink(TOUR_MSG)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Book a free tour on WhatsApp"
+        // centred on the seam between the arch (ends at 50%) and the circle/tile column; always a true circle
+        className="absolute left-1/2 top-[49%] aspect-square w-[22%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink text-cream ring-1 ring-white/15"
+        initial={{ opacity: 0, scale: 0.4 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ type: 'spring', stiffness: 160, damping: 16, delay: 1.1 }}
+      >
+        <RotatingBadge
+          text="BOOK A FREE TOUR • LET'S WORK MULTAN • "
+          className="size-full p-1 text-[0.95em]"
+          center={
+            <span className="grid size-10 place-items-center rounded-full bg-sun text-on-sun transition-transform duration-300 hover:rotate-45 sm:size-12">
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </span>
+          }
+        />
+      </motion.a>
+    </div>
+  );
+}
+
+export function Hero() {
   return (
     <>
-      <section ref={ref} className="relative overflow-hidden bg-ink pb-8 pt-28 text-cream md:pb-12 md:pt-32" aria-labelledby="hero-title">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-20 size-[640px] rounded-full bg-sun/20 blur-[140px]" />
-        <div aria-hidden="true" className="pointer-events-none absolute -bottom-60 -left-40 size-[520px] rounded-full bg-sun/10 blur-[140px]" />
+      <section className="relative isolate overflow-hidden bg-ink text-cream" aria-labelledby="hero-title">
+        <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+          <div className="absolute -right-32 top-1/4 size-[40rem] rounded-full bg-sun/12 blur-[150px]" />
+        </div>
 
-        <div className="wrap relative grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-6">
+        <div className="wrap grid items-center gap-14 pb-16 pt-28 md:pb-20 lg:min-h-[100svh] lg:grid-cols-12 lg:gap-10 lg:py-28">
+          {/* left: the pitch */}
           <div className="lg:col-span-6">
-            <motion.p {...fadeUp(0.4)} className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-4 py-2 text-sm">
+            <motion.p {...fadeUp(0.1)} className="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm">
               <span className="relative flex size-2">
                 <span className="ping-soft absolute inset-0 rounded-full bg-sun" />
                 <span className="relative size-2 rounded-full bg-sun" />
               </span>
-              Open now · Nandla Chowk, Multan
+              Coworking · Nandla Chowk, Multan
             </motion.p>
 
-            <motion.h1
-              {...fadeUp(0.5)}
-              id="hero-title"
-              aria-label="Your next desk is ready in Multan."
-              className="mt-6 text-[clamp(2.5rem,1.4rem+3.6vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.035em]"
-            >
-              <span className="block" aria-hidden="true">
-                Your next
-              </span>
-              <RotatingWord />
-              <span className="block text-cream/90" aria-hidden="true">
-                is ready in Multan.
-              </span>
-            </motion.h1>
+            <h1 id="hero-title" className="mt-7 text-[clamp(3rem,1.5rem+5vw,6.4rem)] font-semibold leading-[0.95] tracking-[-0.05em]">
+              <Line delay={0.2}>Space to work.</Line>
+              <Line delay={0.34} className="accent text-sun">
+                Room to grow.
+              </Line>
+            </h1>
 
-            <motion.p {...fadeUp(0.75)} className="mt-6 max-w-lg text-lg leading-relaxed text-cream/65">
-              Skip the café Wi-Fi and the five-year lease. Hot desks, private offices and a real boardroom —{' '}
-              <span className="text-cream">book by the hour, day or week. No hidden fees.</span>
+            <motion.p {...fadeUp(0.6)} className="mt-7 max-w-md text-lg leading-relaxed text-cream/75">
+              Hot desks, private offices and meeting rooms — set up, served with chai, and ready the day you walk in.
             </motion.p>
 
-            <motion.div {...fadeUp(0.85)} className="mt-8 flex flex-wrap gap-3">
-              <Button href={waLink(TOUR_MSG)}>Claim your free tour</Button>
+            <motion.div {...fadeUp(0.72)} className="mt-9">
+              <Button href={waLink(TOUR_MSG)}>Book a free tour</Button>
             </motion.div>
 
-            <motion.ul {...fadeUp(0.95)} className="mt-8 grid max-w-lg grid-cols-2 gap-2">
-              {HOOKS.map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-center gap-2.5 rounded-2xl border border-white/8 bg-white/4 px-3 py-2.5 text-sm">
-                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-sun text-on-sun">
-                    <Icon size={14} strokeWidth={2.3} aria-hidden="true" />
-                  </span>
+            <motion.ul {...fadeUp(0.85)} className="mt-10 grid max-w-md grid-cols-2 gap-x-6 gap-y-3 border-t border-white/10 pt-6">
+              {FACTS.map(({ icon: Icon, text }) => (
+                <li key={text} className="flex items-center gap-2.5 text-sm text-cream/75">
+                  <Icon size={16} className="shrink-0 text-sun" aria-hidden="true" />
                   {text}
                 </li>
               ))}
             </motion.ul>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotateX: 20 }}
-            animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-            transition={{ duration: 1.3, ease: EASE_OUT, delay: 0.5 }}
-            className="relative h-[400px] sm:h-[500px] lg:col-span-6 lg:h-[600px]"
-          >
-            <PhotoDeck3D scrollTarget={ref} />
-          </motion.div>
+          {/* right: the collage */}
+          <div className="lg:col-span-6">
+            <Collage />
+          </div>
         </div>
-
-        <motion.div {...fadeUp(1.1)} className="wrap relative mt-8 md:mt-10">
-          <QuickQuote />
-          <ul className="label mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-cream/45">
-            {TRUST.map((t, i) => (
-              <li key={t} className="flex items-center gap-4">
-                {i > 0 && <span className="size-1 rounded-full bg-sun" aria-hidden="true" />}
-                {t}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
       </section>
 
       <Marquee

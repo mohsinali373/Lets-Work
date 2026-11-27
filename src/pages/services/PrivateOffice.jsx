@@ -12,6 +12,8 @@ import { FaqSection } from '../../components/sections/FaqSection.jsx';
 import { RelatedSpaces } from '../../components/sections/RelatedSpaces.jsx';
 import { CtaBand } from '../../components/sections/CtaBand.jsx';
 import { ScrollTilt } from '../../components/ui/ScrollTilt.jsx';
+import { ServicePlans } from '../../components/sections/ServicePlans.jsx';
+import { TEAM_PLANS } from '../../data/plans.js';
 
 const MSG = "Hi Let's Work! I'm interested in a private office. Can we talk about options?";
 
@@ -43,7 +45,7 @@ export function PrivateOffice() {
             </Intro>
             <Intro delay={1} className="mt-8 flex flex-wrap gap-3">
               <Button href={waLink(MSG)}>Ask about offices</Button>
-              <Button href={CONTACT.tel} variant="glass" icon={null}>
+              <Button href={CONTACT.tel} variant="glass" icon={null} className="hidden sm:inline-flex">
                 {CONTACT.phoneDisplay}
               </Button>
             </Intro>
@@ -91,7 +93,7 @@ export function PrivateOffice() {
             <p className="mt-4 text-cream/60">Desk, chairs, storage and high-speed internet — all set up before you arrive.</p>
           </div>
           <div className={`${panel} min-h-[320px]`}>
-            <img src={IMG.privateDesk} alt="A furnished private office with sofas" loading="lazy" className="absolute inset-0 size-full object-cover" />
+            <img src={IMG.officeDesk} alt="A furnished private office desk" loading="lazy" className="absolute inset-0 size-full object-cover" />
             <span className="glass relative m-5 self-start rounded-full px-4 py-2 text-sm font-medium">Fully furnished</span>
           </div>
           <div className={`${panel} bg-sun p-8`}>
@@ -135,7 +137,22 @@ export function PrivateOffice() {
         </Reveal>
       </section>
 
-      <FaqSection items={[FAQS.customize, FAQS.terms, FAQS.meetings, FAQS.tour]} className="pt-0 md:pt-0" />
+      <ServicePlans
+        id="private"
+        eyebrow="Team plans · 6–8 persons"
+        title="Private offices for *your team.*"
+        intro="Three lockable offices for teams of 6 to 8 — pick the room and the level of service that fits."
+        plans={TEAM_PLANS}
+        kind="team"
+        details={[
+          'Every office is private and lockable, for 6–8 people.',
+          'Full kitchen access on every plan.',
+          'Tea service from once a day (Startup) to on demand (Executive).',
+          'Free parking on every plan.',
+        ]}
+        askMessage="Hi Let's Work! I have a question about your private office team plans."
+      />
+      <FaqSection items={[FAQS.customize, FAQS.terms, FAQS.meetings, FAQS.tour]} />
       <RelatedSpaces currentId="private" />
       <CtaBand title="Your team deserves *a door.*" message={MSG} />
     </Page>

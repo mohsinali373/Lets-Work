@@ -31,19 +31,19 @@ export const IMG = {
   logo: '/img/logo.png',
   building: space('building'), // outside, signage on Shuhada Road
   boardroom: space('boardroom'), // yellow feature wall, long table
-  boardroomU: space('boardroom-u'),
+  boardroomU: space('boardroom-wide'), // U-shaped table, brightened crop
   boardroomSide: space('boardroom-side'),
   meetingRoom: space('meeting-room'),
-  teamRoom: space('team-room'), // smaller room, green desks + TV
+  teamRoom: space('team-room-bright'), // smaller room, green desks + TV
   privateOffice: space('private-office'), // manager desk, yellow wall
-  privateDesk: space('private-desk'),
+  officeDesk: space('office-desk'), // tighter crop of the private office desk
   reception: space('reception'),
   floorLong: space('floor-long'), // long desks, round yellow wall
-  floorPeople: space('floor-people'), // members working, blue sofa
-  hotDesks: space('hot-desks'), // green-divider desks, wide
+  floorCircles: space('floor-circles'), // portrait: long tables to the circle wall
+  hotDesks: space('desks-green'), // green-divider desks, wide
   desksTall: space('desks-tall'), // portrait
   desksTall2: space('desks-tall-2'), // portrait, logo wall
-  lounge: space('lounge'), // blue sofa, green wall, plant
+  lounge: space('lounge-bright'), // blue sofa, green wall, plant
 };
 
 /** Every real photo, for galleries. */
@@ -52,7 +52,7 @@ export const GALLERY = [
   { src: IMG.hotDesks, label: 'Hot desks' },
   { src: IMG.lounge, label: 'Lounge' },
   { src: IMG.privateOffice, label: 'Private office' },
-  { src: IMG.floorPeople, label: 'The floor' },
+  { src: IMG.floorCircles, label: 'The floor' },
   { src: IMG.teamRoom, label: 'Team room' },
   { src: IMG.desksTall, label: 'Window desks' },
   { src: IMG.reception, label: 'Reception' },

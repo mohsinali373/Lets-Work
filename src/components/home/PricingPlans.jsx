@@ -165,7 +165,8 @@ export function PricingPlans() {
             </motion.ul>
           </AnimatePresence>
           <div className="flex flex-wrap items-center gap-3">
-            <Button href={CONTACT.tel} variant="glass" magnetic={false}>
+            {/* mobile keeps a single CTA; the floating call button already covers calling */}
+            <Button href={CONTACT.tel} variant="glass" magnetic={false} className="hidden sm:inline-flex">
               {CONTACT.phoneDisplay}
             </Button>
             <Button href={waLink("Hi Let's Work! I have a question about your monthly plans.")}>Ask about plans</Button>

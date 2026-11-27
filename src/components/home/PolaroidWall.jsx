@@ -9,7 +9,7 @@ const SHOTS = [
   { src: IMG.hotDesks, note: 'Hot desks — window side', tilt: 3 },
   { src: IMG.lounge, note: 'The blue sofas (best seats)', tilt: -2 },
   { src: IMG.privateOffice, note: 'Private office, door shut', tilt: 5 },
-  { src: IMG.floorPeople, note: 'A regular Thursday', tilt: 4 },
+  { src: IMG.floorCircles, note: 'Long tables, lots of light', tilt: 4 },
   { src: IMG.teamRoom, note: 'Team room, booked till 4', tilt: -5 },
   { src: IMG.reception, note: 'Reception — say hi', tilt: 2 },
   { src: IMG.building, note: 'Find us on Shuhada Road', tilt: -3 },

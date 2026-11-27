@@ -11,7 +11,7 @@ export function NotFound() {
         <p className="t-lead mt-6 max-w-md">The page you were looking for has moved or never existed. Plenty of free seats elsewhere, though.</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button to="/">Back to home</Button>
-          <Button to="/spaces" variant="ghost">
+          <Button to="/spaces" variant="ghost" className="hidden sm:inline-flex">
             See all spaces
           </Button>
         </div>

@@ -13,7 +13,7 @@ const TIERS = {
 };
 const ROW_ICONS = { space: Armchair, wifi: Wifi, tea: Coffee, car: Car };
 const TILT_SPRING = { stiffness: 160, damping: 18, mass: 0.5 };
-const MAX_TILT = 7; // degrees
+const MAX_TILT = 3; // degrees — subtle, so the card never swings away from the pointer
 
 export const cardVariants = {
   hidden: { opacity: 0, y: 56, rotateX: 16, filter: 'blur(10px)' },
@@ -101,6 +101,8 @@ function TeamRows({ rows }) {
  * @param {{ plan: object, kind: 'solo'|'team', index: number }} props
  */
 export function PlanCard({ plan, kind, index }) {
+  const cardRef = useRef(null);
+  const frameRef = useRef(null);
   const surfaceRef = useRef(null);
   const reduce = useReducedMotion();
   const tiltX = useMotionValue(0);
@@ -111,17 +113,24 @@ export function PlanCard({ plan, kind, index }) {
   const isFeatured = Boolean(plan.badge);
   const message = `Hi Let's Work! I'm interested in the ${plan.name} plan (Rs. ${formatRs(plan.price)}/month). Could you share the details?`;
 
+  // Measured from the <li>, which never tilts, so the light lands exactly under the pointer
+  // even while the card is rotated.
   function handleMove(e) {
-    const el = surfaceRef.current;
-    if (!el || e.pointerType !== 'mouse') return;
-    const r = el.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width;
-    const py = (e.clientY - r.top) / r.height;
-    el.style.setProperty('--mx', `${px * 100}%`);
-    el.style.setProperty('--my', `${py * 100}%`);
+    const card = cardRef.current;
+    const frame = frameRef.current;
+    const surface = surfaceRef.current;
+    if (!card || !frame || !surface || e.pointerType !== 'mouse') return;
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left - frame.offsetLeft - surface.offsetLeft;
+    const y = e.clientY - r.top - frame.offsetTop - surface.offsetTop;
+    surface.style.setProperty('--mx', `${x}px`);
+    surface.style.setProperty('--my', `${y}px`);
     if (reduce) return;
-    tiltY.set((px - 0.5) * MAX_TILT * 2);
-    tiltX.set((0.5 - py) * MAX_TILT * 2);
+    const px = x / surface.offsetWidth - 0.5; // -0.5 (left) … 0.5 (right)
+    const py = y / surface.offsetHeight - 0.5; // -0.5 (top) … 0.5 (bottom)
+    // the part under the pointer leans toward the viewer
+    tiltX.set(py * MAX_TILT * 2);
+    tiltY.set(-px * MAX_TILT * 2);
   }
   function resetTilt() {
     tiltX.set(0);
@@ -129,7 +138,7 @@ export function PlanCard({ plan, kind, index }) {
   }
 
   return (
-    <motion.li variants={cardVariants} data-plan-card className="relative pt-4">
+    <motion.li ref={cardRef} variants={cardVariants} data-plan-card className="relative pt-4">
       {isFeatured && (
         <motion.span
           className="absolute left-1/2 top-0 z-10 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider shadow-[0_10px_24px_-8px_rgba(0,0,0,0.6)]"
@@ -143,10 +152,11 @@ export function PlanCard({ plan, kind, index }) {
       )}
 
       <motion.div
+        ref={frameRef}
         onPointerMove={handleMove}
         onPointerLeave={resetTilt}
         style={{ rotateX, rotateY, transformPerspective: 1100, '--ring-a': tier.a, '--ring-b': tier.b }}
-        className={`relative h-full rounded-[30px] p-[1.5px] ${isFeatured ? 'plan-ring shadow-[0_30px_80px_-30px_var(--ring-b)] lg:-translate-y-3' : 'bg-white/[0.12]'}`}
+        className={`relative h-full rounded-[30px] p-[1.5px] ${isFeatured ? 'plan-ring shadow-[0_30px_80px_-30px_var(--ring-b)]' : 'bg-white/[0.12]'}`}
       >
         <div ref={surfaceRef} className="plan-spot relative flex h-full flex-col overflow-hidden rounded-[29px] bg-ink-soft p-6 md:p-7">
           {/* soft medal-coloured glow behind the header */}

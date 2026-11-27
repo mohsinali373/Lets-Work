@@ -44,7 +44,7 @@ export const SERVICES = [
     blurb:
       'Fully furnished, serviced private offices for individuals and teams who need quiet, privacy and room to grow.',
     image: IMG.privateOffice,
-    thumb: IMG.privateDesk,
+    thumb: IMG.officeDesk,
     tone: 'sun',
   },
   {
