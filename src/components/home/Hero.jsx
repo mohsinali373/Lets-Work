@@ -77,7 +77,7 @@ function Collage() {
         </figcaption>
       </Shot>
 
-      {/* circle — the lounge, with a thin outline ring offset behind it */}
+      {/* circle — Multan's best-known landmark, so the city is obvious at a glance; thin outline ring behind it */}
       {/* ring and photo share one square box, so the ring is always exactly centred on the photo */}
       <div className="absolute right-[3%] top-[3%] aspect-square w-[44%]">
         <motion.span
@@ -88,16 +88,20 @@ function Collage() {
           transition={{ duration: 1.2, ease: EASE_OUT, delay: 0.7 }}
         />
         <Shot
-          src={IMG.boardroom}
-          alt="The boardroom with its yellow feature wall"
-          focus="50% 35%"
+          src={IMG.multan}
+          alt="The Tomb of Shah Rukn-e-Alam in Multan"
+          focus="50% 50%"
           className="inset-0 rounded-full ring-1 ring-white/10"
           frameMotion={{
             initial: { opacity: 0, scale: 0.7, rotate: -10 },
             animate: { opacity: 1, scale: 1, rotate: 0 },
             transition: { duration: 1.2, ease: EASE_OUT, delay: 0.5 },
           }}
-        />
+        >
+          <figcaption className="label absolute bottom-[9%] left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-ink/70 px-3 py-1.5 text-[0.62rem] text-cream backdrop-blur">
+            Multan
+          </figcaption>
+        </Shot>
       </div>
 
       {/* accent tile — the price hook */}

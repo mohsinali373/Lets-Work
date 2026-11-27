@@ -52,6 +52,8 @@ export const IMG = {
   desksTall: space('desks-tall'), // portrait
   desksTall2: space('desks-tall-2'), // portrait, logo wall
   lounge: space('lounge-bright'), // blue sofa, green wall, plant
+  // Tomb of Shah Rukn-e-Alam, Multan — photo by Shairyar Khan on Unsplash (Unsplash License, free to use)
+  multan: space('multan-tomb'),
 };
 
 

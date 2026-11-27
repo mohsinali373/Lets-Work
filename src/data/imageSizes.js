@@ -14,6 +14,7 @@ export const IMAGE_SIZES = {
   '/img/space/private-office.webp': [1600, 738],
   '/img/space/reception.webp': [1600, 738],
   '/img/space/team-room-bright.webp': [1600, 1200],
+  '/img/space/multan-tomb.webp': [900, 900],
   '/img/logo.webp': [720, 129],
   '/img/logo-red.webp': [720, 129],
   '/video/walkin-poster.webp': [1600, 900]
