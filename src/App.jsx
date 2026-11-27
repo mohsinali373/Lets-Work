@@ -5,7 +5,6 @@ import { SmoothScroll, useLenis } from './lib/SmoothScroll.jsx';
 import { Navbar } from './components/layout/Navbar.jsx';
 import { Footer } from './components/layout/Footer.jsx';
 import { FloatingCall, FloatingWhatsApp, ScrollProgress } from './components/layout/Chrome.jsx';
-import { ScrollCompanion } from './components/layout/ScrollCompanion.jsx';
 import { PaletteSwitcher } from './components/layout/PaletteSwitcher.jsx';
 import { Home } from './pages/Home.jsx';
 
@@ -94,7 +93,6 @@ export function App() {
         Skip to content
       </a>
       <ScrollProgress />
-      <ScrollCompanion />
       <Navbar />
       <AnimatedRoutes />
       <Footer />

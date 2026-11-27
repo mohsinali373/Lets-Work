@@ -10,7 +10,7 @@ import { WhatsAppIcon } from '../ui/Icons.jsx';
  */
 export function FaqSection({ items, title = 'Questions people *actually* ask us.', className = '' }) {
   return (
-    <section className={`wrap sec grid gap-10 md:grid-cols-12 ${className}`}>
+    <section className={`wrap sec grid gap-10 md:grid-cols-12 ${className}`} aria-label="Frequently asked questions">
       <div className="md:col-span-5">
         <div className="md:sticky md:top-28">
           <SplitWords text={title} className="t-h2 max-w-md" />

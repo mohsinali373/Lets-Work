@@ -316,29 +316,6 @@ img {
   animation: spin-slow 16s linear infinite;
 }
 
-@keyframes chai-steam {
-  0% {
-    transform: translateY(6px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-}
-.chai-steam {
-  animation: chai-steam 2.6s ease-in-out infinite;
-}
-.chai-steam-2 {
-  animation-delay: 0.6s;
-}
-.chai-steam-3 {
-  animation-delay: 1.2s;
-}
-
 @keyframes ping-soft {
   0% {
     transform: scale(1);

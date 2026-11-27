@@ -57,6 +57,7 @@ export function Navbar() {
   return (
     <>
       <motion.header
+        onMouseLeave={() => setIsMegaOpen(false)}
         className="fixed inset-x-0 top-3 z-50 px-3 md:top-4"
         animate={{ y: isHidden && !isMegaOpen ? -120 : 0 }}
         transition={{ duration: 0.55, ease: EASE_OUT }}
@@ -70,22 +71,22 @@ export function Navbar() {
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
-            <li>
+            <li onMouseEnter={() => setIsMegaOpen(false)}>
               <NavLink to="/" end className={linkClass}>
                 Let's Work
               </NavLink>
             </li>
-            <li>
+            <li onMouseEnter={() => setIsMegaOpen(false)}>
               <NavLink to="/about-us" className={linkClass}>
                 About
               </NavLink>
             </li>
-            <li>
+            <li onMouseEnter={() => setIsMegaOpen(false)}>
               <NavLink to="/privacy-policy" className={linkClass}>
                 Privacy Policy
               </NavLink>
             </li>
-            <li className="relative" onMouseEnter={() => setIsMegaOpen(true)} onMouseLeave={() => setIsMegaOpen(false)}>
+            <li className="relative" onMouseEnter={() => setIsMegaOpen(true)}>
               <button
                 type="button"
                 aria-expanded={isMegaOpen}
@@ -98,9 +99,8 @@ export function Navbar() {
                 Our Spaces
                 <ChevronDown size={15} className={`transition-transform duration-300 ${isMegaOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
               </button>
-              <AnimatePresence>{isMegaOpen && <MegaMenu onNavigate={() => setIsMegaOpen(false)} />}</AnimatePresence>
             </li>
-            <li>
+            <li onMouseEnter={() => setIsMegaOpen(false)}>
               <NavLink to="/contact-us" className={linkClass}>
                 Contact Us
               </NavLink>
@@ -129,6 +129,8 @@ export function Navbar() {
             </button>
           </div>
         </nav>
+        {/* full-width spaces panel; lives in the header (not the nav) so it can span the whole window */}
+        <AnimatePresence>{isMegaOpen && <MegaMenu onNavigate={() => setIsMegaOpen(false)} />}</AnimatePresence>
       </motion.header>
 
       <AnimatePresence>{isMenuOpen && <MobileMenu onClose={() => setIsMenuOpen(false)} />}</AnimatePresence>
