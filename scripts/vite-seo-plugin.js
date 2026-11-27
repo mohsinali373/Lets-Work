@@ -23,6 +23,7 @@ function headFor(page) {
     `<title>${title}</title>`,
     `<meta name="description" content="${description}" />`,
     '<meta name="robots" content="index, follow, max-image-preview:large" />',
+    '<meta name="author" content="SeoMasters" />',
     `<link rel="canonical" href="${url}" />`,
     '<meta property="og:type" content="website" />',
     `<meta property="og:site_name" content="Let&#39;s Work" />`,
