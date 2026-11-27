@@ -373,3 +373,33 @@ img {
     animation: none;
   }
 }
+
+/* ---------- pricing plan cards ---------- */
+/* Spinning medal-coloured ring around the featured plan (colours from --ring-a / --ring-b). */
+@property --ring-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.plan-ring {
+  background: conic-gradient(from var(--ring-angle), var(--ring-a), var(--ring-b) 20%, transparent 40%, transparent 60%, var(--ring-b) 80%, var(--ring-a));
+  animation: ring-spin 6s linear infinite;
+}
+@keyframes ring-spin {
+  to {
+    --ring-angle: 360deg;
+  }
+}
+/* Light that follows the pointer across a card (position set from JS as --mx / --my). */
+.plan-spot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-expo);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--color-sun) 16%, transparent), transparent 45%);
+}
+.plan-spot:hover::before {
+  opacity: 1;
+}

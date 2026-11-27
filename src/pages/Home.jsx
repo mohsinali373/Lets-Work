@@ -2,7 +2,7 @@ import { Page } from '../components/layout/Page.jsx';
 import { Hero } from '../components/home/Hero.jsx';
 import { WindowReveal } from '../components/home/WindowReveal.jsx';
 import { SpacesShelf } from '../components/home/SpacesShelf.jsx';
-import { PassTickets } from '../components/home/PassTickets.jsx';
+import { PricingPlans } from '../components/home/PricingPlans.jsx';
 import { Compare } from '../components/home/Compare.jsx';
 import { PolaroidWall } from '../components/home/PolaroidWall.jsx';
 import { AmenitiesBento } from '../components/home/AmenitiesBento.jsx';
@@ -21,7 +21,7 @@ export function Home() {
       </div>
       <WindowReveal />
       <SpacesShelf />
-      <PassTickets />
+      <PricingPlans />
       <Compare />
       <PolaroidWall />
       <AmenitiesBento />
