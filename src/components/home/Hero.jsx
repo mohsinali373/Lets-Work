@@ -176,8 +176,12 @@ export function Hero() {
               Hot desks, private offices and meeting rooms — furnished, connected and ready the day you walk in.
             </motion.p>
 
-            <motion.div {...fadeUp(0.72)} className="mt-9">
+            <motion.div {...fadeUp(0.72)} className="mt-9 flex flex-wrap items-center gap-3">
               <Button href={waLink(TOUR_MSG)}>Book a free tour</Button>
+              {/* second button only from tablet up; phones keep one clear call to action */}
+              <Button to="/spaces" variant="glass" className="hidden sm:inline-flex">
+                Explore spaces
+              </Button>
             </motion.div>
 
             <motion.ul {...fadeUp(0.85)} className="mt-10 grid max-w-md grid-cols-2 gap-x-6 gap-y-3 border-t border-white/10 pt-6">

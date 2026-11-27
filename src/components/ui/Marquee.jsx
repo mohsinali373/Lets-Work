@@ -4,10 +4,10 @@
  */
 export function Marquee({ items, speed = 32, className = '', itemClassName = '', separator = null, label }) {
   const row = items.map((item, i) => (
-    <span key={i} className={`flex shrink-0 items-center ${itemClassName}`}>
+    <div key={i} className={`flex shrink-0 items-center ${itemClassName}`}>
       {item}
       {separator}
-    </span>
+    </div>
   ));
   return (
     <div className={`marquee overflow-hidden ${className}`} role={label ? 'region' : undefined} aria-label={label}>

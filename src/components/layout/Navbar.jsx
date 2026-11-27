@@ -90,7 +90,7 @@ export function Navbar() {
               <button
                 type="button"
                 aria-expanded={isMegaOpen}
-                aria-controls="mega-spaces"
+                aria-controls={isMegaOpen ? 'mega-spaces' : undefined}
                 onClick={() => setIsMegaOpen((o) => !o)}
                 className={`flex cursor-pointer items-center gap-1 rounded-full px-4 py-2 text-[0.95rem] transition-colors hover:bg-white/8 ${
                   spacesActive ? 'text-sun' : 'text-cream/85 hover:text-cream'

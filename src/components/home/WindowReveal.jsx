@@ -174,7 +174,9 @@ export function WindowReveal() {
                       transition={{ duration: 0.5, ease: EASE_OUT, delay: 0.2 }}
                       className="pointer-events-auto mt-6"
                     >
-                      <Button href={waLink("Hi Let's Work! I'd like to reserve a desk.")}>Reserve your desk</Button>
+                      <Button href={waLink("Hi Let's Work! I'd like to reserve a desk.")} className="[text-shadow:none]">
+                        Reserve your desk
+                      </Button>
                     </motion.div>
                   )}
                 </motion.div>
