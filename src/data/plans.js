@@ -31,8 +31,19 @@ export const SOLO_PLANS = [
   },
 ];
 
+/** Lowest monthly price in each group, used in copy and structured data so prices stay in one place. */
+export const LOWEST_SOLO_PRICE = Math.min(...SOLO_PLANS.map((p) => p.price));
+
+/**
+ * @param {number} n
+ * @returns {string} e.g. "Rs 10,999"
+ */
+export function formatPrice(n) {
+  return `Rs ${n.toLocaleString('en-US')}`;
+}
+
 export const SOLO_NOTES = [
-  { icon: 'coffee', text: 'Tea/coffee & printing are available at extra charges.' },
+  { icon: 'coffee', text: 'Tea is available at extra charge.' },
   { icon: 'shield', text: 'A 1-month security deposit applies to all plans.' },
 ];
 
@@ -78,6 +89,8 @@ export const TEAM_PLANS = [
     ],
   },
 ];
+
+export const LOWEST_TEAM_PRICE = Math.min(...TEAM_PLANS.map((p) => p.price));
 
 export const TEAM_NOTES = [
   { icon: 'lock', text: 'Your own private space' },

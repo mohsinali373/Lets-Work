@@ -11,7 +11,7 @@ const HOURS = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 const STEP_MS = 2400;
 const label = (h) => `${h > 12 ? h - 12 : h}${h >= 12 ? 'pm' : 'am'}`;
 
-/** A ruler of working hours across the photo; a one-hour block steps along it — "book by the hour". */
+/** A ruler of working hours across the photo; a booked slot steps along it. */
 function HourRuler() {
   const reduce = useReducedMotion();
   const [slot, setSlot] = useState(1);
@@ -50,7 +50,7 @@ function HourRuler() {
   );
 }
 
-/** Meeting room: the yellow page with the boardroom photo and an hour ruler showing it's booked by the hour. */
+/** Meeting room: the yellow page with the boardroom photo and a ruler showing a slot being booked. */
 export function MeetingRoomBanner({ message }) {
   return (
     <section className="bg-sun pb-8 pt-32 text-on-sun md:pt-40">
@@ -59,10 +59,10 @@ export function MeetingRoomBanner({ message }) {
           <Intro delay={0.3}>
             <Eyebrow num="04">Meeting room</Eyebrow>
           </Intro>
-          <SplitWords as="h1" onMount delay={0.45} text="A premium meeting room, *by the hour.*" className="t-display mt-6" />
+          <SplitWords as="h1" onMount delay={0.45} text="A premium meeting room, *ready when you are.*" className="t-display mt-6" />
         </div>
         <Intro delay={0.8} className="lg:col-span-4">
-          <p className="text-lg opacity-80">Modern tech, comfortable seating and refreshments — booked for exactly as long as the meeting needs.</p>
+          <p className="text-lg opacity-80">Modern tech and comfortable seating — book a slot whenever your meeting needs one.</p>
           <div className="mt-6">
             <Button href={waLink(message)} variant="ink">
               Book the room

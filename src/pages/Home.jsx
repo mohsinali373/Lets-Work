@@ -1,4 +1,5 @@
 import { Page } from '../components/layout/Page.jsx';
+import { PAGES } from '../data/seo.js';
 import { Hero } from '../components/home/Hero.jsx';
 import { WindowReveal } from '../components/home/WindowReveal.jsx';
 import { SpacesShelf } from '../components/home/SpacesShelf.jsx';
@@ -10,11 +11,11 @@ import { StoryStats } from '../components/home/StoryStats.jsx';
 import { FaqSection } from '../components/sections/FaqSection.jsx';
 import { CtaBand } from '../components/sections/CtaBand.jsx';
 import { Bridge } from '../components/ui/Bridge.jsx';
-import { HOME_FAQ } from '../data/faqs.js';
+import { PAGE_FAQS } from '../data/faqs.js';
 
 export function Home() {
   return (
-    <Page description="Let's Work is Multan's coworking space at Nandla Chowk, Shuhada Road. Hot desks, dedicated desks, private offices and meeting rooms — book by the hour, day or week.">
+    <Page seo={PAGES.home}>
       <Hero />
       <div className="wrap py-10 md:py-12">
         <Bridge>Enough talk — let us show you around.</Bridge>
@@ -26,7 +27,7 @@ export function Home() {
       <PolaroidWall />
       <AmenitiesBento />
       <StoryStats />
-      <FaqSection items={HOME_FAQ} className="pt-0 md:pt-0" />
+      <FaqSection items={PAGE_FAQS.home} className="pt-0 md:pt-0" />
       <CtaBand />
     </Page>
   );

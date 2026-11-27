@@ -1,6 +1,6 @@
 import { IMG } from '../../data/site.js';
-import { FAQS } from '../../data/faqs.js';
-import { FLEX_TERMS } from '../../data/services.js';
+import { PAGES } from '../../data/seo.js';
+import { PAGE_FAQS } from '../../data/faqs.js';
 import { Page } from '../../components/layout/Page.jsx';
 import { SplitWords } from '../../components/ui/SplitWords.jsx';
 import { Eyebrow } from '../../components/ui/Eyebrow.jsx';
@@ -11,7 +11,7 @@ import { RelatedSpaces } from '../../components/sections/RelatedSpaces.jsx';
 import { CtaBand } from '../../components/sections/CtaBand.jsx';
 import { ScrollTilt } from '../../components/ui/ScrollTilt.jsx';
 import { ServicePlans } from '../../components/sections/ServicePlans.jsx';
-import { TEAM_PLANS } from '../../data/plans.js';
+import { TEAM_PLANS, formatPrice } from '../../data/plans.js';
 import { PrivateOfficeBanner } from '../../components/banners/PrivateOfficeBanner.jsx';
 
 const MSG = "Hi Let's Work! I'm interested in a private office. Can we talk about options?";
@@ -26,10 +26,7 @@ const panel = 'relative flex shrink-0 flex-col overflow-hidden rounded-[30px] lg
 
 export function PrivateOffice() {
   return (
-    <Page
-      title="Private Office Space in Multan"
-      description="Fully furnished, serviced private offices in Multan for individuals and teams. Quiet, secure and flexible — book by the hour, day or week."
-    >
+    <Page seo={PAGES.private}>
       <PrivateOfficeBanner message={MSG} />
 
       <section className="wrap sec">
@@ -66,16 +63,16 @@ export function PrivateOffice() {
             <span className="glass relative m-5 self-start rounded-full px-4 py-2 text-sm font-medium">Fully furnished</span>
           </div>
           <div className={`${panel} bg-sun p-8`}>
-            <span className="label">(02) Flexible rental terms</span>
+            <span className="label">(02) Simple monthly terms</span>
             <ul className="mt-auto space-y-3">
-              {FLEX_TERMS.map((t) => (
-                <li key={t.unit} className="flex items-baseline justify-between gap-6 border-b border-ink/15 pb-3">
-                  <span className="text-4xl font-semibold tracking-tight">{t.unit}</span>
-                  <span className="text-right text-sm text-ink/70">{t.line}</span>
+              {TEAM_PLANS.map((plan) => (
+                <li key={plan.id} className="flex items-baseline justify-between gap-6 border-b border-ink/15 pb-3">
+                  <span className="text-3xl font-semibold tracking-tight">{formatPrice(plan.price)}</span>
+                  <span className="text-right text-sm text-ink/70">{plan.name} · per month</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-sm text-ink/70">No long-term commitment. No hidden fees.</p>
+            <p className="mt-4 text-sm text-ink/70">Billed monthly. No long lease and no hidden fees.</p>
           </div>
           <div className={`${panel} bg-paper p-8`}>
             <span className="label text-graphite">(03) Scalable solutions</span>
@@ -121,7 +118,7 @@ export function PrivateOffice() {
         ]}
         askMessage="Hi Let's Work! I have a question about your private office team plans."
       />
-      <FaqSection items={[FAQS.customize, FAQS.terms, FAQS.meetings, FAQS.tour]} />
+      <FaqSection items={PAGE_FAQS.private} />
       <RelatedSpaces currentId="private" />
       <CtaBand title="Your team deserves *a door.*" message={MSG} />
     </Page>

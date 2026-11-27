@@ -1,6 +1,7 @@
 import { BriefcaseBusiness, GraduationCap, Handshake, Presentation, UserRound, Users } from 'lucide-react';
+import { PAGES } from '../../data/seo.js';
 import { IMG } from '../../data/site.js';
-import { FAQS } from '../../data/faqs.js';
+import { PAGE_FAQS } from '../../data/faqs.js';
 import { Page } from '../../components/layout/Page.jsx';
 import { SplitWords } from '../../components/ui/SplitWords.jsx';
 import { Reveal } from '../../components/ui/Reveal.jsx';
@@ -24,8 +25,8 @@ const USES = [
 
 const STEPS = [
   { title: 'Send a date & time', text: 'WhatsApp or call us with when you need the room and roughly how many people.' },
-  { title: 'We confirm the room', text: 'We check availability and lock it in for you — by the hour.' },
-  { title: 'Walk in and start', text: 'Room set, internet on, refreshments on us. Just bring your agenda.' },
+  { title: 'We confirm the room', text: 'We check availability and lock in your slot.' },
+  { title: 'Walk in and start', text: 'Room set and internet on. Just bring your agenda.' },
 ];
 
 const SIZES = [
@@ -36,10 +37,7 @@ const SIZES = [
 export function MeetingRoom() {
 
   return (
-    <Page
-      title="Book a Premium Meeting Room in Multan"
-      description="Book a premium meeting room at Let's Work Multan by the hour — modern tech, comfortable seating, rooms for one-to-ones up to full-team sessions."
-    >
+    <Page seo={PAGES.meeting}>
       <MeetingRoomBanner message={MSG} />
 
       <section className="wrap sec">
@@ -86,7 +84,7 @@ export function MeetingRoom() {
         </div>
       </section>
 
-      <FaqSection items={[FAQS.meetings, FAQS.terms, FAQS.amenities, FAQS.where]} />
+      <FaqSection items={PAGE_FAQS.meeting} />
       <RelatedSpaces currentId="meeting" />
       <CtaBand title="Got a meeting coming up? *Book the room.*" message={MSG} />
     </Page>

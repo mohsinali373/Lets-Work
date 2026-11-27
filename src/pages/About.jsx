@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { PAGES } from '../data/seo.js';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { MapPin } from 'lucide-react';
 import { CONTACT, IMG } from '../data/site.js';
@@ -55,10 +56,7 @@ function Collage() {
 
 export function About() {
   return (
-    <Page
-      title="About Us"
-      description="Let's Work is a coworking space at Nandla Chowk, Multan — over 10 years of experience building flexible, professional workspaces for freelancers, startups and teams."
-    >
+    <Page seo={PAGES.about}>
       <AboutBanner />
 
       <Collage />

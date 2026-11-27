@@ -1,5 +1,6 @@
 import { IMG } from '../../data/site.js';
-import { FAQS } from '../../data/faqs.js';
+import { PAGES } from '../../data/seo.js';
+import { PAGE_FAQS } from '../../data/faqs.js';
 import { Page } from '../../components/layout/Page.jsx';
 import { SplitWords } from '../../components/ui/SplitWords.jsx';
 import { Eyebrow } from '../../components/ui/Eyebrow.jsx';
@@ -7,7 +8,7 @@ import { Reveal } from '../../components/ui/Reveal.jsx';
 import { Bridge } from '../../components/ui/Bridge.jsx';
 import { ScrollText } from '../../components/service/ScrollText.jsx';
 import { CheckList } from '../../components/service/CheckList.jsx';
-import { DurationSwitcher } from '../../components/service/DurationSwitcher.jsx';
+import { TeamSizeSwitcher } from '../../components/service/TeamSizeSwitcher.jsx';
 import { Steps } from '../../components/sections/Steps.jsx';
 import { AmenityBand } from '../../components/sections/AmenityBand.jsx';
 import { FaqSection } from '../../components/sections/FaqSection.jsx';
@@ -19,35 +20,32 @@ const MSG = "Hi Let's Work! I need an instant office. Is one available today?";
 
 const INCLUDED = [
   { title: 'Professional, instant workspace', text: 'Fully furnished — desk, chair and high-speed internet, ready the moment you arrive.' },
-  { title: 'Flexible rental terms', text: 'Book by the hour, day or week. Pay only for the time you use.' },
-  { title: 'No leases, no paperwork', text: 'Skip the deposits and contracts. Message us and you are in.' },
+  { title: 'Simple monthly plans', text: 'One fixed monthly fee. Need it for just a week? We can arrange it at the monthly rate.' },
+  { title: 'No long lease', text: 'No multi-year contract. Pick a plan, pay the one-month deposit and you are in.' },
   { title: 'Meeting room access', text: 'Step into a proper room when a client drops by.' },
 ];
 
 const STEPS = [
-  { title: 'Message us', text: "Tell us when you need it and for how long — an hour, a day, a week." },
+  { title: 'Message us', text: 'Tell us when you need it and how many people are coming.' },
   { title: 'Pick your space', text: 'We suggest what fits: a desk on the floor or a private room.' },
   { title: 'Walk in, plug in', text: 'Your office is set up and waiting. Start working the same day.' },
 ];
 
 export function InstantOffice() {
   return (
-    <Page
-      title="Instant Shared Office Space in Multan"
-      description="Instant shared office space in Multan — fully equipped and furnished, no lease, no paperwork. Book by the hour, day or week at Let's Work."
-    >
+    <Page seo={PAGES.instant}>
       <InstantOfficeBanner message={MSG} />
 
       <section className="wrap sec" aria-labelledby="duration-title">
         <div className="mb-10 grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <Eyebrow num="01">How long?</Eyebrow>
-            <SplitWords id="duration-title" text="An hour, a day *or a week.*" className="t-h2 mt-4" />
+            <Eyebrow num="01">Who is it for?</Eyebrow>
+            <SplitWords id="duration-title" text="Just you, *or the whole team.*" className="t-h2 mt-4" />
           </div>
-          <p className="text-graphite lg:col-span-4 lg:col-start-9">Pick how long you need it and see what that looks like.</p>
+          <p className="text-graphite lg:col-span-4 lg:col-start-9">Pick who needs the space and see what that costs each month.</p>
         </div>
         <Reveal>
-          <DurationSwitcher />
+          <TeamSizeSwitcher />
         </Reveal>
       </section>
 
@@ -81,8 +79,8 @@ export function InstantOffice() {
         <Bridge className="mt-16">Plus everything our members get.</Bridge>
       </section>
 
-      <AmenityBand title="The full kit, *from hour one.*" />
-      <FaqSection items={[FAQS.terms, FAQS.amenities, FAQS.tour, FAQS.where]} />
+      <AmenityBand title="The full kit, *from day one.*" />
+      <FaqSection items={PAGE_FAQS.instant} />
       <RelatedSpaces currentId="instant" />
       <CtaBand title="Your office can be ready *today.*" message={MSG} text="Message us with when you need it. We'll tell you what's free and have it ready when you arrive." />
     </Page>

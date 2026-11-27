@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, ArrowUpRight, Car, Coffee, Tag, Wifi } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Car, Lock, Tag, Wifi } from 'lucide-react';
 import { IMG, TOUR_MSG, waLink } from '../../data/site.js';
 import { SOLO_PLANS } from '../../data/plans.js';
 import { Button } from '../ui/Button.jsx';
@@ -8,13 +8,13 @@ import { RotatingBadge } from '../ui/RotatingBadge.jsx';
 import { EASE_OUT } from '../../lib/motion.js';
 
 const FACTS = [
-  { icon: Tag, text: 'Day, week or month' },
+  { icon: Tag, text: 'Simple monthly plans' },
   { icon: Car, text: 'Free parking' },
   { icon: Wifi, text: '5G internet' },
-  { icon: Coffee, text: 'Chai on call' },
+  { icon: Lock, text: 'Private lockers' },
 ];
 const LOWEST_PRICE = Math.min(...SOLO_PLANS.map((p) => p.price));
-const TICKER = ['Hot desks', 'Dedicated desks', 'Private offices', 'Meeting rooms', 'Instant offices', 'Chai on call', 'Free parking', 'No lease'];
+const TICKER = ['Hot desks', 'Dedicated desks', 'Private offices', 'Meeting rooms', 'Instant offices', 'Private lockers', 'Free parking', 'Monthly plans'];
 
 function fadeUp(delay) {
   return { initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, ease: EASE_OUT, delay } };
@@ -172,7 +172,7 @@ export function Hero() {
             </h1>
 
             <motion.p {...fadeUp(0.6)} className="mt-7 max-w-md text-lg leading-relaxed text-cream/75">
-              Hot desks, private offices and meeting rooms — set up, served with chai, and ready the day you walk in.
+              Hot desks, private offices and meeting rooms — furnished, connected and ready the day you walk in.
             </motion.p>
 
             <motion.div {...fadeUp(0.72)} className="mt-9">

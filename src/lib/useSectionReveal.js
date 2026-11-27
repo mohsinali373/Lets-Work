@@ -12,6 +12,7 @@ function hasBackground(el) {
 /**
  * Site-wide scroll effect: every coloured top-level section enters as a rounded card
  * and opens out to full width as it scrolls up the screen. Purely scroll-linked.
+ * A section marked `data-no-reveal` stays full width from the start.
  * @param {React.RefObject<HTMLElement>} rootRef
  */
 export function useSectionReveal(rootRef) {
@@ -23,7 +24,7 @@ export function useSectionReveal(rootRef) {
     let frame = 0;
 
     function collect() {
-      sections = [...root.querySelectorAll('section')].filter((s, i) => i > 0 && !s.parentElement.closest('section') && hasBackground(s));
+      sections = [...root.querySelectorAll('section')].filter((s, i) => i > 0 && !s.parentElement.closest('section') && !('noReveal' in s.dataset) && hasBackground(s));
     }
 
     function update() {

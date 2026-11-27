@@ -1,9 +1,9 @@
-import { FLEX_TERMS } from '../../data/services.js';
+import { MONTHLY_TERMS, MONTHLY_TERMS_NOTE } from '../../data/services.js';
 import { Reveal } from '../ui/Reveal.jsx';
 import { ScrollTilt } from '../ui/ScrollTilt.jsx';
 
 /**
- * Hour / Day / Week tiles — the "no lease" hook that appears on several pages.
+ * Monthly-terms tiles (billing, desk price, team price) that appear on several pages.
  * @param {{ dark?: boolean, className?: string }} props
  */
 export function FlexTerms({ dark = false, className = '' }) {
@@ -13,11 +13,11 @@ export function FlexTerms({ dark = false, className = '' }) {
     <div className={className}>
       <ScrollTilt from={18}>
       <ul className="grid gap-3 sm:grid-cols-3">
-        {FLEX_TERMS.map((t, i) => (
-          <Reveal as="li" key={t.unit} delay={i * 0.08} className={`${tile} group rounded-[24px] p-6 transition-transform duration-500 hover:-translate-y-1`}>
-            <p className="label opacity-50">Book by the</p>
+        {MONTHLY_TERMS.map((t, i) => (
+          <Reveal as="li" key={t.label} delay={i * 0.08} className={`${tile} group rounded-[24px] p-6 transition-transform duration-500 hover:-translate-y-1`}>
+            <p className="label opacity-50">{t.label}</p>
             <p className="mt-2 text-4xl font-semibold tracking-tight">
-              {t.unit}
+              {t.big}
               <span className="text-sun">.</span>
             </p>
             <p className={`mt-3 text-sm ${sub}`}>{t.line}</p>
@@ -25,7 +25,7 @@ export function FlexTerms({ dark = false, className = '' }) {
         ))}
       </ul>
       </ScrollTilt>
-      <p className={`mt-4 text-sm ${sub}`}>No long-term commitment. No hidden fees. You pay only for the time you use.</p>
+      <p className={`mt-4 text-sm ${sub}`}>{MONTHLY_TERMS_NOTE}</p>
     </div>
   );
 }

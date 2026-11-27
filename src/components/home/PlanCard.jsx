@@ -138,7 +138,9 @@ export function PlanCard({ plan, kind, index }) {
   }
 
   return (
-    <motion.li ref={cardRef} variants={cardVariants} data-plan-card className="relative pt-4">
+    // perspective sits on the <li>, not inside the tilt transform: with `perspective()` in the transform,
+    // Chrome hit-tests the tilted card ~20px off from where it paints, so "Book this plan" stopped taking clicks
+    <motion.li ref={cardRef} variants={cardVariants} data-plan-card className="relative pt-4 [perspective:1100px]">
       {isFeatured && (
         <motion.span
           className="absolute left-1/2 top-0 z-10 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider shadow-[0_10px_24px_-8px_rgba(0,0,0,0.6)]"
@@ -155,7 +157,7 @@ export function PlanCard({ plan, kind, index }) {
         ref={frameRef}
         onPointerMove={handleMove}
         onPointerLeave={resetTilt}
-        style={{ rotateX, rotateY, transformPerspective: 1100, '--ring-a': tier.a, '--ring-b': tier.b }}
+        style={{ rotateX, rotateY, '--ring-a': tier.a, '--ring-b': tier.b }}
         className={`relative h-full rounded-[30px] p-[1.5px] ${isFeatured ? 'plan-ring shadow-[0_30px_80px_-30px_var(--ring-b)]' : 'bg-white/[0.12]'}`}
       >
         <div ref={surfaceRef} className="plan-spot relative flex h-full flex-col overflow-hidden rounded-[29px] bg-ink-soft p-6 md:p-7">

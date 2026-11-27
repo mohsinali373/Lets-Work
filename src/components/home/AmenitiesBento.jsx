@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowUpRight, Car, Coffee, CupSoda, Lock, Printer, Users } from 'lucide-react';
+import { ArrowUpRight, Car, ConciergeBell, Lock, MapPin, Snowflake, Users } from 'lucide-react';
 import { IMG } from '../../data/site.js';
 import { ScrollTilt } from '../ui/ScrollTilt.jsx';
 import { SplitWords } from '../ui/SplitWords.jsx';
@@ -61,7 +61,7 @@ export function AmenitiesBento() {
             </div>
           </div>
 
-          <Small icon={Coffee} title="Chai on call" text="Office boy service — tea arrives before your second email." className="flex flex-col bg-ink text-cream" />
+          <Small icon={ConciergeBell} title="Office boy facility" text="Someone on hand through the day — just ask at the desk." className="flex flex-col bg-ink text-cream" />
 
           <div className={`${card} min-h-[340px] p-0 lg:row-span-2`}>
             <img
@@ -83,7 +83,7 @@ export function AmenitiesBento() {
 
           <div className={`${card} flex min-h-[205px] bg-cream-deep p-0 sm:col-span-2`}>
             <div className="flex flex-1 flex-col p-6">
-              <span className="label text-graphite">By the hour</span>
+              <span className="label text-graphite">For members</span>
               <h3 className="mt-auto text-2xl font-semibold tracking-tight">Meeting rooms</h3>
               <p className="text-sm text-graphite">Pitches, interviews, workshops.</p>
             </div>
@@ -92,8 +92,8 @@ export function AmenitiesBento() {
             </div>
           </div>
 
-          <Small icon={Printer} title="Printing" text="Print the contract, sign it, done." className="glass flex flex-col" />
-          <Small icon={CupSoda} title="Refreshments" text="Complimentary, all day." className="glass flex flex-col" />
+          <Small icon={Snowflake} title="Fully air-conditioned" text="Cool and comfortable, even in a Multan June." className="glass flex flex-col" />
+          <Small icon={MapPin} title="Easy to reach" text="Nandla Chowk, Shuhada Road — right in the city." className="glass flex flex-col" />
           <Small icon={Users} title="Networking events" text="Skill-sharing and people worth knowing." className="flex flex-col bg-ink-soft text-cream" />
 
           <Link to="/spaces" className={`${card} flex flex-col justify-between bg-ink text-cream sm:col-span-2`}>

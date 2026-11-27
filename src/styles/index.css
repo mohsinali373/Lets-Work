@@ -12,6 +12,8 @@
   --color-sun-soft: #fbe2a1;
   --color-sun-deep: #c98d07;
   --color-on-sun: #082236;
+  /* Google review stars — the same yellow Google uses, kept in both themes */
+  --color-star: #fbbc04;
 
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;

@@ -28,7 +28,7 @@ export function SpacesShelf() {
           <SplitWords id="spaces-title" text="Five ways to work here. *Pick yours.*" className="t-h2 mt-4" />
         </div>
         <Reveal as="p" className="t-lead md:col-span-4 md:col-start-9" delay={0.1}>
-          From a single seat for an afternoon to a lockable office for the whole team — same address, same chai, same
+          From a single desk to a lockable office for the whole team — same address, same fast internet, same
           people.
         </Reveal>
       </div>

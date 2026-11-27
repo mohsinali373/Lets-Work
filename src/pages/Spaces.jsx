@@ -1,4 +1,5 @@
 import { Page } from '../components/layout/Page.jsx';
+import { PAGES } from '../data/seo.js';
 import { SplitWords } from '../components/ui/SplitWords.jsx';
 import { Eyebrow } from '../components/ui/Eyebrow.jsx';
 import { Bridge } from '../components/ui/Bridge.jsx';
@@ -16,7 +17,7 @@ const STEPS = [
 
 export function Spaces() {
   return (
-    <Page title="All Workspaces" description="Compare Let's Work spaces in Multan: coworking, dedicated desks, private offices, meeting rooms and instant offices.">
+    <Page seo={PAGES.spaces}>
       <SpacesBanner />
 
       {/* not sure which one? a quick finder instead of a second list of the same five spaces */}
@@ -36,9 +37,9 @@ export function Spaces() {
       <section className="bg-ink text-cream">
         <div className="wrap sec grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <SplitWords text="Pay for the time *you actually use.*" className="t-h2" />
+            <SplitWords text="Simple plans, *billed monthly.*" className="t-h2" />
             <p className="mt-5 max-w-sm text-cream/60">
-              Book any space by the hour, day or week. No long lease and no hidden fees.
+              Every space runs on a monthly plan. No long lease and no hidden fees.
             </p>
           </div>
           <FlexTerms dark className="lg:col-span-7" />

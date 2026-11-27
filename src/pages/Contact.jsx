@@ -1,6 +1,7 @@
 import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
+import { PAGES } from '../data/seo.js';
 import { CONTACT, TOUR_MSG, waLink } from '../data/site.js';
-import { FAQS } from '../data/faqs.js';
+import { PAGE_FAQS } from '../data/faqs.js';
 import { Page } from '../components/layout/Page.jsx';
 import { SplitWords } from '../components/ui/SplitWords.jsx';
 import { Intro } from '../components/ui/PageIntro.jsx';
@@ -19,7 +20,7 @@ const CHANNELS = [
 
 export function Contact() {
   return (
-    <Page title="Contact Us" description="Contact Let's Work coworking space in Multan — call or WhatsApp 0326-6802515, email info@letswork.pk, or visit us at Nandla Chowk, Shuhada Road.">
+    <Page seo={PAGES.contact}>
       <section className="relative overflow-hidden">
         <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-20 size-[520px] rounded-full bg-sun/30 blur-[120px]" />
         <div className="wrap relative grid gap-10 pb-16 pt-32 md:pb-24 md:pt-40 lg:grid-cols-12">
@@ -29,7 +30,7 @@ export function Contact() {
             </Intro>
             <SplitWords as="h1" onMount delay={0.5} text="Let's talk *work.*" className="t-display mt-6" />
             <Intro as="p" delay={0.9} className="t-lead mt-6 max-w-md">
-              Contact us for fast, reliable service. Ask about a space, book a free tour, or just come by for chai.
+              Contact us for fast, reliable service. Ask about a space, book a free tour, or just come by and see the space.
             </Intro>
 
             <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
@@ -79,7 +80,7 @@ export function Contact() {
         </Reveal>
       </section>
 
-      <FaqSection items={[FAQS.tour, FAQS.trial, FAQS.where, FAQS.terms]} title="Before you *message us.*" />
+      <FaqSection items={PAGE_FAQS.contact} title="Before you *message us.*" />
     </Page>
   );
 }

@@ -11,7 +11,7 @@ const ROWS = [
   { label: 'A proper room to meet a client', cafe: 'no', home: 'no' },
   { label: 'An address that looks professional', cafe: 'no', home: 'no' },
   { label: 'Parking without the hunt', cafe: 'meh', home: 'yes' },
-  { label: 'Tea without buying another cup', cafe: 'no', home: 'yes' },
+  { label: 'A locker to leave your laptop in', cafe: 'no', home: 'yes' },
   { label: 'People to learn from and work with', cafe: 'meh', home: 'no' },
 ];
 

@@ -1,4 +1,5 @@
 import { ShieldCheck } from 'lucide-react';
+import { PAGES } from '../data/seo.js';
 import { CONTACT } from '../data/site.js';
 import { Page } from '../components/layout/Page.jsx';
 import { SplitWords } from '../components/ui/SplitWords.jsx';
@@ -34,7 +35,7 @@ const SECTIONS = [
 
 export function Privacy() {
   return (
-    <Page title="Privacy Policy" description="How Let's Work coworking space in Multan collects and uses your information.">
+    <Page seo={PAGES.privacy}>
       {/* banner: a quiet dark band with the short version and a jump list */}
       <section className="bg-ink text-cream">
         <div className="wrap pb-14 pt-32 md:pb-16 md:pt-40">

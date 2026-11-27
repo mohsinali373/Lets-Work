@@ -1,7 +1,8 @@
 import { useRef } from 'react';
+import { PAGES } from '../../data/seo.js';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { IMG } from '../../data/site.js';
-import { FAQS } from '../../data/faqs.js';
+import { PAGE_FAQS } from '../../data/faqs.js';
 import { Page } from '../../components/layout/Page.jsx';
 import { SplitWords } from '../../components/ui/SplitWords.jsx';
 import { Eyebrow } from '../../components/ui/Eyebrow.jsx';
@@ -20,7 +21,7 @@ import { DedicatedDeskBanner } from '../../components/banners/DedicatedDeskBanne
 const MSG = "Hi Let's Work! I'd like to reserve a dedicated desk. What's available?";
 
 const YOURS = ['Your own desk, every day', 'An ergonomic chair set the way you like it', 'A private locker for your things', 'A spot people can find you at'];
-const SHARED = ['Meeting rooms when you need them', 'High-speed internet', 'Printing and refreshments', 'Networking events and the community', 'Free parking'];
+const SHARED = ['Meeting rooms when you need them', 'High-speed internet', 'Office boy facility', 'Networking events and the community', 'Free parking'];
 
 const BENEFITS = [
   { title: 'Professional and private workspace', text: 'Fully furnished — desk, chair and high-speed internet, ready when you are.' },
@@ -53,10 +54,7 @@ export function DedicatedDesk() {
   const stripY = useTransform(scrollYProgress, [0, 1], ['-12%', '12%']);
 
   return (
-    <Page
-      title="Dedicated Desk Coworking Space in Multan"
-      description="Claim your own desk at Let's Work Multan — personal desk, secure storage, high-speed internet and meeting room access. Book by the hour, day or week."
-    >
+    <Page seo={PAGES.dedicated}>
       <DedicatedDeskBanner message={MSG} />
 
       <div ref={stripRef} className="wrap">
@@ -79,7 +77,7 @@ export function DedicatedDesk() {
           <SideCard title="Ours, to share" items={SHARED} delay={0.1} />
         </div>
         </ScrollTilt>
-        <Bridge className="mt-16">And you're never locked in.</Bridge>
+        <Bridge className="mt-16">And the terms stay simple.</Bridge>
       </section>
 
       <section className="wrap pb-16 md:pb-24">
@@ -116,13 +114,13 @@ export function DedicatedDesk() {
         kind="solo"
         details={[
           'A 1-month security deposit applies to all plans.',
-          'Tea/coffee & printing are available at extra charges.',
+          'Tea is available at extra charge.',
           '5G internet comes with every plan.',
           'Visit first — book a free tour, no commitment.',
         ]}
         askMessage="Hi Let's Work! I have a question about your dedicated desk plans."
       />
-      <FaqSection items={[FAQS.terms, FAQS.amenities, FAQS.customize, FAQS.tour]} />
+      <FaqSection items={PAGE_FAQS.dedicated} />
       <RelatedSpaces currentId="dedicated" />
       <CtaBand title="Claim *your* desk before someone else does." message={MSG} />
     </Page>

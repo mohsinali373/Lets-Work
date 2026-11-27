@@ -26,7 +26,7 @@ const BEATS = [
   { at: 0, time: 'Multan’s no.1 coworking space', title: 'The space for imagination.', text: 'A dynamic, collaborative workspace at Nandla Chowk for entrepreneurs, startups and remote workers.' },
   { at: 0.17, time: 'Coworking & dedicated desks', title: 'Productivity, built in.', text: 'High-speed internet, ergonomic furniture, private lockers and an office boy on call.' },
   { at: 0.5, time: 'Private offices & meeting rooms', title: 'Room to grow your team.', text: 'Fully furnished, serviced offices and meeting rooms for clients, interviews and workshops.' },
-  { at: 0.72, time: 'No lease · no hidden fees', title: 'Book by the hour, day or week.', text: 'Pay only for the time you use. Your first tour is free.' },
+  { at: 0.72, time: 'Monthly plans · no hidden fees', title: 'One simple monthly plan.', text: 'Internet, AC and parking included in one fixed fee. Your first tour is free.' },
 ];
 
 const SCRUB_START = 0.14; // scroll progress where the film starts moving (after the window opens)

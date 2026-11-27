@@ -1,5 +1,6 @@
 import { IMG } from '../../data/site.js';
-import { FAQS } from '../../data/faqs.js';
+import { PAGES } from '../../data/seo.js';
+import { PAGE_FAQS } from '../../data/faqs.js';
 import { Page } from '../../components/layout/Page.jsx';
 import { SplitWords } from '../../components/ui/SplitWords.jsx';
 import { Eyebrow } from '../../components/ui/Eyebrow.jsx';
@@ -28,7 +29,7 @@ const WHY = [
   {
     kicker: 'Premium amenities',
     title: 'Everything a big office has.',
-    text: 'High-speed internet, ergonomic furniture, fully equipped meeting rooms and complimentary refreshments.',
+    text: 'High-speed internet, ergonomic furniture, private lockers and fully equipped meeting rooms.',
     image: IMG.boardroom,
     tone: 'bg-ink text-cream',
   },
@@ -62,10 +63,7 @@ function Stat({ to, suffix, label, delay = 0 }) {
 export function Coworking() {
 
   return (
-    <Page
-      title="Best Coworking Space in Multan"
-      description="Affordable coworking space in Multan for freelancers, entrepreneurs and startups. High-speed internet, meeting rooms, free parking — book by the hour, day or week."
-    >
+    <Page seo={PAGES.coworking}>
       <CoworkingBanner message={MSG} />
 
       <section className="wrap sec grid gap-10 lg:grid-cols-12">
@@ -119,13 +117,13 @@ export function Coworking() {
         kind="solo"
         details={[
           'A 1-month security deposit applies to all plans.',
-          'Tea/coffee & printing are available at extra charges.',
+          'Tea is available at extra charge.',
           '5G internet comes with every plan.',
           'Visit first — book a free tour, no commitment.',
         ]}
         askMessage="Hi Let's Work! I have a question about your coworking plans."
       />
-      <FaqSection items={[FAQS.amenities, FAQS.terms, FAQS.trial, FAQS.where]} />
+      <FaqSection items={PAGE_FAQS.coworking} />
       <RelatedSpaces currentId="coworking" />
       <CtaBand message={MSG} />
     </Page>

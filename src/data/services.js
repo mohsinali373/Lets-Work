@@ -1,4 +1,5 @@
 import { IMG } from './site.js';
+import { LOWEST_SOLO_PRICE, LOWEST_TEAM_PRICE, formatPrice } from './plans.js';
 
 /**
  * The five Let's Work products. Copy is rewritten from the current letswork.pk pages.
@@ -53,7 +54,7 @@ export const SERVICES = [
     num: '04',
     name: 'Meeting Room',
     short: 'Meeting Room',
-    tag: 'By the hour',
+    tag: 'Members / Pitch-ready',
     oneLiner: 'Pitch, interview or workshop in a room that looks the part.',
     blurb:
       'Premium meeting rooms with modern tech and comfortable seating — from a small room for one-to-ones to a long table for the whole team.',
@@ -67,10 +68,10 @@ export const SERVICES = [
     num: '05',
     name: 'Instant Office',
     short: 'Instant Office',
-    tag: 'Same day / No lease',
+    tag: 'Same day / Monthly',
     oneLiner: 'Need an office by this afternoon? Done.',
     blurb:
-      'A fully equipped shared office on short notice. No leases, no paperwork — book by the hour, day or week and pay only for what you use.',
+      'A fully equipped shared office on short notice. Pick a monthly plan in the morning and start working the same day.',
     image: IMG.teamRoom,
     thumb: IMG.lounge,
     tone: 'glass',
@@ -84,8 +85,12 @@ export function getService(id) {
   return SERVICES.find((s) => s.id === id);
 }
 
-export const FLEX_TERMS = [
-  { unit: 'Hour', line: 'A focused sprint or one client meeting.' },
-  { unit: 'Day', line: 'A full workday with everything included.' },
-  { unit: 'Week', line: 'A project, a visit, or a trial run.' },
+/** How Let's Work charges: every space runs on a monthly plan. */
+export const MONTHLY_TERMS = [
+  { label: 'Billed', big: 'Monthly', line: 'One fixed fee a month, with internet, AC and parking included.' },
+  { label: 'Desks from', big: formatPrice(LOWEST_SOLO_PRICE), line: 'Silver, Gold and Diamond plans for freelancers and solo workers.' },
+  { label: 'Team offices from', big: formatPrice(LOWEST_TEAM_PRICE), line: 'Private, lockable offices for teams of 6–8 people.' },
 ];
+
+export const MONTHLY_TERMS_NOTE =
+  'Need a space for only a week or two? We can arrange it, but it is charged at the monthly rate. A one-month security deposit applies to all plans.';
