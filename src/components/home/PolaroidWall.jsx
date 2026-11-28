@@ -6,14 +6,14 @@ import { SplitWords } from '../ui/SplitWords.jsx';
 import { sized } from '../../data/imageSizes.js';
 
 const SHOTS = [
-  { src: IMG.boardroom, note: 'Boardroom, 9 a.m. standup', tilt: -4 },
-  { src: IMG.hotDesks, note: 'Hot desks — window side', tilt: 3 },
-  { src: IMG.lounge, note: 'The blue sofas (best seats)', tilt: -2 },
-  { src: IMG.privateOffice, note: 'Private office, door shut', tilt: 5 },
-  { src: IMG.floorCircles, note: 'Long tables, lots of light', tilt: 4 },
-  { src: IMG.teamRoom, note: 'Team room, booked till 4', tilt: -5 },
-  { src: IMG.reception, note: 'Reception — say hi', tilt: 2 },
-  { src: IMG.building, note: 'Find us on Shuhada Road', tilt: -3 },
+  { src: IMG.boardroom, note: 'Boardroom, 9 a.m. standup', short: '9 a.m. standup', tilt: -4 },
+  { src: IMG.hotDesks, note: 'Hot desks — window side', short: 'Window side', tilt: 3 },
+  { src: IMG.lounge, note: 'The blue sofas (best seats)', short: 'The blue sofas', tilt: -2 },
+  { src: IMG.privateOffice, note: 'Private office, door shut', short: 'Private office', tilt: 5 },
+  { src: IMG.floorCircles, note: 'Long tables, lots of light', short: 'Lots of light', tilt: 4 },
+  { src: IMG.teamRoom, note: 'Team room, booked till 4', short: 'Team room', tilt: -5 },
+  { src: IMG.reception, note: 'Reception — say hi', short: 'Reception', tilt: 2 },
+  { src: IMG.building, note: 'Find us on Shuhada Road', short: 'Shuhada Road', tilt: -3 },
 ];
 
 /** One polaroid: drifts at its own speed and straightens as it scrolls through. */
@@ -31,7 +31,11 @@ function Polaroid({ shot, index, progress, reduce }) {
       <div className="aspect-[4/5] overflow-hidden bg-cream-deep">
         <img {...sized(shot.src)} alt={shot.note} title={shot.note} loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
       </div>
-      <figcaption className="accent absolute inset-x-3 bottom-3 text-center text-lg text-ink/80 sm:bottom-4">{shot.note}</figcaption>
+      {/* phones get a short caption that fits on one line; the full note from sm up */}
+      <figcaption className="accent absolute inset-x-3 bottom-3 text-center text-lg text-ink/80 sm:bottom-4">
+        <span className="block truncate sm:hidden">{shot.short}</span>
+        <span className="hidden sm:inline">{shot.note}</span>
+      </figcaption>
     </motion.figure>
   );
 }

@@ -60,6 +60,11 @@ export function SpacesShelf() {
                   </span>
                 </div>
 
+                {/* phones and tablets: the photo sits in the card (desktop reveals it on hover instead) */}
+                <div className="mt-5 aspect-[16/10] overflow-hidden rounded-[20px] lg:hidden">
+                  <img {...sized(s.image)} alt="" loading="lazy" className="size-full object-cover" />
+                </div>
+
                 <div
                   className={`pointer-events-none absolute inset-x-3 top-20 bottom-[46%] hidden overflow-hidden rounded-[20px] transition-all duration-700 ease-[var(--ease-expo)] lg:block ${
                     isActive ? 'opacity-100' : 'scale-95 opacity-0'
