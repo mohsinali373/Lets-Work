@@ -126,6 +126,7 @@ export function WindowReveal() {
                 disablePictureInPicture
                 onLoadedData={handleLoaded}
                 aria-label="A member walks through Let's Work past the lounge and hot desks into a private office, sits down and opens her laptop"
+                title="Walking into the Let's Work coworking space"
                 className="absolute inset-0 size-full object-cover"
               />
             )}

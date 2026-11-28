@@ -89,6 +89,23 @@ img {
   user-select: none;
 }
 
+/* hand cursor on every photo and everything clickable (Tailwind's reset gives buttons the arrow) */
+img,
+video,
+a[href],
+button:not(:disabled),
+[role="button"],
+summary,
+label[for],
+select {
+  cursor: pointer;
+}
+
+/* gradient shades laid over photos let the mouse through, so hovering the photo still shows its title */
+.absolute.inset-0[class*="bg-gradient-to-"] {
+  pointer-events: none;
+}
+
 /* Component classes live in a layer so Tailwind utilities (hidden, py-*, etc.) can override them. */
 @layer components {
 /* ---------- layout ---------- */

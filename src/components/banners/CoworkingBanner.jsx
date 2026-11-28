@@ -31,7 +31,8 @@ export function CoworkingBanner({ message }) {
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/55 to-ink/10" aria-hidden="true" />
 
-      <div className="wrap grid w-full gap-8 pb-12 pt-32 md:pb-16 lg:grid-cols-12 lg:items-end">
+      {/* the copy lets the mouse through to the photo behind it (so its title shows on hover); the price card stays clickable */}
+      <div className="wrap pointer-events-none grid w-full gap-8 pb-12 pt-32 md:pb-16 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-8">
           <Intro delay={0.3}>
             <Eyebrow num="01" className="text-sun">
@@ -42,7 +43,7 @@ export function CoworkingBanner({ message }) {
         </div>
 
         <Intro delay={0.9} className="lg:col-span-4">
-          <div className="glass-dark rounded-[28px] p-6">
+          <div className="glass-dark pointer-events-auto rounded-[28px] p-6">
             <p className="text-cream/75">Any open seat on a bright, shared floor — plug in and get going.</p>
             <div className="mt-5 flex items-end justify-between gap-4 border-t border-white/10 pt-5">
               <p className="leading-tight">
